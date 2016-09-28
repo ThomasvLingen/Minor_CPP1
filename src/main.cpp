@@ -3,8 +3,9 @@
 //
 
 #include <stdio.h>
+#include <iostream>
 
 int main()
 {
-    printf("Hi\n");
+    std::cout << "Hi" << std::endl;
 }
