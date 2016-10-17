@@ -6,8 +6,17 @@
 #define MINOR_CPP1_FLOOR_HPP
 
 
-class Floor {
+#include <vector>
+#include "Room.hpp"
 
+class Floor {
+public:
+    Floor();
+    ~Floor();
+
+private:
+    std::vector<std::vector<Room>>  map;
+    std::vector<std::vector<int>>   adjacency_matrix;
 };
 
 
