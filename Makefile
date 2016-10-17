@@ -9,7 +9,8 @@ LD = $(CC)
 # Wextra = extra warnings
 # g = debug symbols
 # std=c++11 = C++11
-COMPILER_FLAGS = -Wall -Wextra -g -std=c++11
+INCLUDE_PATHS = -Isrc/
+COMPILER_FLAGS = -Wall -Wextra -g -std=c++11 $(INCLUDE_PATHS)
 
 # Linker flags
 # g = debug symbols
@@ -18,7 +19,7 @@ LINKER_FLAGS = -g
 
 # Files to compile
 SRC_PATH = src/
-SRC_FILES = $(wildcard $(SRC_PATH)*.cpp)
+SRC_FILES = $(shell find $(SRC_PATH) -name '*.cpp')
 OBJ_FILES = $(SRC_FILES:.cpp=.o)
 
 # Path for the resulting file
