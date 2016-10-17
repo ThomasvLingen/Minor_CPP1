@@ -6,8 +6,16 @@
 #define MINOR_CPP1_DUNGEON_HPP
 
 
-class Dungeon {
+#include <vector>
+#include "Floor.hpp"
 
+class Dungeon {
+public:
+    Dungeon(std::vector<Floor*> floors);
+    virtual ~Dungeon();
+
+private:
+    std::vector<Floor*> _floors;
 };
 
 

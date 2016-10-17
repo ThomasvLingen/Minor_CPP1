@@ -11,12 +11,15 @@
 
 class Floor {
 public:
-    Floor();
-    ~Floor();
+    Floor(std::size_t height, std::size_t width);
+    virtual ~Floor();
 
 private:
-    std::vector<std::vector<Room>>  map;
-    std::vector<std::vector<int>>   adjacency_matrix;
+    size_t _height;
+    size_t _width;
+
+    std::vector<std::vector<Room*>> _map;
+    std::vector<std::vector<int>> _adjacency_matrix;
 };
 
 
