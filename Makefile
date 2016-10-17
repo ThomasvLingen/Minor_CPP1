@@ -51,6 +51,6 @@ run : $(EXEC)
 .PHONY: clean
 clean:
 	@echo "Cleaning build"
-	rm -rf $(SRC_PATH)*.o
+	rm -rf $(shell find $(SRC_PATH) -name '*.o')
 	rm -rf $(BUILD_PATH)*
 
