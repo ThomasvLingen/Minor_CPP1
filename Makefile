@@ -8,8 +8,8 @@ LD = $(CC)
 # Wall = all warnings
 # Wextra = extra warnings
 # g = debug symbols
-# std=c++14 = C++14
-COMPILER_FLAGS = -Wall -Wextra -g -std=c++14
+# std=c++11 = C++11
+COMPILER_FLAGS = -Wall -Wextra -g -std=c++11
 
 # Linker flags
 # g = debug symbols
