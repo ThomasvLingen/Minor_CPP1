@@ -1,6 +1,9 @@
 # Build directory
 build/
 
+# GDB stuff
+.gdb_history
+
 # Clion IDE files
 .idea/
 
