@@ -18,3 +18,13 @@ Floor::~Floor()
         }
     }
 }
+
+void Floor::setRoom(Room::Location location, Room * room_ptr)
+{
+    this->_map[location.height_index][location.width_index] = room_ptr;
+}
+
+Room *Floor::getRoom(Room::Location location)
+{
+    return this->_map[location.height_index][location.width_index];
+}
