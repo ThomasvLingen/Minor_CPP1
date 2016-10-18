@@ -22,6 +22,8 @@ namespace Monsters {
     public:
         static MonsterMap parse_monsters_file(string monsters_file_path);
         static Enemy _parse_enemy(string monster_string);
+    private:
+        static void _filter_non_enemy_lines(vector<string>& lines);
     };
 }
 
