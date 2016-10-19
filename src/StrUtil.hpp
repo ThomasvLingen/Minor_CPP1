@@ -11,6 +11,7 @@
 class StrUtil {
 public:
     static std::vector<std::string> get_lines_from_file(std::string filename);
+    static std::vector<std::string> split(std::string str, char delim);
 };
 
 

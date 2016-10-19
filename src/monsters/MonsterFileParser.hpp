@@ -15,15 +15,26 @@ namespace Monsters {
     using std::map;
     using std::string;
     using std::vector;
+    using std::stoi;
 
     typedef map<string, Enemy> MonsterMap;
 
     class MonsterFileParser {
     public:
         static MonsterMap parse_monsters_file(string monsters_file_path);
-        static Enemy _parse_enemy(string monster_string);
+        static Enemy _parse_monster(string monster_string);
     private:
         static void _filter_non_enemy_lines(vector<string>& lines);
+        static vector<string> _get_enemy_lines(vector<string>& lines);
+        static void _remove_brackets_from_enemy_lines(vector<string>& lines);
+
+        static string _get_name(vector<string> split_enemy);
+        static int _get_level(vector<string> split_enemy);
+        static int _get_hit_chance(vector<string> split_enemy);
+        static int _get_hit_times(vector<string> split_enemy);
+        static Damage _get_damage(vector<string> split_enemy);
+        static int _get_defence(vector<string> split_enemy);
+        static int _get_health(vector<string> split_enemy);
     };
 }
 

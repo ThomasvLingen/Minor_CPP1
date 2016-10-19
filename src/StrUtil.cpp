@@ -22,3 +22,25 @@ std::vector<std::string> StrUtil::get_lines_from_file(std::string filename)
 
     return lines;
 }
+
+std::vector<std::string> StrUtil::split(std::string str, char delim) {
+    std::string copy = str;
+    std::vector<std::string> tokens;
+
+    size_t delimPosition = 0;
+
+    while(copy.find(delim) != std::string::npos || delimPosition != std::string::npos){
+        delimPosition = copy.find(delim);
+
+        std::string token = copy.substr(0, delimPosition);
+        // Check if the token isn't empty, if not, push it!
+        if(!token.empty()){
+            tokens.push_back(token);
+        }
+
+        // Substract added token from our string
+        copy = copy.substr(delimPosition + 1);
+    }
+
+    return tokens;
+};
