@@ -10,12 +10,14 @@
 #include <vector>
 
 #include "monsters/Enemy.hpp"
+#include "util/StrUtil.hpp"
 
 namespace Monsters {
     using std::map;
     using std::string;
     using std::vector;
     using std::stoi;
+    using Util::StrUtil;
 
     typedef map<string, Enemy> MonsterMap;
 

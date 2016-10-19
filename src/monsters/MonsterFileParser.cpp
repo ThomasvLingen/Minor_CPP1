@@ -4,7 +4,7 @@
 
 #include <algorithm>
 
-#include "StrUtil.hpp"
+#include "util/StrUtil.hpp"
 #include "Enemy.hpp"
 #include "MonsterFileParser.hpp"
 
