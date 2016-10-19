@@ -48,6 +48,9 @@ all : $(EXEC)
 run : $(EXEC)
 	$(EXEC)
 
+debug: $(EXEC)
+	gdb $(EXEC)
+
 .PHONY: clean
 clean:
 	@echo "Cleaning build"
