@@ -7,6 +7,7 @@
 
 
 #include <dungeon/Floor.hpp>
+#include <set>
 
 class FloorGenerator {
 public:
@@ -16,13 +17,14 @@ public:
     static Floor* generateFloor(std::size_t height, std::size_t width);
 
 private:
-    static void setStartAndEndRoom(Floor* floor, std::size_t height, std::size_t width);
+    static Room::Location setStartAndEndRoom(Floor* floor, std::size_t height, std::size_t width);
     static int getRandomRoomNumber(std::size_t width);
     static std::vector<Room::Location> createNeighbours(Floor* floor, std::vector<Room::Location> roomList);
     static void setRoomInFloor(Floor* floor, Room* room);
     static std::vector<Room::Location> getOpenNeighbours(Floor* floor, Room::Location location);
     static std::vector<Room::Location> getRawNeighbours(Room::Location location); //does not check if valid
     static bool isAvailableRoom(Floor* floor, Room::Location location);
+    static std::set<int> getRandomIntsInRange(int max_range);
 
 
 

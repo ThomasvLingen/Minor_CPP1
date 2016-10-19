@@ -6,8 +6,8 @@
 #define MINOR_CPP1_FLOOR_HPP
 
 
-#include <vector>
 #include "Room.hpp"
+#include <vector>
 
 class Floor { //perhaps make functions to interact and set map instead of making it public (maybe even friend classes?)
 public:
@@ -19,6 +19,7 @@ public:
 
     void setRoom(Room::Location location, Room* room_ptr);
     Room* getRoom(Room::Location location);
+    void printRawMap(); //perhaps return a string instead of printing it
 
 private:
     std::vector<std::vector<Room*>> _map;
