@@ -25,8 +25,8 @@ private:
     static std::vector<Room::Location> getRawNeighbours(Room::Location location); //does not check if valid
     static bool isAvailableRoom(Floor* floor, Room::Location location);
     static std::set<int> getRandomIntsInRange(int max_range);
-
-
+    static std::vector<int> getWeights(int range);
+    static int getWeightedInt(int range);
 
 };
 

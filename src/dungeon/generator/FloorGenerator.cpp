@@ -58,6 +58,49 @@ int FloorGenerator::getRandomRoomNumber(std::size_t width)
     return (std::rand() % (int) width);
 }
 
+
+// https://stackoverflow.com/questions/1761626/weighted-random-numbers
+std::vector<int> FloorGenerator::getWeights(int range)
+{
+    std::vector<int> weights;
+    weights.reserve(range);
+    int temp = (int)((double)range * (double)100/(double)2);
+    weights.push_back(temp);
+    for(int index = 0; index < range; index++){
+        temp = (int)((double)range * (double)100 /(double)index);
+        weights.push_back(temp);
+    }
+
+    return weights;
+}
+
+int FloorGenerator::getWeightedInt(int range)
+{
+    static bool seeded = false;
+    if (!seeded) {
+        std::srand((uint) time(NULL)); //seed
+        seeded = true;
+    }
+
+    int sum_of_weights = 0;
+    std::vector<int> weights = getWeights(range);
+
+    for(int num : weights){
+        sum_of_weights += num;
+    }
+
+    int random = std::rand() % (sum_of_weights);
+
+    for(int index = 0; index < range; index++){
+        if(random < weights[index]){
+            return index;
+        }
+        random -= weights[index];
+    }
+
+    return 0;
+}
+
 std::set<int> FloorGenerator::getRandomIntsInRange(int max_range)
 {
     std::set<int> indexes;
