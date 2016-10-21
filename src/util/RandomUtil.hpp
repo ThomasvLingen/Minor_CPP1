@@ -15,7 +15,11 @@ namespace Util
     public:
         RandomUtil();
 
+        static RandomUtil& get_instance();
+
+        int get_weighted_int(std::vector<int> weights);
         int get_random_int(int min_range, int max_range);
+        bool weighted_coin_toss(int percentage_to_succeed);
 
     private:
         std::default_random_engine _generator;
