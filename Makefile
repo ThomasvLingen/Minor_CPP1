@@ -51,6 +51,9 @@ run : $(EXEC)
 debug: $(EXEC)
 	gdb $(EXEC)
 
+memory_leaks: $(EXEC)
+	valgrind --tool=memcheck --leak-check=full $(EXEC)
+
 .PHONY: clean
 clean:
 	@echo "Cleaning build"
