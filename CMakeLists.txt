@@ -17,7 +17,7 @@ set(SOURCE_FILES
     src/monsters/EnemyFactory.cpp src/monsters/EnemyFactory.hpp
     src/monsters/MonsterFileParser.cpp src/monsters/MonsterFileParser.hpp
     src/util/StrUtil.cpp src/util/StrUtil.hpp
-)
+        src/util/RandomUtil.cpp src/util/RandomUtil.hpp)
 
 add_executable(Minor_CPP1 ${SOURCE_FILES})
 
