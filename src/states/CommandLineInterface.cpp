@@ -18,7 +18,7 @@ namespace CLI {
 
     void CommandLineInterface::print_options(vector<string> options)
     {
-        for (int i = 0; i < options.size(); i++) {
+        for (uint i = 0; i < options.size(); i++) {
             cout << i << " " << options[i] << endl;
         }
     }
