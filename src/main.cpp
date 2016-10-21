@@ -5,7 +5,12 @@
 #include <stdio.h>
 #include <iostream>
 
+#include "Game.hpp"
+
 int main()
 {
     std::cout << "Hi" << std::endl;
+    Game::Game game;
+
+    game.run();
 }

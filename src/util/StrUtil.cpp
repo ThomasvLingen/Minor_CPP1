@@ -62,8 +62,6 @@ namespace Util {
 
     std::string StrUtil::to_lower(std::string str)
     {
-        std::string copy = str;
-
         std::transform(str.begin(), str.end(), str.begin(), tolower);
 
         return str;

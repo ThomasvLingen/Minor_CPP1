@@ -6,9 +6,20 @@
 #define MINOR_CPP1_STATE_HPP
 
 
-class State {
+namespace Game {
+    class Game;
+}
 
-};
+namespace States {
+    class State {
+    public:
+        State(Game::Game& game);
+        virtual ~State();
+
+        Game::Game& game;
+        virtual void run()=0;
+    };
+}
 
 
 #endif //MINOR_CPP1_STATE_HPP

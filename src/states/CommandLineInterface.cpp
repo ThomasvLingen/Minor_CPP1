@@ -29,6 +29,7 @@ namespace CLI {
         bool current_answer_is_valid = false;
 
         while(!current_answer_is_valid) {
+            cout << "> ";
             std::getline(cin, current_answer);
 
             current_answer_is_valid = Util::StrUtil::vector_contains_string(options, current_answer);
@@ -37,6 +38,8 @@ namespace CLI {
                 cout << "Invalid input" << endl;
             }
         }
+
+        cout << endl;
 
         return current_answer;
     }
