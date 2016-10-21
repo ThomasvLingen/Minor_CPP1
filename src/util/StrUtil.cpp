@@ -4,6 +4,7 @@
 
 #include <fstream>
 #include <iostream>
+#include <algorithm>
 #include "StrUtil.hpp"
 
 namespace Util {
@@ -44,6 +45,28 @@ namespace Util {
         }
 
         return tokens;
+    }
+
+    bool StrUtil::vector_contains_string(std::vector<std::string> haystack, std::string needle)
+    {
+        std::string needle_lowercase = StrUtil::to_lower(needle);
+
+        for (std::string str : haystack) {
+            if (StrUtil::to_lower(str) == needle_lowercase) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    std::string StrUtil::to_lower(std::string str)
+    {
+        std::string copy = str;
+
+        std::transform(str.begin(), str.end(), str.begin(), tolower);
+
+        return str;
     };
 }
 
