@@ -40,4 +40,9 @@ namespace CLI {
 
         return current_answer;
     }
+
+    string CommandLineInterface::ask_for_options(OptionsQuestion options)
+    {
+        return this->ask_for_options(options.question, options.options);
+    }
 }

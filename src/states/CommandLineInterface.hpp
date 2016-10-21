@@ -17,9 +17,15 @@ namespace CLI {
     using std::endl;
     using std::cin;
 
+    struct OptionsQuestion {
+        string question;
+        vector<string> options;
+    };
+
     class CommandLineInterface {
     public:
         string ask_for_options(string question, vector<string> options);
+        string ask_for_options(OptionsQuestion options);
         string get_option(vector<string> options);
 
         void print_options(vector<string> options);
