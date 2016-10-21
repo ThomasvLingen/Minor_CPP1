@@ -43,6 +43,6 @@ namespace Player {
 
     bool Player::roll_hit()
     {
-        return Util::RandomUtil::get_instance().weighted_coin_toss(this->attack);
+        return RANDOM.weighted_coin_toss(this->attack);
     }
 }
