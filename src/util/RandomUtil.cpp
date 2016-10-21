@@ -3,6 +3,7 @@
 //
 
 #include <iostream>
+#include <stdexcept>
 #include "RandomUtil.hpp"
 
 namespace Util
@@ -27,7 +28,7 @@ namespace Util
             sum_of_weights += num;
         }
 
-        int random = this->get_random_int(0, sum_of_weights);
+        int random = this->get_random_int(0, sum_of_weights-1);
 
         for(int index = 0; index < (int)weights.size(); index++){
             if(random < weights[index]){
@@ -36,7 +37,7 @@ namespace Util
             random -= weights[index];
         }
 
-        return 0; //random number was 0
+        throw "get_weighted_int did not find a number";
     }
 
     ///
@@ -45,16 +46,19 @@ namespace Util
     bool RandomUtil::weighted_coin_toss(int percentage_to_succeed)
     {
         int result;
+        if (percentage_to_succeed < 0 || percentage_to_succeed > 100) {
+            throw std::invalid_argument("Invalid percentage in weighted coin toss");
+        }
 
         std::vector<int> weight;
-        weight.push_back(percentage_to_succeed);
         weight.push_back(100 - percentage_to_succeed);
+        weight.push_back(percentage_to_succeed);
 
         result = this->get_weighted_int(weight);
 
-        if(result == 0){
+        if (result == 1) { //could cast to bool, but wouldnt be able to throw exception
             return true;
-        } else if (result == 1) {
+        } else if (result == 0) {
             return false;
         } else {
             throw "weighted_coin_toss return something else then 1 or 0";
