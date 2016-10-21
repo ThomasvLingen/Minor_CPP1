@@ -15,7 +15,7 @@ DungeonGenerator::~DungeonGenerator()
 
 }
 
-Dungeon DungeonGenerator::createDungeon(std::size_t n_floors, std::size_t height, std::size_t width)
+Dungeon DungeonGenerator::create_dungeon(std::size_t n_floors, std::size_t height, std::size_t width)
 {
     std::vector<Floor*> floors;
     floors.reserve(n_floors);

@@ -13,7 +13,7 @@ class DungeonGenerator {
 public:
     DungeonGenerator();
     ~DungeonGenerator();
-    static Dungeon createDungeon(std::size_t n_floors, std::size_t height, std::size_t width);
+    static Dungeon create_dungeon(std::size_t n_floors, std::size_t height, std::size_t width);
 
 private:
 

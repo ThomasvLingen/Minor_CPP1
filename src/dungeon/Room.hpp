@@ -26,7 +26,7 @@ public:
 
 
 private:
-    std::string description;
+    std::string _description;
 
 };
 

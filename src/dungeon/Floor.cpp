@@ -25,17 +25,17 @@ Floor::~Floor()
     }
 }
 
-void Floor::setRoom(Room::Location location, Room *room_ptr)
+void Floor::set_room(Room::Location location, Room *room_ptr)
 {
     this->_map[location.height_index][location.width_index] = room_ptr;
 }
 
-Room *Floor::getRoom(Room::Location location)
+Room *Floor::get_room(Room::Location location)
 {
     return this->_map[location.height_index][location.width_index];
 }
 
-void Floor::printRawMap()
+void Floor::print_raw_map()
 {
     for (std::vector<Room *> room_vector : _map) {
         for (Room *room : room_vector) {
@@ -61,4 +61,14 @@ void Floor::printRawMap()
         }
         std::cout << std::endl;
     }
+}
+
+size_t Floor::get_width()
+{
+    return this->_width;
+}
+
+size_t Floor::get_height()
+{
+    return this->_height;
 }

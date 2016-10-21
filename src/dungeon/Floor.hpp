@@ -14,16 +14,17 @@ public:
     Floor(std::size_t height, std::size_t width);
     virtual ~Floor();
 
-    size_t _height;
-    size_t _width;
-
-    void setRoom(Room::Location location, Room* room_ptr);
-    Room* getRoom(Room::Location location);
-    void printRawMap(); //perhaps return a string instead of printing it
+    void set_room(Room::Location location, Room *room_ptr);
+    Room* get_room(Room::Location location);
+    void print_raw_map(); //perhaps return a string instead of printing it
+    size_t get_height();
+    size_t get_width();
 
 private:
     std::vector<std::vector<Room*>> _map;
     std::vector<std::vector<int>> _adjacency_matrix;
+    size_t _height;
+    size_t _width;
 };
 
 
