@@ -5,7 +5,11 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 set(SOURCE_FILES
     src/main.cpp
-    src/states/State.hpp
+    src/Game.hpp src/Game.cpp
+    src/states/State.hpp src/states/State.cpp
+    src/states/CommandLineInterface.cpp src/states/CommandLineInterface.hpp
+    src/states/CreateCharacterState.cpp src/states/CreateCharacterState.hpp
+    src/states/MenuState.cpp src/states/MenuState.hpp
     src/dungeon/Dungeon.cpp src/dungeon/Dungeon.hpp
     src/dungeon/Floor.cpp src/dungeon/Floor.hpp
     src/dungeon/Room.cpp src/dungeon/Room.hpp
@@ -17,7 +21,9 @@ set(SOURCE_FILES
     src/monsters/EnemyFactory.cpp src/monsters/EnemyFactory.hpp
     src/monsters/MonsterFileParser.cpp src/monsters/MonsterFileParser.hpp
     src/util/StrUtil.cpp src/util/StrUtil.hpp
-        src/util/RandomUtil.cpp src/util/RandomUtil.hpp)
+    src/util/RandomUtil.cpp src/util/RandomUtil.hpp
+    src/player/Player.cpp src/player/Player.hpp
+)
 
 add_executable(Minor_CPP1 ${SOURCE_FILES})
 
