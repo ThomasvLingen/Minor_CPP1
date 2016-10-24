@@ -11,6 +11,7 @@ namespace Game {
     Game::Game()
     {
         this->current_state = new States::MenuState(*this);
+        this->old_state = nullptr;
     }
 
     Game::~Game()
@@ -29,15 +30,23 @@ namespace Game {
     {
         while(this->running) {
             this->current_state->run();
+            this->delete_old_state();
         }
     }
 
     void Game::change_state(States::State *state)
     {
-        if (this->current_state != nullptr) {
-            delete this->current_state;
-        }
+        this->old_state = this->current_state;
 
         this->current_state = state;
+    }
+
+    void Game::delete_old_state()
+    {
+        if (this->old_state != nullptr) {
+            delete this->old_state;
+        }
+
+        this->old_state = nullptr;
     }
 }

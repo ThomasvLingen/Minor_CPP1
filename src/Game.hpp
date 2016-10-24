@@ -17,12 +17,14 @@ namespace Game {
         ~Game();
 
         CLI::CommandLineInterface cli;
-        States::State* current_state = nullptr;
+        States::State* current_state;
+        States::State* old_state;
         bool running = true;
 
         void run();
         void change_state(States::State* state);
         string ask_user_for_options(CLI::OptionsQuestion prompt);
+        void delete_old_state();
     };
 }
 
