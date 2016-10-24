@@ -31,6 +31,8 @@ Jorg de bont
 Thomas van Lingen
 )";
 
+        bool state_active = true;
+
         MenuState(Game::Game& game);
         virtual ~MenuState();
         virtual void run();
