@@ -26,7 +26,6 @@ void States::MenuState::run()
         }
         else if (result == "create character") {
             this->game.change_state(new CreateCharacterState(this->game));
-            cout << "I am never reached" << endl;
             return;
         }
     }
