@@ -10,11 +10,14 @@
 #include <map>
 
 #include <items/Item.hpp>
+#include <iostream>
 
 namespace Player {
     using std::string;
     using std::vector;
     using std::map;
+    using std::cout;
+    using std::endl;
 
     extern map<int, int> exp_to_next_level;
 
@@ -37,10 +40,14 @@ namespace Player {
         vector<Item> items;
 
         void reset_stats();
+        void reset_stats_for_creation();
+        void set_max_health(int new_health);
 
         int get_exp_to_next_level(int current_level);
         int get_exp_to_next_level();
         bool roll_hit();
+
+        void print();
     };
 }
 

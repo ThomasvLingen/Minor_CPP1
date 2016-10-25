@@ -6,8 +6,10 @@
 #define MINOR_CPP1_CREATECHARACTERSTATE_HPP
 
 #include <iostream>
+#include <player/Player.hpp>
 
 #include "State.hpp"
+#include "CommandLineInterface.hpp"
 
 
 namespace Game {
@@ -17,6 +19,8 @@ namespace Game {
 namespace States {
     using std::cout;
     using std::endl;
+    using Player::Player;
+    using CLI::NumberQuestion;
 
     class CreateCharacterState : public State {
     public:
@@ -24,6 +28,7 @@ namespace States {
         virtual ~CreateCharacterState();
 
         void run();
+        Player* create_player();
     };
 }
 

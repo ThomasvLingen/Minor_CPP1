@@ -6,6 +6,7 @@
 #include "util/RandomUtil.hpp"
 
 #include <cmath>
+#include <fmt/format.h>
 
 namespace Player {
 
@@ -38,11 +39,42 @@ namespace Player {
         };
         this->exp = 0;
         this->attack = 50;
-        this->defence = 20;
+        this->defence = 30;
     }
+
+
 
     bool Player::roll_hit()
     {
         return RANDOM.weighted_coin_toss(this->attack);
+    }
+
+    void Player::reset_stats_for_creation()
+    {
+        this->level = 1;
+        this->health = Health {
+            .max_health = 10,
+            .current_health = 10
+        };
+        this->exp = 0;
+        this->attack = 30;
+        this->defence = 20;
+    }
+
+    void Player::set_max_health(int new_health)
+    {
+        this->health = Health {
+            .max_health = new_health,
+            .current_health = new_health
+        };
+    }
+
+    void Player::print()
+    {
+        // TODO: once items are ready, print items
+        cout << fmt::format("[{}]", this->name) << endl;
+        cout << fmt::format("Level: {} exp [{}-{}]", this->level, this->exp, this->get_exp_to_next_level()) << endl;
+        cout << fmt::format("Health: {}/{}", this->health.current_health, this->health.max_health) << endl;
+        cout << fmt::format("ATK/DEF: {}/{}", this->attack, this->defence) << endl;
     }
 }

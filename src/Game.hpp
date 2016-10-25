@@ -7,6 +7,7 @@
 
 #include <states/State.hpp>
 #include <states/CommandLineInterface.hpp>
+#include <player/PlayerCollection.hpp>
 
 namespace Game {
     using std::string;
@@ -20,10 +21,12 @@ namespace Game {
         States::State* current_state;
         States::State* old_state;
         bool running = true;
+        Player::PlayerCollection players;
 
         void run();
         void change_state(States::State* state);
         string ask_user_for_options(CLI::OptionsQuestion prompt);
+        string ask_user_for_name(string question);
         void delete_old_state();
     };
 }

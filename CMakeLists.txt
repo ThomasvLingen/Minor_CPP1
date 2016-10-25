@@ -25,6 +25,7 @@ set(SOURCE_FILES
     src/util/StrUtil.cpp src/util/StrUtil.hpp
     src/util/RandomUtil.cpp src/util/RandomUtil.hpp
     src/player/Player.cpp src/player/Player.hpp
+    src/player/PlayerCollection.cpp src/player/PlayerCollection.hpp
 )
 
 add_executable(Minor_CPP1 ${SOURCE_FILES})

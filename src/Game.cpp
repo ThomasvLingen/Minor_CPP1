@@ -49,4 +49,9 @@ namespace Game {
 
         this->old_state = nullptr;
     }
+
+    string Game::ask_user_for_name(string question)
+    {
+        return this->cli.ask_for_string(question);
+    }
 }
