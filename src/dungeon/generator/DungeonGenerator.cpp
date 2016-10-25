@@ -21,7 +21,7 @@ Dungeon DungeonGenerator::create_dungeon(std::size_t n_floors, std::size_t heigh
     floors.reserve(n_floors);
 
     for(std::size_t index = 0; index < n_floors; index++){
-        floors.push_back(FloorGenerator::generateFloor(height, width));
+ //       floors.push_back(FloorGenerator::generate_floor(height, width));
     }
 
     return Dungeon(floors);
