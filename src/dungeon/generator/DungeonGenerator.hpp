@@ -7,16 +7,17 @@
 
 
 #include <dungeon/Dungeon.hpp>
+#include "FloorGenerator.hpp"
 
 class DungeonGenerator {
 
 public:
     DungeonGenerator();
     ~DungeonGenerator();
-    static Dungeon create_dungeon(std::size_t n_floors, std::size_t height, std::size_t width);
+    Dungeon create_dungeon(std::size_t n_floors, std::size_t height, std::size_t width);
 
 private:
-
+    FloorGenerator floorGenerator;
 };
 
 
