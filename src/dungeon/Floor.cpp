@@ -57,7 +57,7 @@ void Floor::print_raw_map()
                         break;
                 }
             }
-            std::cout << toPrint;
+            std::cout << toPrint << " ";
         }
         std::cout << std::endl;
     }
