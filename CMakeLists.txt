@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.3)
 project(Minor_CPP1)
 include_directories(src)
+include_directories(libs/fmt)
+link_directories(libs)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 set(SOURCE_FILES
@@ -26,6 +28,7 @@ set(SOURCE_FILES
 )
 
 add_executable(Minor_CPP1 ${SOURCE_FILES})
+target_link_libraries(Minor_CPP1 fmt)
 
 add_custom_command(TARGET Minor_CPP1 PRE_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy_directory

@@ -29,7 +29,7 @@ build/
 # Compiled Static libraries
 *.lai
 *.la
-*.a
+# *.a WE NEED THIS D:
 *.lib
 
 # Executables

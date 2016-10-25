@@ -9,12 +9,12 @@ LD = $(CC)
 # Wextra = extra warnings
 # g = debug symbols
 # std=c++11 = C++11
-INCLUDE_PATHS = -Isrc/
+INCLUDE_PATHS = -Isrc/ -Ilibs/fmt/
 COMPILER_FLAGS = -Wall -Wextra -g -std=c++11 $(INCLUDE_PATHS)
 
 # Linker flags
 # g = debug symbols
-LIBS =
+LIBS = -Llibs/ -lfmt
 LINKER_FLAGS = -g
 
 # Files to compile
