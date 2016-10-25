@@ -25,9 +25,9 @@ Floor::~Floor()
     }
 }
 
-void Floor::set_room(Room::Location location, Room *room_ptr)
+void Floor::set_room(Room *room_ptr)
 {
-    this->_map[location.height_index][location.width_index] = room_ptr;
+    this->_map[room_ptr->location.height_index][room_ptr->location.width_index] = room_ptr;
 }
 
 Room *Floor::get_room(Room::Location location)
