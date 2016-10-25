@@ -20,6 +20,7 @@ namespace Util
         static RandomUtil& get_instance();
 
         int get_weighted_int(std::vector<int> weights);
+        int get_weighted_int(std::vector<int> weights, std::vector<int> return_values);
         int get_random_int(int min_range, int max_range);
         bool weighted_coin_toss(int percentage_to_succeed);
 

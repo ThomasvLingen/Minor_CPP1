@@ -70,4 +70,12 @@ namespace Util
         static RandomUtil randomUtil;
         return randomUtil;
     }
+
+    int RandomUtil::get_weighted_int(std::vector<int> weights, std::vector<int> return_values)
+    {
+        if(weights.size() != return_values.size()){
+            throw "get_weighted_int weights and return_values size not equal";
+        }
+        return return_values[get_weighted_int(weights)];
+    }
 }
