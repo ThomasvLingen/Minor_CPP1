@@ -26,6 +26,8 @@ set(SOURCE_FILES
     src/util/RandomUtil.cpp src/util/RandomUtil.hpp
     src/player/Player.cpp src/player/Player.hpp
     src/player/PlayerCollection.cpp src/player/PlayerCollection.hpp
+	src/util/RandomUtil.cpp src/util/RandomUtil.hpp 
+	src/dungeon/generator/FloorPlan.cpp src/dungeon/generator/FloorPlan.hpp
 )
 
 add_executable(Minor_CPP1 ${SOURCE_FILES})
