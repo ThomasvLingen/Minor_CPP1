@@ -65,6 +65,25 @@ namespace Util {
         std::transform(str.begin(), str.end(), str.begin(), tolower);
 
         return str;
+    }
+
+    bool StrUtil::is_number(std::string str)
+    {
+        if (str.empty()) {
+            return false;
+        }
+
+        // This finds the first non-digit character
+        auto first_non_digit_char = std::find_if(
+            str.begin(),
+            str.end(),
+            [](char c) {
+                return !std::isdigit(c);
+            }
+        );
+
+        // If this is equal to the end, there isn't a non-digit char
+        return first_non_digit_char == str.end();
     };
 }
 

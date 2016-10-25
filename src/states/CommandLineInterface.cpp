@@ -53,7 +53,15 @@ namespace CLI {
             cout << "> ";
             std::getline(cin, current_answer);
 
-            current_answer_is_valid = Util::StrUtil::vector_contains_string(options, current_answer);
+            if (Util::StrUtil::is_number(current_answer)) {
+                size_t chosen_index = (size_t)stoi(current_answer);
+                if (chosen_index < options.size()) {
+                    current_answer = options[chosen_index];
+                    current_answer_is_valid = true;
+                }
+            } else {
+                current_answer_is_valid = Util::StrUtil::vector_contains_string(options, current_answer);
+            }
 
             if (!current_answer_is_valid) {
                 cout << "Invalid input" << endl;

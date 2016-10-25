@@ -16,6 +16,7 @@ namespace Util {
         static std::vector<std::string> split(std::string str, char delim);
         static bool vector_contains_string(std::vector<std::string> haystack, std::string needle);
         static std::string to_lower(std::string str);
+        static bool is_number(std::string str);
     };
 }
 
