@@ -1,13 +1,3 @@
-CreateCharacterState.cpp
-	create_player
-		zet het allocaten in aparte functie zodat je die kan aanroepen:
-			args:
-				min, max(eventueel berekenen)
-				base_stat getal, string met stat
-				etc.
-
-	-- okie
-
 PlayerCollection.hpp
 	players is public?
 	geen optie om players te verwijderen

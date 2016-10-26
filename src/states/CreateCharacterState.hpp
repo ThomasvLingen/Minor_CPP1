@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include <player/Player.hpp>
+#include <string>
 
 #include "State.hpp"
 #include "CommandLineInterface.hpp"
@@ -19,6 +20,7 @@ namespace Game {
 namespace States {
     using std::cout;
     using std::endl;
+    using std::string;
     using Player::Player;
     using CLI::NumberQuestion;
 
@@ -29,6 +31,7 @@ namespace States {
 
         void run();
         Player* create_character();
+        int allocate_stat(int& points_left, int min, int max, int base_stat, int points_per_stat, string stat_name);
     };
 }
 

@@ -54,28 +54,16 @@ namespace States {
         cout << "1 point in defense costs 1 point" << endl;
 
         // Allocate health
-        int min = 0;
-        int max = points_left_for_allocation / 2;
-        string question = fmt::format("How many hitpoints do you want on top of the base hp ({})? [{}-{}]", hero->health.max_health, min, max);
-        int selected_health_points = this->game.cli.ask_for_number(question, min, max);
-        hero->set_max_health(hero->health.max_health + selected_health_points);
-        points_left_for_allocation -= selected_health_points * 2;
+        int hp_allocated = this->allocate_stat(points_left_for_allocation, 0, points_left_for_allocation / 2, hero->health.max_health, 2, "health");
+        hero->set_max_health(hero->health.max_health + hp_allocated);
 
         // Allocate attack
-        min = 0;
-        max = points_left_for_allocation;
-        question = fmt::format("How much attack do you want on top of the base atk ({})? [{}-{}]", hero->attack, min, max);
-        int selected_attack_points = this->game.cli.ask_for_number(question, min, max);
-        hero->attack += selected_attack_points;
-        points_left_for_allocation -= selected_attack_points;
+        int atk_allocated = this->allocate_stat(points_left_for_allocation, 0, points_left_for_allocation, hero->attack, 1, "attack");
+        hero->attack += atk_allocated;
 
         // Allocate defence
-        min = 0;
-        max = points_left_for_allocation;
-        question = fmt::format("How much defence do you want on top of the base def ({})? [{}-{}]", hero->defence, min, max);
-        int selected_defence_points = this->game.cli.ask_for_number(question, min, max);
-        hero->defence += selected_defence_points;
-        points_left_for_allocation -= selected_defence_points;
+        int def_allocated = this->allocate_stat(points_left_for_allocation, 0, points_left_for_allocation, hero->defence, 1, "defence");
+        hero->defence += def_allocated;
 
         return hero;
     }
@@ -83,5 +71,16 @@ namespace States {
     CreateCharacterState::~CreateCharacterState()
     {
 
+    }
+
+    int CreateCharacterState::allocate_stat(int &points_left, int min, int max, int base_stat, int points_per_stat,
+                                            string stat_name)
+    {
+        string question = fmt::format("How much {0} do you want on top of the base {0} ({1}) [{2}-{3}]", stat_name, base_stat, min, max);
+
+        int selected_points = this->game.cli.ask_for_number(question, min, max);
+        points_left -= selected_points * points_per_stat;
+
+        return selected_points;
     }
 }
