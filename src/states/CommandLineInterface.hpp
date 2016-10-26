@@ -40,13 +40,14 @@ namespace CLI {
 
         bool ask_for_yes_no(string question);
     private:
-        vector<string> _valid_yes_no_answers = {"yes", "y", "no", "n"};
         vector<string> _valid_yes = {"yes", "y"};
         vector<string> _valid_no = {"no", "n"};
 
         void _print_options(vector<string> options);
         string _get_option(vector<string> options);
         bool _is_valid_yes_no(string answer);
+        bool _is_valid_yes(string answer);
+        bool _is_valid_no(string answer);
     };
 
 }

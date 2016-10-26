@@ -90,11 +90,13 @@ namespace CLI {
             cout << "> ";
             std::getline(cin, current_answer_string);
 
-            try {
-                current_answer = stoi(current_answer_string);
-                current_answer_is_valid = current_answer >= min && current_answer <= max;
-            } catch (std::exception e) {
-
+            if (Util::StrUtil::is_number(current_answer_string)) {
+                // This try catch is for integer overflows
+                try {
+                    current_answer = stoi(current_answer_string);
+                    current_answer_is_valid = current_answer >= min && current_answer <= max;
+                } catch (std::exception e) {
+                }
             }
 
             if (!current_answer_is_valid) {
@@ -127,10 +129,10 @@ namespace CLI {
 
             if (current_answer_is_valid) {
                 // We can't just set answer to either of these if clausules since we have to explicitly check for BOTH
-                if (std::find(this->_valid_yes.begin(), this->_valid_yes.end(), current_answer) != this->_valid_yes.end()) {
+                if (this->_is_valid_yes(current_answer)) {
                     answer = true;
                 }
-                else if (std::find(this->_valid_no.begin(), this->_valid_no.end(), current_answer) != this->_valid_no.end()) {
+                else if (this->_is_valid_no(current_answer)) {
                     answer = false;
                 }
             } else {
@@ -143,7 +145,16 @@ namespace CLI {
 
     bool CommandLineInterface::_is_valid_yes_no(string answer)
     {
-        auto c = this->_valid_yes_no_answers;
-        return std::find(c.begin(), c.end(), answer) != c.end();
+        return this->_is_valid_no(answer) || this->_is_valid_yes(answer);
+    }
+
+    bool CommandLineInterface::_is_valid_yes(string answer)
+    {
+        return Util::StrUtil::vector_contains_string(this->_valid_yes, answer);
+    }
+
+    bool CommandLineInterface::_is_valid_no(string answer)
+    {
+        return Util::StrUtil::vector_contains_string(this->_valid_no, answer);
     }
 }

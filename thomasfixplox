@@ -1,15 +1,3 @@
-CLI.cpp
-	ask_for_number
-		waarom maak je hier geen gebruik van de string util is_number()
-
-	-- gebruik maken van is_number
-
-	ask_for_yes_no
-		die find in vector magic in functie stoppen, je hebt daar nu twee keer dezelfde vodoo
-		en in is_valid_yes_no weer.
-
-	-- ja doen
-
 MenuState.hpp
 	die credits indentation is gay
 	waarom alles weer public
