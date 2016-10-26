@@ -28,7 +28,7 @@ namespace States {
         virtual ~CreateCharacterState();
 
         void run();
-        Player* create_player();
+        Player* create_character();
     };
 }
 

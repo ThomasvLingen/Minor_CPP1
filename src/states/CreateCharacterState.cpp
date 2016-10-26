@@ -18,28 +18,28 @@ namespace States {
     void CreateCharacterState::run()
     {
         bool player_made_character = false;
-        Player* created_player = nullptr;
+        Player* created_character = nullptr;
 
         cout << "Welcome to the hero creation menu" << endl;
 
         while(!player_made_character) {
-            created_player = this->create_player();
-            created_player->print();
+            created_character = this->create_character();
+            created_character->print();
 
             player_made_character = this->game.cli.ask_for_yes_no("Are you satisfied with this character?");
 
             // If the player is not satisfied, we discard the created player
             if (!player_made_character) {
-                delete created_player;
+                delete created_character;
             }
         }
 
-        this->game.players.add_player(created_player);
+        this->game.players.add_player(created_character);
 
         this->game.change_state(new MenuState(this->game));
     }
 
-    Player *CreateCharacterState::create_player()
+    Player *CreateCharacterState::create_character()
     {
         // Make base hero
         int points_left_for_allocation = 60;

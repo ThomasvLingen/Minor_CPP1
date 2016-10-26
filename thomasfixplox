@@ -1,6 +1,4 @@
 CreateCharacterState.cpp
-	Player en character worden veel door elkaar heen gebruikt.
-
 	create_player
 		zet het allocaten in aparte functie zodat je die kan aanroepen:
 			args:
