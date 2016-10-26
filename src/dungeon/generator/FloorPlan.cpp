@@ -241,7 +241,7 @@ FloorPlan::Plan FloorPlan::get_plan()
     return _plan;
 }
 
-Floor* FloorPlan::generate_floor_from_plan()
+Floor* FloorPlan::generate_floor_from_plan() //TODO: move this to floorgenerator, so you can actually generate valid rooms in this plan, depending on the roomtype double def
 {
     int height_index = 0;
     int width_index = 0;
