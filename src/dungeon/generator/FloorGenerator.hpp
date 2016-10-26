@@ -9,12 +9,21 @@
 #include "util/RandomUtil.hpp"
 #include "FloorPlan.hpp"
 
-class FloorGenerator {
-public:
-    FloorGenerator();
-    virtual ~FloorGenerator();
+namespace Dungeon
+{
+    namespace Generator
+    {
 
-    Floor* generate_floor(std::size_t height, std::size_t width);
-};
+        class FloorGenerator {
+        public:
+            FloorGenerator();
+
+            virtual ~FloorGenerator();
+
+            Floor *generate_floor(std::size_t height, std::size_t width);
+        };
+
+    }
+}
 
 #endif //MINOR_CPP1_FLOORGENERATOR_HPP

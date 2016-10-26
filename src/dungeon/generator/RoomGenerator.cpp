@@ -4,13 +4,21 @@
 
 #include "RoomGenerator.hpp"
 
-RoomGenerator::RoomGenerator()
-{}
-
-RoomGenerator::~RoomGenerator()
-{}
-
-Room* RoomGenerator::generateRoom()
+namespace Dungeon
 {
-    return new Room();
+    namespace Generator
+    {
+
+        RoomGenerator::RoomGenerator()
+        {}
+
+        RoomGenerator::~RoomGenerator()
+        {}
+
+        Room *RoomGenerator::generateRoom()
+        {
+            return new Room();
+        }
+
+    }
 }

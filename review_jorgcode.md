@@ -1,5 +1,5 @@
 ### General
-Please namespace stuff.
+~~Please namespace stuff.~~
 
 **yes**
 

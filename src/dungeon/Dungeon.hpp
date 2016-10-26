@@ -9,14 +9,17 @@
 #include <vector>
 #include "Floor.hpp"
 
-class Dungeon {
-public:
-    Dungeon(std::vector<Floor*> floors);
-    virtual ~Dungeon();
+namespace Dungeon
+{
+    class Dungeon {
+    public:
+        Dungeon(std::vector<Floor *> floors);
 
-private:
-    std::vector<Floor*> _floors;
-};
+        virtual ~Dungeon();
 
+    private:
+        std::vector<Floor *> _floors;
+    };
+}
 
 #endif //MINOR_CPP1_DUNGEON_HPP

@@ -3,3 +3,9 @@
 //
 
 #include "Room.hpp"
+
+namespace Dungeon
+{
+
+
+}

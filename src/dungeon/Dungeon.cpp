@@ -4,14 +4,19 @@
 
 #include "Dungeon.hpp"
 
-Dungeon::Dungeon(std::vector<Floor *> floors)
+namespace Dungeon
 {
-    this->_floors = floors;
-}
 
-Dungeon::~Dungeon()
-{
-    for (Floor *floor : _floors) {
-        delete floor;
+    Dungeon::Dungeon(std::vector<Floor *> floors)
+    {
+        this->_floors = floors;
     }
+
+    Dungeon::~Dungeon()
+    {
+        for (Floor *floor : _floors) {
+            delete floor;
+        }
+    }
+
 }

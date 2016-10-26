@@ -6,18 +6,25 @@
 #include "FloorPlan.hpp"
 #include <algorithm>
 
-FloorGenerator::FloorGenerator()
-{}
-
-FloorGenerator::~FloorGenerator()
-{}
-
-Floor *FloorGenerator::generate_floor(std::size_t height, std::size_t width)
+namespace Dungeon
 {
-    FloorPlan floorPlan(height, width);
-    floorPlan.set_random_start_room();
-    floorPlan.generate_end_room_starting_from_start_room();
+    namespace Generator
+    {
 
-    return floorPlan.generate_floor_from_plan();
+        FloorGenerator::FloorGenerator()
+        {}
+
+        FloorGenerator::~FloorGenerator()
+        {}
+
+        Floor *FloorGenerator::generate_floor(std::size_t height, std::size_t width)
+        {
+            FloorPlan floorPlan(height, width);
+            floorPlan.set_random_start_room();
+            floorPlan.generate_end_room_starting_from_start_room();
+
+            return floorPlan.generate_floor_from_plan();
+        }
+
+    }
 }
-

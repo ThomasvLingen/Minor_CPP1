@@ -8,12 +8,21 @@
 
 #include <dungeon/Room.hpp>
 
-class RoomGenerator {
-public:
-    RoomGenerator();
-    virtual ~RoomGenerator();
-    static Room* generateRoom();
-};
+namespace Dungeon
+{
+    namespace Generator
+    {
 
+        class RoomGenerator {
+        public:
+            RoomGenerator();
+
+            virtual ~RoomGenerator();
+
+            static Room *generateRoom();
+        };
+
+    }
+}
 
 #endif //MINOR_CPP1_ROOMGENERATOR_HPP

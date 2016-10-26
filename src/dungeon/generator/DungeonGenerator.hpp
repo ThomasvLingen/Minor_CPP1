@@ -9,16 +9,24 @@
 #include <dungeon/Dungeon.hpp>
 #include "FloorGenerator.hpp"
 
-class DungeonGenerator {
+namespace Dungeon
+{
+    namespace Generator
+    {
 
-public:
-    DungeonGenerator();
-    ~DungeonGenerator();
-    Dungeon create_dungeon(std::size_t n_floors, std::size_t height, std::size_t width);
+        class DungeonGenerator {
 
-private:
-    FloorGenerator floorGenerator;
-};
+        public:
+            DungeonGenerator();
 
+            ~DungeonGenerator();
 
+            Dungeon create_dungeon(std::size_t n_floors, std::size_t height, std::size_t width);
+
+        private:
+            FloorGenerator floorGenerator;
+        };
+
+    }
+}
 #endif //MINOR_CPP1_DUNGEONGENERATOR_HPP
