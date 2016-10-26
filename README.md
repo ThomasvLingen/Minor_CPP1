@@ -7,6 +7,12 @@ git submodule init
 git submodule update
 ```
 
+Then compile the required libs
+
+```
+make libs
+```
+
 Then compile using the Makefile
 
 ```
