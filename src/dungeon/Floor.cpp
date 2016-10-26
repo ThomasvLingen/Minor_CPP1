@@ -83,8 +83,8 @@ namespace Dungeon
 
     void Floor::check_location(Room::Location location)
     {
-        if(location.width_index < 0 || location.width_index > this->_width - 1
-           || location.height_index < 0 || location.height_index > this->_height - 1){
+        if(location.width_index < 0 || location.width_index > this->_width - (size_t)1
+           || location.height_index < 0 || location.height_index > this->_height - (size_t)1){
 
             throw std::invalid_argument("Location is not valid");
         }

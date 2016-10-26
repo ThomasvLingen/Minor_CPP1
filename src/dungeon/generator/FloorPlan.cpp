@@ -39,6 +39,10 @@ namespace Dungeon
 
         void FloorPlan::set_room(FloorPlan::Loc loc, FloorPlan::Type type)
         {
+            if(loc.height_index < 0 || loc.height_index > this->_height - (size_t)1
+                || loc.width_index < 0 || loc.width_index > this->_width - (size_t)1){
+                throw std::invalid_argument("Invalid location for room");
+            }
             this->_plan[loc.height_index][loc.width_index] = type;
         }
 
