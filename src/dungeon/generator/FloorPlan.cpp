@@ -26,9 +26,9 @@ namespace Dungeon
             this->_width = width;
 
             this->_plan.resize(height);
-            for (int height_index = 0; height_index < (int) height; height_index++) {
+            for (size_t height_index = 0; height_index < height; height_index++) {
                 this->_plan[height_index].resize(width);
-                for (int width_index = 0; width_index < (int) width; width_index++) {
+                for (size_t width_index = 0; width_index < width; width_index++) {
                     this->_plan[height_index][width_index] = FloorPlan::none;
                 }
             }

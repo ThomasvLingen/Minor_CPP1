@@ -11,7 +11,7 @@
 **yes**
 
 `Floor.cpp:13`
-I'd personally use a `size_t` for the index.
+~~I'd personally use a `size_t` for the index.~~
 
 **yes**
 
