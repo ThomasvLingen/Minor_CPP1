@@ -1,8 +1,3 @@
-Game.hpp:
-	current_state en old_state zijn public terwijl er methodes zijn om deze aan te passen
-
-	-- private maken
-
 Game.cpp:
 	~Game()
 		nullptr check is niet nodig

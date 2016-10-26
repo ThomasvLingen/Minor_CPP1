@@ -18,7 +18,7 @@ void States::MenuState::run()
         string result = this->game.ask_user_for_options(this->menu);
 
         if (result == "quit") {
-            this->game.running = false;
+            this->game.quit();
             this->state_active = false;
         }
         else if (result == "credits") {

@@ -10,14 +10,14 @@ namespace Game {
 
     Game::Game()
     {
-        this->current_state = new States::MenuState(*this);
-        this->old_state = nullptr;
+        this->_current_state = new States::MenuState(*this);
+        this->_old_state = nullptr;
     }
 
     Game::~Game()
     {
-        if (this->current_state != nullptr) {
-            delete this->current_state;
+        if (this->_current_state != nullptr) {
+            delete this->_current_state;
         }
     }
 
@@ -28,30 +28,35 @@ namespace Game {
 
     void Game::run()
     {
-        while(this->running) {
-            this->current_state->run();
+        while(this->_running) {
+            this->_current_state->run();
             this->delete_old_state();
         }
     }
 
     void Game::change_state(States::State *state)
     {
-        this->old_state = this->current_state;
+        this->_old_state = this->_current_state;
 
-        this->current_state = state;
+        this->_current_state = state;
     }
 
     void Game::delete_old_state()
     {
-        if (this->old_state != nullptr) {
-            delete this->old_state;
+        if (this->_old_state != nullptr) {
+            delete this->_old_state;
         }
 
-        this->old_state = nullptr;
+        this->_old_state = nullptr;
     }
 
     string Game::ask_user_for_name(string question)
     {
         return this->cli.ask_for_string(question);
+    }
+
+    void Game::quit()
+    {
+        this->_running = false;
     }
 }

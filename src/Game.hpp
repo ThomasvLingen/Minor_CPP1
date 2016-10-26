@@ -18,15 +18,19 @@ namespace Game {
         ~Game();
 
         CLI::CommandLineInterface cli;
-        States::State* current_state;
-        States::State* old_state;
-        bool running = true;
         Player::PlayerCollection players;
 
         void run();
+        void quit();
         void change_state(States::State* state);
         string ask_user_for_options(CLI::OptionsQuestion prompt);
         string ask_user_for_name(string question);
+
+    private:
+        bool _running = true;
+        States::State* _current_state;
+        States::State* _old_state;
+
         void delete_old_state();
     };
 }
