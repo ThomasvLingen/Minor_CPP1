@@ -79,12 +79,4 @@ namespace Player {
     {
         return this->_name;
     }
-
-    void Stats::set_max_health(int new_health)
-    {
-        this->health = Health {
-            .max_health = new_health,
-            .current_health = new_health
-        };
-    }
 }

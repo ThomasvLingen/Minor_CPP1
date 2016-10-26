@@ -11,6 +11,7 @@
 
 #include <items/Item.hpp>
 #include <iostream>
+#include "Stats.hpp"
 
 namespace Player {
     using std::string;
@@ -18,22 +19,6 @@ namespace Player {
     using std::map;
     using std::cout;
     using std::endl;
-
-    struct Health {
-        int max_health;
-        int current_health;
-    };
-
-    struct Stats {
-        int level;
-        Health health;      /// When health reaches 0, the player dies
-        int exp;            /// When exp reaches the exp threshhold calculated by `get_exp_to_next_level`, the player levels up
-        int hit_chance;     /// Chance to hit in percents
-        int hit_times;      /// Times attack will hit in percents
-        int defence;        /// Chance for the enemy to miss
-
-        void set_max_health(int new_health);
-    };
 
     class Player {
     public:
