@@ -6,10 +6,13 @@
 #define MINOR_CPP1_ENEMY_HPP
 
 #include <string>
+#include <player/Stats.hpp>
 
 namespace Monsters
 {
     using std::string;
+    using Player::Stats;
+    using Player::Health;
 
     struct Damage {
         int min;
@@ -22,13 +25,14 @@ namespace Monsters
         Enemy(const Enemy& obj);
         Enemy& operator=(const Enemy& obj);
 
-        string name;
-        int level;
-        int hit_chance;
-        int hit_times;
-        Damage damage;
-        int defence;
-        int health;
+        string get_name();
+        Stats& get_stats();
+        Damage& get_damage();
+
+    private:
+        string _name;
+        Stats _stats;
+        Damage _damage;
     };
 }
 

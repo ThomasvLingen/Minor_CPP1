@@ -25,7 +25,7 @@ namespace Monsters {
         for (string monster_string : lines) {
             Enemy parsed_enemy = MonsterFileParser::_parse_monster(monster_string);
 
-            map.insert(MonsterMap::value_type (parsed_enemy.name, parsed_enemy));
+            map.insert(MonsterMap::value_type (parsed_enemy.get_name(), parsed_enemy));
         }
 
         return map;
