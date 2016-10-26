@@ -1,6 +1,8 @@
 Game.hpp:
 	current_state en old_state zijn public terwijl er methodes zijn om deze aan te passen
 
+	-- private maken
+
 Game.cpp:
 	~Game()
 		nullptr check is niet nodig
@@ -11,6 +13,8 @@ Game.cpp:
 	ask_user_for_name
 		name als in hero naam?
 
+	-- beide ask for moeten weg
+
 CLI.hpp
 	alles is public, moeten dingen zoals valid_yes_no_answers public zijn?
 	vooral omdat de functie is_valid_yes_no al bestaat
@@ -19,9 +23,13 @@ CLI.cpp
 	ask_for_number
 		waarom maak je hier geen gebruik van de string util is_number()
 
+	-- gebruik maken van is_number
+
 	ask_for_yes_no
 		die find in vector magic in functie stoppen, je hebt daar nu twee keer dezelfde vodoo
 		en in is_valid_yes_no weer.
+
+	-- ja doen
 
 MenuState.hpp
 	die credits indentation is gay
@@ -29,6 +37,8 @@ MenuState.hpp
 
 MenuState.cpp
 	die run options in aparte functies, hoeft niet persee voor deze kleine dingen maar ziet er wel beter uit, word snel een grote lange rij
+
+	-- doe het in functies niet in de run, eventueel mapping tussen string en functions
 
 CreateCharacterState.cpp
 	Player en character worden veel door elkaar heen gebruikt.
@@ -40,10 +50,14 @@ CreateCharacterState.cpp
 				base_stat getal, string met stat
 				etc.
 
+	-- okie
+
 PlayerCollection.hpp
 	players is public?
 	geen optie om players te verwijderen
 	(vector wel juiste ??)
+
+	-- optie toevoegen om te verwijderen
 
 Player.hpp
 	exp_to_next_level moet weg volgens jou
@@ -52,26 +66,41 @@ Player.hpp
 
 	weer alles public
 
+	-- stats class aanmaken, (was een reden waarom niet, kom je vanzelf achter)
+
 Player.cpp
 	reset_stats en reset_stats_for_creation is code duplication, als ik standaard health wil aanpassen moet ik dat op twee verschillende plaatsen doen
+
+	-- oke
 
 StrUtil:
 	vector_contains_string:
 		doe je dit niet op andere plaatsen op een andere manier in je states ergens
 
+	-- ja / waarom gebruik je geen find
+
 Enemy.cpp:
 	gebruik zon mooie intializer list
 
+	-- faggot
+
 Enemy.hpp:
-	hit_change is attack in de player
+	hit_chance is attack in de player
 	ook hier gebruik maken van stats class?
+	alles weer public
+
+	-- fuck me
 
 MonsterFileParser.hpp:
 	Waarom is alles static?
 	public method _parse_monster start met '_'
 
+	-- omdat thomas gelijk had
+	-- die method moet priviat zijn
 
 MonsterFileParser.cpp:
 	_get_level:
 		moet die stoi niet in een try?
 		of mogen we er van uit gaan dat dit valid is
+
+	-- we gaan er vanuit dat het valid is, noteer dit dan ook in de klasse
