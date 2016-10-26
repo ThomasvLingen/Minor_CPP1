@@ -6,7 +6,7 @@
 ### Floor
 
 `Floor.cpp:10-11`
-You can use an initialiser list for this
+~~You can use an initialiser list for this~~
 
 **yes**
 

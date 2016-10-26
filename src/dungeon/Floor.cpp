@@ -9,9 +9,9 @@ namespace Dungeon
 {
 
     Floor::Floor(std::size_t height, std::size_t width)
+    : _height(height)
+    , _width(width)
     {
-        this->_height = height;
-        this->_width = width;
         this->_map.reserve(height);
         for (int index = 0; index < (int) height; index++) {
             _map.push_back(std::vector<Room *>());
