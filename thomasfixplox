@@ -1,9 +1,3 @@
-StrUtil:
-	vector_contains_string:
-		doe je dit niet op andere plaatsen op een andere manier in je states ergens
-
-	-- ja / waarom gebruik je geen find
-
 Enemy.cpp:
 	gebruik zon mooie intializer list
 
