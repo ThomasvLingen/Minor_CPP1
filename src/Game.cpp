@@ -16,9 +16,7 @@ namespace Game {
 
     Game::~Game()
     {
-        if (this->_current_state != nullptr) {
-            delete this->_current_state;
-        }
+        delete this->_current_state;
     }
 
     string Game::ask_user_for_options(CLI::OptionsQuestion prompt)

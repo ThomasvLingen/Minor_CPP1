@@ -1,7 +1,4 @@
 Game.cpp:
-	~Game()
-		nullptr check is niet nodig
-
 	ask_user_for_options
 		vraagt dit de user, misschien andere benaming, zoals get options?
 
