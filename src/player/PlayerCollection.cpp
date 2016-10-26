@@ -23,4 +23,10 @@ namespace Player {
         }
     }
 
+    void PlayerCollection::remove_player(Player *to_remove)
+    {
+        this->players.erase(std::remove(this->players.begin(), this->players.end(), to_remove), this->players.end());
+
+        delete to_remove;
+    }
 }

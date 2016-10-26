@@ -6,6 +6,7 @@
 #define MINOR_CPP1_PLAYERCOLLECTION_HPP
 
 #include <vector>
+#include <algorithm>
 #include "Player.hpp"
 
 namespace Player {
@@ -16,9 +17,12 @@ namespace Player {
         PlayerCollection();
         virtual ~PlayerCollection();
 
+        // this is public for for loops and the like
+        // Making a getter for this is bloat
         vector<Player*> players;
 
         void add_player(Player* to_add);
+        void remove_player(Player* to_remove);
     };
 }
 

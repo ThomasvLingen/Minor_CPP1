@@ -1,10 +1,3 @@
-PlayerCollection.hpp
-	players is public?
-	geen optie om players te verwijderen
-	(vector wel juiste ??)
-
-	-- optie toevoegen om te verwijderen
-
 Player.hpp
 	exp_to_next_level moet weg volgens jou
 
