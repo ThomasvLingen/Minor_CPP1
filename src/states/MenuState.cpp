@@ -18,19 +18,34 @@ void States::MenuState::run()
         string result = this->game.cli.ask_for_options(this->_menu);
 
         if (result == "quit") {
-            this->game.quit();
-            this->_state_active = false;
+            this->quit_handler();
         }
         else if (result == "credits") {
-            cout << endl << this->_credits << endl;
+            this->credits_handler();
         }
         else if (result == "create character") {
-            this->game.change_state(new CreateCharacterState(this->game));
-            this->_state_active = false;
+            this->create_character_handler();
         }
     }
 }
 
 States::MenuState::~MenuState()
 {
+}
+
+void States::MenuState::quit_handler()
+{
+    this->game.quit();
+    this->_state_active = false;
+}
+
+void States::MenuState::credits_handler()
+{
+    cout << endl << this->_credits << endl;
+}
+
+void States::MenuState::create_character_handler()
+{
+    this->game.change_state(new CreateCharacterState(this->game));
+    this->_state_active = false;
 }

@@ -37,6 +37,11 @@ Thomas van Lingen
 )";
 
         bool _state_active = true;
+
+        // Handlers
+        void quit_handler();
+        void credits_handler();
+        void create_character_handler();
     };
 }
 
