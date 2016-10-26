@@ -21,12 +21,12 @@
 **very true yes**
 
 `Floor.cpp:33`
-What does this return in case of an out of bounds location?
+~~What does this return in case of an out of bounds location?~~
 
 **moet deze niet gebruikt worden in floorplan for example**
 
 `Floor.cpp:42`
-snake_case pls
+~~snake_case pls~~
 
 **okie**
 

@@ -47,25 +47,25 @@ namespace Dungeon
     {
         for (std::vector<Room *> room_vector : _map) {
             for (Room *room : room_vector) {
-                char toPrint;
+                char to_print;
                 if (room == nullptr) {
-                    toPrint = '.';
+                    to_print = '.';
                 } else {
                     switch (room->room_type) { //make a map for this
                         case Room::normal:
-                            toPrint = 'N';
+                            to_print = 'N';
                             break;
                         case Room::start:
-                            toPrint = 'S';
+                            to_print = 'S';
                             break;
                         case Room::end:
-                            toPrint = 'E';
+                            to_print = 'E';
                             break;
                         default:
                             break;
                     }
                 }
-                std::cout << toPrint << " ";
+                std::cout << to_print << " ";
             }
             std::cout << std::endl;
         }
