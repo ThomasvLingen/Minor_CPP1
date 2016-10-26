@@ -15,56 +15,42 @@ namespace Dungeon
 {
     namespace Generator
     {
+        enum PlanRoomType {
+            none, start, normal, end
+        };
+        enum NeighbourSide {
+            left, right, up, down
+        };
 
         class FloorPlan {
-            enum Type {
-                none, start, normal, end
-            };
-            enum Side {
-                left, right, up, down
-            };
-            typedef Room::Location Loc;
-
         public:
-            typedef std::vector<std::vector<Type>> Plan;
+            typedef std::vector<std::vector<PlanRoomType>> Plan;
 
         public:
             FloorPlan(size_t height, size_t width);
-
             virtual ~FloorPlan();
-
             void set_random_start_room();
-
             void generate_end_room_starting_from_start_room();
-
-            Floor *generate_floor_from_plan();
-
             Plan get_plan();
 
         private:
-            typedef std::map<FloorPlan::Side, Loc> Neighbours;
-            typedef std::pair<FloorPlan::Side, Loc> Neighbour;
+            typedef std::map<NeighbourSide, Location> Neighbours;
+            typedef std::pair<NeighbourSide, Location> Neighbour;
 
             Plan _plan;
             size_t _height;
             size_t _width;
-            Loc _start_room;
-            Loc _end_room;
+            Location _start_room;
+            Location _end_room;
 
             std::vector<int> get_all_weights();//FloorPlan::Loc current_location, FloorPlan::Loc target_location);
-            std::map<FloorPlan::Side, Loc> get_open_neighbours(Loc location);
-
-            bool is_open_location(Loc location);
-
-            bool compare_location(Loc loc1, Loc loc2);
-
-            Room::RoomType convert_floorplan_type_to_room_type(FloorPlan::Type floorplan_type);
-
-            Loc get_prefered_neighbour_loc(Neighbours neighbours, Loc current_location);
-
+            std::map<NeighbourSide, Location> get_open_neighbours(Location location);
+            bool is_open_location(Location location);
+            bool compare_location(Location loc1, Location loc2);
+            Location get_prefered_neighbour_loc(Neighbours neighbours, Location current_location);
             int get_weighted_available_neighbour(Neighbours neighbours, std::vector<int> all_weights);
+            void set_room(Location loc, PlanRoomType type);
 
-            void set_room(FloorPlan::Loc loc, FloorPlan::Type type);
         };
 
     }

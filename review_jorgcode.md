@@ -42,18 +42,18 @@
 
 ### Room
 `Room.hpp`
-Is there a reason Room does not have a constructor or destructor?
+~~Is there a reason Room does not have a constructor or destructor?~~
 
 **yes location in constructor for example + roomtype**
 
 `Room.hpp:14`
-Double `public:`
+~~Double `public:`~~
 
 **yes**
 
 `Room.hpp:15-19`
-Is there a reason the enums and structs are declared inside the class?
-If you namespace it, it's not global
+~~Is there a reason the enums and structs are declared inside the class?
+If you namespace it, it's not global~~
 
 **namespace that shit**
 
@@ -71,7 +71,7 @@ Unused.
 
 ### DungeonGenerator
 `DungeonGenerator.hpp:16`
-Should be virtual
+~~Should be virtual~~
 
 **yes**
 
@@ -82,8 +82,8 @@ Lookin' good
 
 ### FloorPlan
 `FloorPlan.hpp:16-17`
-I don't find type very descriptive, reminds me of just a variable type!
-Why double roomtype defs
+~~I don't find type very descriptive, reminds me of just a variable type!
+Why double roomtype defs~~
 
 **yes, very true, was a reason for, cant remember**
 

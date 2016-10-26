@@ -36,7 +36,7 @@ namespace Dungeon
         this->_map[room_ptr->location.height_index][room_ptr->location.width_index] = room_ptr;
     }
 
-    Room *Floor::get_room(Room::Location location)
+    Room *Floor::get_room(Location location)
     {
         check_location(location);
 
@@ -69,7 +69,7 @@ namespace Dungeon
         return this->_height;
     }
 
-    void Floor::check_location(Room::Location location)
+    void Floor::check_location(Location location)
     {
         if((size_t)location.width_index < 0 || (size_t)location.width_index > this->_width - 1
            || (size_t)location.height_index < 0 || (size_t)location.height_index > this->_height - 1){

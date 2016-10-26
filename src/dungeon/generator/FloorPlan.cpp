@@ -29,7 +29,7 @@ namespace Dungeon
             for (size_t height_index = 0; height_index < height; height_index++) {
                 this->_plan[height_index].resize(width);
                 for (size_t width_index = 0; width_index < width; width_index++) {
-                    this->_plan[height_index][width_index] = FloorPlan::none;
+                    this->_plan[height_index][width_index] = PlanRoomType::none;
                 }
             }
         }
@@ -37,7 +37,7 @@ namespace Dungeon
         FloorPlan::~FloorPlan()
         {}
 
-        void FloorPlan::set_room(FloorPlan::Loc loc, FloorPlan::Type type)
+        void FloorPlan::set_room(Location loc, PlanRoomType type)
         {
             if((size_t)loc.height_index < 0 || (size_t)loc.height_index > this->_height - 1
                 || (size_t)loc.width_index < 0 || (size_t)loc.width_index > this->_width - 1){
@@ -51,17 +51,17 @@ namespace Dungeon
             int random_start_height_index = RANDOM.get_random_int(0, (int) this->_height - 1);
             int random_start_width_index = RANDOM.get_random_int(0, (int) this->_width - 1);
 
-            this->_plan[random_start_height_index][random_start_width_index] = FloorPlan::start;
+            this->_plan[random_start_height_index][random_start_width_index] = PlanRoomType::start;
             this->_start_room = {random_start_width_index, random_start_height_index};
         }
 
         void FloorPlan::generate_end_room_starting_from_start_room() //split this function
         {
-            Loc current_location = _start_room;
-            Loc new_location;
-            Loc target_end_room_location;
+            Location current_location = _start_room;
+            Location new_location;
+            Location target_end_room_location;
             Neighbours neighbours;
-            std::vector<Loc> created_rooms;
+            std::vector<Location> created_rooms;
 
             int count = 1;
             int max_count = ((int) _height * (int) _width) / 5;
@@ -76,7 +76,7 @@ namespace Dungeon
                     continue;
                 }
 
-                set_room(new_location, Type::normal);
+                set_room(new_location, PlanRoomType::normal);
 
                 created_rooms.push_back(new_location);
                 current_location = new_location;
@@ -85,7 +85,7 @@ namespace Dungeon
                 count++;
             }
 
-            set_room(target_end_room_location, Type::end);
+            set_room(target_end_room_location, PlanRoomType::end);
             this->_end_room = target_end_room_location;
         }
 
@@ -105,35 +105,35 @@ namespace Dungeon
             return weights;
         }
 
-        FloorPlan::Neighbours FloorPlan::get_open_neighbours(Loc location)
+        FloorPlan::Neighbours FloorPlan::get_open_neighbours(Location location)
         {
             Neighbours possible_locations;
             Neighbours available_locations;
 
             possible_locations.insert(
                 FloorPlan::Neighbour(
-                    FloorPlan::Side::left,
+                    NeighbourSide::left,
                     {location.width_index - 1, location.height_index}
                 )
             );
 
             possible_locations.insert(
                 FloorPlan::Neighbour(
-                    FloorPlan::Side::right,
+                    NeighbourSide::right,
                     {location.width_index + 1, location.height_index}
                 )
             );
 
             possible_locations.insert(
                 FloorPlan::Neighbour(
-                    FloorPlan::Side::down,
+                    NeighbourSide::down,
                     {location.width_index, location.height_index - 1}
                 )
             );
 
             possible_locations.insert(
                 FloorPlan::Neighbour(
-                    FloorPlan::Side::up,
+                    NeighbourSide::up,
                     {location.width_index, location.height_index + 1}
                 )
             );
@@ -147,7 +147,7 @@ namespace Dungeon
             return available_locations;
         }
 
-        bool FloorPlan::is_open_location(FloorPlan::Loc location)
+        bool FloorPlan::is_open_location(Location location)
         {
             if (!(location.height_index >= 0 && location.height_index < (int) this->_height)) {
                 return false;
@@ -155,14 +155,14 @@ namespace Dungeon
             if (!(location.width_index >= 0 && location.width_index < (int) this->_width)) {
                 return false;
             }
-            if (!(this->_plan[location.height_index][location.width_index] == FloorPlan::none)) {
+            if (!(this->_plan[location.height_index][location.width_index] == PlanRoomType::none)) {
                 return false;
             }
 
             return true;
         }
 
-        bool FloorPlan::compare_location(FloorPlan::Loc loc1, FloorPlan::Loc loc2)
+        bool FloorPlan::compare_location(Location loc1, Location loc2)
         {
             if (loc1.height_index != loc2.height_index) {
                 return false;
@@ -174,26 +174,12 @@ namespace Dungeon
             return true;
         }
 
-        Room::RoomType FloorPlan::convert_floorplan_type_to_room_type(FloorPlan::Type floorplan_type)
-        {
-            switch (floorplan_type) {
-                case start:
-                    return Room::RoomType::start;
-                case end:
-                    return Room::RoomType::end;
-                case normal:
-                    return Room::RoomType::normal;
-                default:
-                    return Room::RoomType::normal;
-            }
-        }
-
 /// \param neighbours
 /// \param current_location
 /// \param target_location
 /// \return returns current_location if no neighbours
-        FloorPlan::Loc
-        FloorPlan::get_prefered_neighbour_loc(FloorPlan::Neighbours neighbours, FloorPlan::Loc current_location)
+        Location
+        FloorPlan::get_prefered_neighbour_loc(FloorPlan::Neighbours neighbours, Location current_location)
         {
             if (neighbours.size() == 0) {
                 return current_location;
@@ -205,13 +191,13 @@ namespace Dungeon
 
             switch (location) {
                 case i_left: //left
-                    return neighbours[Side::left];
+                    return neighbours[NeighbourSide::left];
                 case i_right: //right
-                    return neighbours[Side::right];
+                    return neighbours[NeighbourSide::right];
                 case i_down: //down
-                    return neighbours[Side::down];
+                    return neighbours[NeighbourSide::down];
                 case i_up: //up
-                    return neighbours[Side::up];
+                    return neighbours[NeighbourSide::up];
             }
 
             throw "unexpected";
@@ -224,19 +210,19 @@ namespace Dungeon
             std::vector<int> return_values;
             for (Neighbour neighbour : neighbours) {
                 switch (neighbour.first) {
-                    case Side::left :
+                    case NeighbourSide::left :
                         return_values.push_back(i_left);
                         weights.push_back(all_weights[i_left]);
                         break;
-                    case Side::right :
+                    case NeighbourSide::right :
                         return_values.push_back(i_right);
                         weights.push_back(all_weights[i_right]);
                         break;
-                    case Side::down :
+                    case NeighbourSide::down :
                         return_values.push_back(i_down);
                         weights.push_back(all_weights[i_down]);
                         break;
-                    case Side::up :
+                    case NeighbourSide::up :
                         return_values.push_back(i_up);
                         weights.push_back(all_weights[i_up]);
                         break;
@@ -249,29 +235,6 @@ namespace Dungeon
         FloorPlan::Plan FloorPlan::get_plan()
         {
             return _plan;
-        }
-
-        Floor *
-        FloorPlan::generate_floor_from_plan() //TODO: move this to floorgenerator, so you can actually generate valid rooms in this plan, depending on the roomtype double def
-        {
-            int height_index = 0;
-            int width_index = 0;
-            Floor *floor = new Floor(this->_height, this->_width);
-            for (std::vector<FloorPlan::Type> row: this->_plan) {
-                for (FloorPlan::Type type: row) {
-                    if (type != FloorPlan::Type::none) {
-                        Room *room = new Room();
-                        room->location = {width_index, height_index};
-                        room->room_type = convert_floorplan_type_to_room_type(type);
-                        floor->set_room(room);
-                    }
-                    width_index++;
-                }
-                height_index++;
-                width_index = 0;
-            }
-
-            return floor;
         }
 
     }

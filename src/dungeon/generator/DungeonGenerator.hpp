@@ -19,7 +19,7 @@ namespace Dungeon
         public:
             DungeonGenerator();
 
-            ~DungeonGenerator();
+            virtual ~DungeonGenerator();
 
             Dungeon create_dungeon(std::size_t n_floors, std::size_t height, std::size_t width);
 

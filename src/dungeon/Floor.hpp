@@ -21,11 +21,10 @@ namespace Dungeon
 
         void set_room(Room *room_ptr);
 
-        Room *get_room(Room::Location location);
+        Room *get_room(Location location);
 
         void print_raw_map(); //perhaps return a string instead of printing it
         size_t get_height();
-
         size_t get_width();
 
     private:
@@ -33,16 +32,16 @@ namespace Dungeon
         std::vector<std::vector<int>> _adjacency_matrix;
         size_t _height;
         size_t _width;
-        std::map<Room::RoomType, char> _room_type_to_char = {
-            {Room::RoomType::normal,        'N'},
-            {Room::RoomType::end,           'E'},
-            {Room::RoomType::boss,          '@'},
-            {Room::RoomType::start,         'S'},
-            {Room::RoomType::stair_down,    'D'},
-            {Room::RoomType::stair_up,      'U'}
+        std::map<RoomType, char> _room_type_to_char = {
+            {RoomType::normal,        'N'},
+            {RoomType::end,           'E'},
+            {RoomType::boss,          '@'},
+            {RoomType::start,         'S'},
+            {RoomType::stair_down,    'D'},
+            {RoomType::stair_up,      'U'}
         };
 
-        void check_location(Room::Location location);
+        void check_location(Location location);
     };
 
 }
