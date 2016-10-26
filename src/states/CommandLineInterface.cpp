@@ -11,9 +11,9 @@ namespace CLI {
     {
         cout << question << endl << endl;
 
-        this->print_options(options);
+        this->_print_options(options);
 
-        return Util::StrUtil::to_lower(this->get_option(options));
+        return Util::StrUtil::to_lower(this->_get_option(options));
     }
 
     string CommandLineInterface::ask_for_string(string question)
@@ -37,14 +37,14 @@ namespace CLI {
         return current_answer;
     }
 
-    void CommandLineInterface::print_options(vector<string> options)
+    void CommandLineInterface::_print_options(vector<string> options)
     {
         for (uint i = 0; i < options.size(); i++) {
             cout << i << " " << options[i] << endl;
         }
     }
 
-    string CommandLineInterface::get_option(vector<string> options)
+    string CommandLineInterface::_get_option(vector<string> options)
     {
         string current_answer = "";
         bool current_answer_is_valid = false;
@@ -123,14 +123,14 @@ namespace CLI {
             cout << "> ";
             std::getline(cin, current_answer);
 
-            current_answer_is_valid = this->is_valid_yes_no(current_answer);
+            current_answer_is_valid = this->_is_valid_yes_no(current_answer);
 
             if (current_answer_is_valid) {
                 // We can't just set answer to either of these if clausules since we have to explicitly check for BOTH
-                if (std::find(this->valid_yes.begin(), this->valid_yes.end(), current_answer) != this->valid_yes.end()) {
+                if (std::find(this->_valid_yes.begin(), this->_valid_yes.end(), current_answer) != this->_valid_yes.end()) {
                     answer = true;
                 }
-                else if (std::find(this->valid_no.begin(), this->valid_no.end(), current_answer) != this->valid_no.end()) {
+                else if (std::find(this->_valid_no.begin(), this->_valid_no.end(), current_answer) != this->_valid_no.end()) {
                     answer = false;
                 }
             } else {
@@ -141,9 +141,9 @@ namespace CLI {
         return answer;
     }
 
-    bool CommandLineInterface::is_valid_yes_no(string answer)
+    bool CommandLineInterface::_is_valid_yes_no(string answer)
     {
-        auto c = this->valid_yes_no_answers;
+        auto c = this->_valid_yes_no_answers;
         return std::find(c.begin(), c.end(), answer) != c.end();
     }
 }

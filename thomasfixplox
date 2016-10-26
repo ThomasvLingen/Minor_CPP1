@@ -1,7 +1,3 @@
-CLI.hpp
-	alles is public, moeten dingen zoals valid_yes_no_answers public zijn?
-	vooral omdat de functie is_valid_yes_no al bestaat
-
 CLI.cpp
 	ask_for_number
 		waarom maak je hier geen gebruik van de string util is_number()
