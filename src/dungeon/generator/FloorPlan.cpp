@@ -57,14 +57,14 @@ namespace Dungeon
 
         void FloorPlan::generate_end_room_starting_from_start_room() //split this function
         {
-            Location current_location = _start_room;
+            Location current_location = this->_start_room;
             Location new_location;
             Location target_end_room_location;
             Neighbours neighbours;
             std::vector<Location> created_rooms;
 
             int count = 1;
-            int max_count = ((int) _height * (int) _width) / 5;
+            int max_count = ((int) this->_height * (int) this->_width) / 5;
 
             while (count <= max_count) { //while loop, dont always want to raise count
 
@@ -94,10 +94,10 @@ namespace Dungeon
             std::vector<int> weights;
             weights.resize(4, 10); //default weight
 
-            if (_height > _width) {
+            if (this->_height > this->_width) {
                 weights[i_up] += 10;
                 weights[i_down] += 10;
-            } else if (_height < _width) {
+            } else if (this->_height < this->_width) {
                 weights[i_right] += 10;
                 weights[i_left] += 10;
             }
@@ -177,9 +177,8 @@ namespace Dungeon
 /// \param neighbours
 /// \param current_location
 /// \param target_location
-/// \return returns current_location if no neighbours
-        Location
-        FloorPlan::get_prefered_neighbour_loc(FloorPlan::Neighbours neighbours, Location current_location)
+/// \return returns current_location if no neighbours, otherwise a neighbour location
+        Location FloorPlan::get_prefered_neighbour_loc(FloorPlan::Neighbours neighbours, Location current_location)
         {
             if (neighbours.size() == 0) {
                 return current_location;
@@ -234,17 +233,17 @@ namespace Dungeon
 
         FloorPlan::Plan FloorPlan::get_plan()
         {
-            return _plan;
+            return this->_plan;
         }
 
         size_t FloorPlan::get_height()
         {
-            return _height;
+            return this->_height;
         }
 
         size_t FloorPlan::get_width()
         {
-            return _width;
+            return this->_width;
         }
 
     }

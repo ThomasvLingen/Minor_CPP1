@@ -16,7 +16,7 @@
 **yes**
 
 `Floor.cpp:28`
-~This method does no bounds checking, setting a room outside of the map range means an exception~
+~~This method does no bounds checking, setting a room outside of the map range means an exception~~
 
 **very true yes**
 
@@ -123,7 +123,7 @@ Quite a big function, listen to your own advice and split it ;p
 **yes**
 
 `FloorPlan.cpp:62-63`
-use `this->`
+~~use `this->`~~
 
 **yes**
 
@@ -133,12 +133,12 @@ Maybe this can be loopfied and mappified
 **yes, eventueel mapping maken tussen left right etc naar een - en + val voor width en height**
 
 `FloorPlan.cpp:133`
-use `this->`
+~~use `this->`~~
 
 **yes**
 
 `FloorPlan.cpp:186`
-docs are incomplete, only states what it does half the time
+~~docs are incomplete, only states what it does half the time~~
 
 **yes**
 
