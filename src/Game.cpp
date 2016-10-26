@@ -19,11 +19,6 @@ namespace Game {
         delete this->_current_state;
     }
 
-    string Game::ask_user_for_options(CLI::OptionsQuestion prompt)
-    {
-        return Util::StrUtil::to_lower(this->cli.ask_for_options(prompt));
-    }
-
     void Game::run()
     {
         while(this->_running) {
@@ -46,11 +41,6 @@ namespace Game {
         }
 
         this->_old_state = nullptr;
-    }
-
-    string Game::ask_user_for_name(string question)
-    {
-        return this->cli.ask_for_string(question);
     }
 
     void Game::quit()

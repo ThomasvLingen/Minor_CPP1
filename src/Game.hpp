@@ -23,8 +23,6 @@ namespace Game {
         void run();
         void quit();
         void change_state(States::State* state);
-        string ask_user_for_options(CLI::OptionsQuestion prompt);
-        string ask_user_for_name(string question);
 
     private:
         bool _running = true;

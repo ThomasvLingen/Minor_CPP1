@@ -43,7 +43,7 @@ namespace States {
     {
         // Make base hero
         int points_left_for_allocation = 60;
-        string name = this->game.ask_user_for_name("Please enter a name for your hero");
+        string name = this->game.cli.ask_for_string("Please enter a name for your hero");
 
         Player* hero = new Player(name);
         hero->reset_stats_for_creation();

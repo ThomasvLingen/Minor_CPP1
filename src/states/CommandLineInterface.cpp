@@ -13,7 +13,7 @@ namespace CLI {
 
         this->print_options(options);
 
-        return this->get_option(options);
+        return Util::StrUtil::to_lower(this->get_option(options));
     }
 
     string CommandLineInterface::ask_for_string(string question)

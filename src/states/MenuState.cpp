@@ -15,7 +15,7 @@ States::MenuState::MenuState(Game::Game &game)
 void States::MenuState::run()
 {
     while (this->state_active) {
-        string result = this->game.ask_user_for_options(this->menu);
+        string result = this->game.cli.ask_for_options(this->menu);
 
         if (result == "quit") {
             this->game.quit();
