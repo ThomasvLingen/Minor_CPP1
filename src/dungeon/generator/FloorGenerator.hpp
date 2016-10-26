@@ -8,19 +8,29 @@
 #include "dungeon/Floor.hpp"
 #include "util/RandomUtil.hpp"
 #include "FloorPlan.hpp"
+#include "RoomGenerator.hpp"
 
 namespace Dungeon
 {
     namespace Generator
     {
+        using std::map;
 
         class FloorGenerator {
         public:
             FloorGenerator();
-
             virtual ~FloorGenerator();
+            Floor* generate_floor(std::size_t height, std::size_t width);
 
-            Floor *generate_floor(std::size_t height, std::size_t width);
+        private:
+            map<PlanRoomType, RoomType> _plan_room_type_to_room_type_map = {
+                {PlanRoomType::normal, RoomType::normal},
+                {PlanRoomType::start, RoomType::start},
+                {PlanRoomType::end, RoomType::end}
+            };
+            RoomGenerator roomGenerator;
+            Floor* _convert_floor_plan_to_floor(FloorPlan* fp);
+            Room* convert_type_location_to_room(size_t width, size_t height, PlanRoomType type);
         };
 
     }

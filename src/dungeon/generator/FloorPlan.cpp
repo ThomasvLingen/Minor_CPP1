@@ -237,5 +237,15 @@ namespace Dungeon
             return _plan;
         }
 
+        size_t FloorPlan::get_height()
+        {
+            return _height;
+        }
+
+        size_t FloorPlan::get_width()
+        {
+            return _width;
+        }
+
     }
 }

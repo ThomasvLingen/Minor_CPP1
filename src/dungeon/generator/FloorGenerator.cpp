@@ -23,7 +23,36 @@ namespace Dungeon
             floorPlan.set_random_start_room();
             floorPlan.generate_end_room_starting_from_start_room();
 
-            return floorPlan.generate_floor_from_plan();
+            return this->_convert_floor_plan_to_floor(&floorPlan);
+        }
+
+        Floor *FloorGenerator::_convert_floor_plan_to_floor(FloorPlan* fp)
+        {
+            int height_index = 0;
+            int width_index = 0;
+            Floor *floor = new Floor(fp->get_height(), fp->get_width());
+            for (std::vector<PlanRoomType> row: fp->get_plan()) {
+                for (PlanRoomType type: row) {
+                    if (type != PlanRoomType::none) {
+                        Room *room = convert_type_location_to_room(width_index, height_index, type);
+                        floor->set_room(room);
+                    }
+                    width_index++;
+                }
+                height_index++;
+                width_index = 0;
+            }
+
+            return floor;
+        }
+
+        Room *FloorGenerator::convert_type_location_to_room(size_t width, size_t height, PlanRoomType type)
+        {
+            Room *room = roomGenerator.generateRoom(
+                _plan_room_type_to_room_type_map[type],
+                {(int)width, (int)height}
+            );
+            return room;
         }
 
     }

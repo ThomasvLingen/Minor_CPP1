@@ -32,6 +32,8 @@ namespace Dungeon
             void set_random_start_room();
             void generate_end_room_starting_from_start_room();
             Plan get_plan();
+            size_t get_height();
+            size_t get_width();
 
         private:
             typedef std::map<NeighbourSide, Location> Neighbours;

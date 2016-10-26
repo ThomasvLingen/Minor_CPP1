@@ -19,7 +19,7 @@ namespace Dungeon
 
             virtual ~RoomGenerator();
 
-            static Room *generateRoom();
+            static Room *generateRoom(RoomType roomType, Location location);
         };
 
     }

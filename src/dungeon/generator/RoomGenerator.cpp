@@ -15,9 +15,9 @@ namespace Dungeon
         RoomGenerator::~RoomGenerator()
         {}
 
-        Room *RoomGenerator::generateRoom()
+        Room *RoomGenerator::generateRoom(RoomType roomType, Location location)
         {
-            return new Room();
+            return new Room(roomType, location, "");
         }
 
     }
