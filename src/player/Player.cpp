@@ -11,8 +11,8 @@
 namespace Player {
 
     Player::Player(string name)
+    : _name(name)
     {
-        this->name = name;
         this->reset_stats();
     }
 
@@ -26,55 +26,73 @@ namespace Player {
 
     int Player::get_exp_to_next_level()
     {
-        return this->get_exp_to_next_level(this->level);
+        return this->get_exp_to_next_level(this->get_stats().level);
     }
 
     /// \brief Resets the player's stats to base stats
     void Player::reset_stats()
     {
-        this->level = 1;
-        this->health = Health {
+        Stats& stats = this->get_stats();
+
+        stats.level = 1;
+        stats.health = Health {
             .max_health = 10,
             .current_health = 10
         };
-        this->exp = 0;
-        this->attack = 50;
-        this->defence = 30;
+        stats.exp = 0;
+        stats.hit_chance = 50;
+        stats.hit_times = 1;
+        stats.defence = 30;
     }
 
 
 
     bool Player::roll_hit()
     {
-        return RANDOM.weighted_coin_toss(this->attack);
+        return RANDOM.weighted_coin_toss(this->get_stats().hit_chance);
     }
 
     void Player::reset_stats_for_creation()
     {
-        this->level = 1;
-        this->health = Health {
+        Stats& stats = this->get_stats();
+
+        stats.level = 1;
+        stats.health = Health {
             .max_health = 10,
             .current_health = 10
         };
-        this->exp = 0;
-        this->attack = 30;
-        this->defence = 20;
+        stats.exp = 0;
+        stats.hit_chance = 30;
+        stats.hit_times = 1;
+        stats.defence = 20;
     }
 
-    void Player::set_max_health(int new_health)
+    void Player::print()
+    {
+        Stats& stats = this->get_stats();
+
+        // TODO: once items are ready, print items
+        cout << fmt::format("[{}]", this->get_name()) << endl;
+        cout << fmt::format("Level: {} exp [{}-{}]", stats.level, stats.exp, this->get_exp_to_next_level()) << endl;
+        cout << fmt::format("Health: {}/{}", stats.health.current_health, stats.health.max_health) << endl;
+        cout << fmt::format("ATK/DEF: {}/{}", stats.hit_chance, stats.defence) << endl;
+    }
+
+    Stats &Player::get_stats()
+    {
+        return this->_stats;
+    }
+
+    string &Player::get_name()
+    {
+        return this->_name;
+    }
+
+    void Stats::set_max_health(int new_health)
     {
         this->health = Health {
             .max_health = new_health,
             .current_health = new_health
         };
-    }
-
-    void Player::print()
-    {
-        // TODO: once items are ready, print items
-        cout << fmt::format("[{}]", this->name) << endl;
-        cout << fmt::format("Level: {} exp [{}-{}]", this->level, this->exp, this->get_exp_to_next_level()) << endl;
-        cout << fmt::format("Health: {}/{}", this->health.current_health, this->health.max_health) << endl;
-        cout << fmt::format("ATK/DEF: {}/{}", this->attack, this->defence) << endl;
     }
 }

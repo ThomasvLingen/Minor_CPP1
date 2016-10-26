@@ -24,28 +24,38 @@ namespace Player {
         int current_health;
     };
 
+    struct Stats {
+        int level;
+        Health health;      /// When health reaches 0, the player dies
+        int exp;            /// When exp reaches the exp threshhold calculated by `get_exp_to_next_level`, the player levels up
+        int hit_chance;     /// Chance to hit in percents
+        int hit_times;      /// Times attack will hit in percents
+        int defence;        /// Chance for the enemy to miss
+
+        void set_max_health(int new_health);
+    };
+
     class Player {
     public:
         Player(string name);
 
-        string name;
-        int level;
-        Health health; /// When health reaches 0, the player dies
-        int exp;       /// When exp reaches the exp threshhold calculated by `get_exp_to_next_level`, the player levels up
-        int attack;    /// Chance to hit in percents
-        int defence;   /// Chance for the enemy to miss
-
         vector<Item> items;
+
+        Stats& get_stats();
+        string& get_name();
 
         void reset_stats();
         void reset_stats_for_creation();
-        void set_max_health(int new_health);
 
         int get_exp_to_next_level(int current_level);
         int get_exp_to_next_level();
         bool roll_hit();
 
         void print();
+
+    private:
+        string _name;
+        Stats _stats;
     };
 }
 

@@ -47,6 +47,7 @@ namespace States {
 
         Player* hero = new Player(name);
         hero->reset_stats_for_creation();
+        Stats& hero_stats = hero->get_stats();
 
         cout << fmt::format("We're now going to allocate stats, you start with {} points to allocate", points_left_for_allocation) << endl;
         cout << "1 point in Health costs 2 points" << endl;
@@ -54,16 +55,16 @@ namespace States {
         cout << "1 point in defense costs 1 point" << endl;
 
         // Allocate health
-        int hp_allocated = this->allocate_stat(points_left_for_allocation, 0, points_left_for_allocation / 2, hero->health.max_health, 2, "health");
-        hero->set_max_health(hero->health.max_health + hp_allocated);
+        int hp_allocated = this->allocate_stat(points_left_for_allocation, 0, points_left_for_allocation / 2, hero_stats.health.max_health, 2, "health");
+        hero_stats.set_max_health(hero_stats.health.max_health + hp_allocated);
 
         // Allocate attack
-        int atk_allocated = this->allocate_stat(points_left_for_allocation, 0, points_left_for_allocation, hero->attack, 1, "attack");
-        hero->attack += atk_allocated;
+        int atk_allocated = this->allocate_stat(points_left_for_allocation, 0, points_left_for_allocation, hero_stats.hit_chance, 1, "attack");
+        hero_stats.hit_chance += atk_allocated;
 
         // Allocate defence
-        int def_allocated = this->allocate_stat(points_left_for_allocation, 0, points_left_for_allocation, hero->defence, 1, "defence");
-        hero->defence += def_allocated;
+        int def_allocated = this->allocate_stat(points_left_for_allocation, 0, points_left_for_allocation, hero_stats.defence, 1, "defence");
+        hero_stats.defence += def_allocated;
 
         return hero;
     }

@@ -22,6 +22,7 @@ namespace States {
     using std::endl;
     using std::string;
     using Player::Player;
+    using ::Player::Stats;
     using CLI::NumberQuestion;
 
     class CreateCharacterState : public State {
