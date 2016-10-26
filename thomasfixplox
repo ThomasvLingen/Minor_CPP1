@@ -1,8 +1,3 @@
-Player.cpp
-	reset_stats en reset_stats_for_creation is code duplication, als ik standaard health wil aanpassen moet ik dat op twee verschillende plaatsen doen
-
-	-- oke
-
 StrUtil:
 	vector_contains_string:
 		doe je dit niet op andere plaatsen op een andere manier in je states ergens

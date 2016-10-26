@@ -45,8 +45,6 @@ namespace Player {
         stats.defence = 30;
     }
 
-
-
     bool Player::roll_hit()
     {
         return RANDOM.weighted_coin_toss(this->get_stats().hit_chance);
@@ -54,16 +52,10 @@ namespace Player {
 
     void Player::reset_stats_for_creation()
     {
-        Stats& stats = this->get_stats();
+        this->reset_stats();
 
-        stats.level = 1;
-        stats.health = Health {
-            .max_health = 10,
-            .current_health = 10
-        };
-        stats.exp = 0;
+        Stats& stats = this->get_stats();
         stats.hit_chance = 30;
-        stats.hit_times = 1;
         stats.defence = 20;
     }
 
