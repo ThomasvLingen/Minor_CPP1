@@ -16,7 +16,7 @@
 **yes**
 
 `Floor.cpp:28`
-This method does no bounds checking, setting a room outside of the map range means an exception
+~This method does no bounds checking, setting a room outside of the map range means an exception~
 
 **very true yes**
 

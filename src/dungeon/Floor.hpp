@@ -32,6 +32,8 @@ namespace Dungeon
         std::vector<std::vector<int>> _adjacency_matrix;
         size_t _height;
         size_t _width;
+
+        void check_location(Room::Location location);
     };
 
 }

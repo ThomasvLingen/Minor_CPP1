@@ -3,6 +3,7 @@
 //
 
 #include <iostream>
+#include <stdexcept>
 #include "Floor.hpp"
 
 namespace Dungeon
@@ -30,11 +31,15 @@ namespace Dungeon
 
     void Floor::set_room(Room *room_ptr)
     {
+        check_location(room_ptr->location);
+
         this->_map[room_ptr->location.height_index][room_ptr->location.width_index] = room_ptr;
     }
 
     Room *Floor::get_room(Room::Location location)
     {
+        check_location(location);
+
         return this->_map[location.height_index][location.width_index];
     }
 
@@ -74,6 +79,15 @@ namespace Dungeon
     size_t Floor::get_height()
     {
         return this->_height;
+    }
+
+    void Floor::check_location(Room::Location location)
+    {
+        if(location.width_index < 0 || location.width_index > this->_width - 1
+           || location.height_index < 0 || location.height_index > this->_height - 1){
+
+            throw std::invalid_argument("Location is not valid");
+        }
     }
 
 }
