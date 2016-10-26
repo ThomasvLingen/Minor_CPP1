@@ -31,12 +31,12 @@
 **okie**
 
 `Floor.cpp:46`
-See your own comment :p
+~~See your own comment :p~~
 
 **yes**
 
 `Floor.cpp:60`
-What is the value of toPrint for a room of RoomType boss?
+~~What is the value of toPrint for a room of RoomType boss?~~
 
 **yes**
 

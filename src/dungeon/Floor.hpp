@@ -8,6 +8,7 @@
 
 #include "Room.hpp"
 #include <vector>
+#include <map>
 
 namespace Dungeon
 {
@@ -32,6 +33,14 @@ namespace Dungeon
         std::vector<std::vector<int>> _adjacency_matrix;
         size_t _height;
         size_t _width;
+        std::map<Room::RoomType, char> _room_type_to_char = {
+            {Room::RoomType::normal,        'N'},
+            {Room::RoomType::end,           'E'},
+            {Room::RoomType::boss,          '@'},
+            {Room::RoomType::start,         'S'},
+            {Room::RoomType::stair_down,    'D'},
+            {Room::RoomType::stair_up,      'U'}
+        };
 
         void check_location(Room::Location location);
     };

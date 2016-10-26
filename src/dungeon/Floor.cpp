@@ -51,19 +51,7 @@ namespace Dungeon
                 if (room == nullptr) {
                     to_print = '.';
                 } else {
-                    switch (room->room_type) { //make a map for this
-                        case Room::normal:
-                            to_print = 'N';
-                            break;
-                        case Room::start:
-                            to_print = 'S';
-                            break;
-                        case Room::end:
-                            to_print = 'E';
-                            break;
-                        default:
-                            break;
-                    }
+                    to_print = this->_room_type_to_char[room->room_type];
                 }
                 std::cout << to_print << " ";
             }
