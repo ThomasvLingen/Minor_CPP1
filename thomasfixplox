@@ -1,6 +1,0 @@
-MonsterFileParser.cpp:
-	_get_level:
-		moet die stoi niet in een try?
-		of mogen we er van uit gaan dat dit valid is
-
-	-- we gaan er vanuit dat het valid is, noteer dit dan ook in de klasse

@@ -21,6 +21,8 @@ namespace Monsters {
 
     typedef map<string, Enemy> MonsterMap;
 
+    /// This class assumes that the passed input file is VALID
+    /// This may crash with an invalid monsters file...
     class MonsterFileParser {
     public:
         static MonsterMap parse_monsters_file(string monsters_file_path);
