@@ -1,6 +1,4 @@
 Player.hpp
-	exp_to_next_level moet weg volgens jou
-
 	al die stats miss in aparte stats class zetten, word dit ook niet gebruikt bij monsters
 
 	weer alles public

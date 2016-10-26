@@ -19,8 +19,6 @@ namespace Player {
     using std::cout;
     using std::endl;
 
-    extern map<int, int> exp_to_next_level;
-
     struct Health {
         int max_health;
         int current_health;
