@@ -1,15 +1,3 @@
-Enemy.cpp:
-	gebruik zon mooie intializer list
-
-	-- faggot
-
-Enemy.hpp:
-	hit_chance is attack in de player
-	ook hier gebruik maken van stats class?
-	alles weer public
-
-	-- fuck me
-
 MonsterFileParser.hpp:
 	Waarom is alles static?
 	public method _parse_monster start met '_'
