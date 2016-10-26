@@ -103,7 +103,7 @@ You can use an initialiser list.
 **yes**
 
 `FloorPlan.cpp:24 & 26`
-The indexes can be size_t's, getting rid of casts
+~~The indexes can be size_t's, getting rid of casts~~
 
 **yes**
 

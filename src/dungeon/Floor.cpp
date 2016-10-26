@@ -13,7 +13,7 @@ namespace Dungeon
     , _width(width)
     {
         this->_map.reserve(height);
-        for (int index = 0; index < (int) height; index++) {
+        for (size_t index = 0; index < height; index++) {
             _map.push_back(std::vector<Room *>());
             _map[index].resize(width);
         }
