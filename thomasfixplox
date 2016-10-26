@@ -1,8 +1,3 @@
-MenuState.cpp
-	die run options in aparte functies, hoeft niet persee voor deze kleine dingen maar ziet er wel beter uit, word snel een grote lange rij
-
-	-- doe het in functies niet in de run, eventueel mapping tussen string en functions
-
 CreateCharacterState.cpp
 	Player en character worden veel door elkaar heen gebruikt.
 
