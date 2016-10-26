@@ -21,21 +21,22 @@ namespace States {
 
     class MenuState : public State {
     public:
-        CLI::OptionsQuestion menu = {
+        MenuState(Game::Game& game);
+        virtual ~MenuState();
+        virtual void run();
+
+    private:
+        CLI::OptionsQuestion _menu = {
             .question= "Welcome to Not Rogue™, please select something to do from the menu",
             .options = {"Create character", "Credits", "Quit"}
         };
 
-        string credits = R"(Made by:
+        string _credits = R"(Made by:
 Jorg de bont
 Thomas van Lingen
 )";
 
-        bool state_active = true;
-
-        MenuState(Game::Game& game);
-        virtual ~MenuState();
-        virtual void run();
+        bool _state_active = true;
     };
 }
 

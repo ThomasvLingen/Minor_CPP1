@@ -14,19 +14,19 @@ States::MenuState::MenuState(Game::Game &game)
 
 void States::MenuState::run()
 {
-    while (this->state_active) {
-        string result = this->game.cli.ask_for_options(this->menu);
+    while (this->_state_active) {
+        string result = this->game.cli.ask_for_options(this->_menu);
 
         if (result == "quit") {
             this->game.quit();
-            this->state_active = false;
+            this->_state_active = false;
         }
         else if (result == "credits") {
-            cout << endl << this->credits << endl;
+            cout << endl << this->_credits << endl;
         }
         else if (result == "create character") {
             this->game.change_state(new CreateCharacterState(this->game));
-            this->state_active = false;
+            this->_state_active = false;
         }
     }
 }
