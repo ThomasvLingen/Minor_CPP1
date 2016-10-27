@@ -14,3 +14,4 @@
 [Scimitar;Eastern sword with a curved blade;5-15]
 [Ritchie's legacy;A spear with a C emblem on it, said to have belonged to a legend of old;20-40]
 [Strousoup's legacy;A blade which used to belong to a legend of old, said to be the strongest in the land; 25-30]
+[Dolle kabouter;Hij is zeer dol;0-100]
