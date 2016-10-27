@@ -28,9 +28,6 @@ namespace Monsters {
         static MonsterMap parse_monsters_file(string monsters_file_path);
     private:
         static Enemy _parse_monster(string monster_string);
-        static void _filter_non_enemy_lines(vector<string>& lines);
-        static vector<string> _get_enemy_lines(vector<string>& lines);
-        static void _remove_brackets_from_enemy_lines(vector<string>& lines);
 
         static string _get_name(vector<string> split_enemy);
         static int _get_level(vector<string> split_enemy);
