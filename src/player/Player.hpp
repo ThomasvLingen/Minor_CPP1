@@ -19,6 +19,7 @@ namespace Player {
     using std::map;
     using std::cout;
     using std::endl;
+    using Items::Item;
 
     class Player {
     public:

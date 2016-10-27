@@ -12,6 +12,8 @@
 
 namespace Dungeon
 {
+    using Items::Item;
+
     enum RoomType {
         start, end, boss, normal, stair_up, stair_down
     }; //not visited roomtype, not actually a type?
