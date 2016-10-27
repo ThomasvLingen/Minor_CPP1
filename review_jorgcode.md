@@ -98,7 +98,7 @@ using Room::Location
 **yes**
 
 `FloorPlan.cpp:20-21`
-You can use an initialiser list.
+~~You can use an initialiser list.~~
 
 **yes**
 
@@ -118,7 +118,7 @@ Why not use `this->set_room`?
 **yes**
 
 `FloorPlan.cpp:49`
-Quite a big function, listen to your own advice and split it ;p
+~~Quite a big function, listen to your own advice and split it ;p~~
 
 **yes**
 
@@ -153,8 +153,8 @@ use `this->`
 **yes**
 
 `FloorPlan.cpp:156`
-This function should be a part of Location as an operator
-see [this](http://stackoverflow.com/questions/14047191/overloading-operators-in-typedef-structs-c)
+~~This function should be a part of Location as an operator
+see [this](http://stackoverflow.com/questions/14047191/overloading-operators-in-typedef-structs-c)~~
 
 **yes, very good**
 
