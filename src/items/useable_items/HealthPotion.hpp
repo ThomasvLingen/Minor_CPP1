@@ -14,6 +14,8 @@ namespace Items {
     class HealthPotion : public Item {
     public:
         HealthPotion();
+        HealthPotion(const HealthPotion& obj);
+        HealthPotion* clone();
     private:
     public:
         virtual void use(Player::Player *target) override;

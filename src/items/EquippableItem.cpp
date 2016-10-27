@@ -12,6 +12,18 @@ namespace Items {
     {
     }
 
+    EquippableItem::EquippableItem(const EquippableItem &obj)
+    : Item(obj._name, obj._description, 1)
+    , _damage(obj._damage)
+    {
+
+    }
+
+    EquippableItem *EquippableItem::clone()
+    {
+        return new EquippableItem(*this);
+    }
+
     Damage EquippableItem::get_damage()
     {
         return this->_damage;

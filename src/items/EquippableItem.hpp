@@ -15,6 +15,8 @@ namespace Items {
     class EquippableItem : public Item {
     public:
         EquippableItem(string name, string description, Damage dmg);
+        EquippableItem(const EquippableItem& obj);
+        EquippableItem* clone();
 
         Damage get_damage();
         void set_damage(Damage new_damage);

@@ -17,7 +17,9 @@ namespace Items {
     class Item {
     public:
         Item(string name, string description, int uses);
+        Item(const Item& obj);
         virtual ~Item();
+        virtual Item* clone()=0;
 
         string get_name();
         string get_description();
@@ -27,9 +29,9 @@ namespace Items {
 
         virtual void use(Player::Player* target)=0;
     protected:
-        int _uses;
         string _name;
         string _description;
+        int _uses;
     };
 }
 

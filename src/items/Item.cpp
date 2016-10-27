@@ -14,6 +14,14 @@ namespace Items {
 
     }
 
+    Item::Item(const Item &obj)
+    : _name(obj._name)
+    , _description(obj._description)
+    , _uses(obj._uses)
+    {
+
+    }
+
     Item::~Item()
     {
 
