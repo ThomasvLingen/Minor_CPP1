@@ -113,7 +113,7 @@ using Room::Location
 **yes**
 
 `FloorPlan.cpp:45`
-Why not use `this->set_room`?
+~~Why not use `this->set_room`?~~
 
 **yes**
 
@@ -128,7 +128,7 @@ Why not use `this->set_room`?
 **yes**
 
 `FloorPlan.cpp:104-130`
-Maybe this can be loopfied and mappified
+~~Maybe this can be loopfied and mappified~~
 
 **yes, eventueel mapping maken tussen left right etc naar een - en + val voor width en height**
 
@@ -148,7 +148,7 @@ Maybe this can be loopfied and mappified
 **yes**
 
 `FloorPlan.cpp:65`
-use `this->`
+~~use `this->`~~
 
 **yes**
 
