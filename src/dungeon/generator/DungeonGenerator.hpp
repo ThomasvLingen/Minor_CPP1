@@ -18,12 +18,12 @@ namespace Dungeon
         class DungeonGenerator {
 
         public:
-            DungeonGenerator();
+            DungeonGenerator(EnemyFactory* enemyFactory);
             virtual ~DungeonGenerator();
             Dungeon create_dungeon(size_t n_floors, size_t height, size_t width);
 
         private:
-            FloorGenerator floorGenerator;
+            FloorGenerator _floor_generator;
         };
 
     }

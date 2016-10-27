@@ -7,6 +7,7 @@
 
 #include <vector>
 #include <string>
+#include <list>
 #include "monsters/Enemy.hpp"
 #include "items/Item.hpp"
 
@@ -15,6 +16,8 @@ namespace Dungeon
     using Items::Item;
     using std::string;
     using std::vector;
+    using std::list;
+    using Monsters::Enemy;
 
     enum RoomType {
         start, end, boss, normal, stair_up, stair_down
@@ -34,10 +37,12 @@ namespace Dungeon
         Room(RoomType room_type, Location location, string _description);
         virtual ~Room();
 
-        vector<Monsters::Enemy> monsters;
-        vector<Item> items;
+        list<Enemy*> monsters;
+        list<Item*> items;
         RoomType room_type;
         Location location;
+
+        const string& get_description();
 
 
     private:

@@ -18,6 +18,17 @@ namespace Dungeon
 
     Room::~Room()
     {
-        //TODO: perhaps delete items and monsters if pointers
+        for(Enemy* enemy : monsters){
+            delete(enemy);
+        }
+
+        for(Item* item : items){
+            delete(item);
+        }
+    }
+
+    const string &Room::get_description()
+    {
+        return this->_description;
     }
 }

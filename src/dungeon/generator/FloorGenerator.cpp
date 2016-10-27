@@ -5,6 +5,7 @@
 #include "FloorGenerator.hpp"
 #include "FloorPlan.hpp"
 #include <algorithm>
+#include <iostream>
 
 namespace Dungeon
 {
@@ -12,8 +13,10 @@ namespace Dungeon
     {
         using std::vector;
 
-        FloorGenerator::FloorGenerator()
-        {}
+        FloorGenerator::FloorGenerator(EnemyFactory* factory)
+        : _room_generator(factory)
+        {
+        }
 
         FloorGenerator::~FloorGenerator()
         {}
@@ -49,10 +52,11 @@ namespace Dungeon
 
         Room *FloorGenerator::convert_type_location_to_room(size_t width, size_t height, PlanRoomType type)
         {
-            Room *room = roomGenerator.generateRoom(
+            Room *room = _room_generator.generateRoom(
                 _plan_room_type_to_room_type_map[type],
                 {(int)width, (int)height}
             );
+
             return room;
         }
 

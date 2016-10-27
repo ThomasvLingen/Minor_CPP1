@@ -10,7 +10,8 @@ namespace Dungeon
     namespace Generator
     {
 
-        DungeonGenerator::DungeonGenerator()
+        DungeonGenerator::DungeonGenerator(EnemyFactory* enemyFactory)
+        : _floor_generator(enemyFactory)
         {
 
         }
@@ -26,7 +27,7 @@ namespace Dungeon
             floors.reserve(n_floors);
 
             for (size_t index = 0; index < n_floors; index++) {
-                floors.push_back(floorGenerator.generate_floor(height, width));
+                floors.push_back(_floor_generator.generate_floor(height, width));
             }
 
             return Dungeon(floors);

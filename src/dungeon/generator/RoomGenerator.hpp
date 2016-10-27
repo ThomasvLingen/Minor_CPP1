@@ -7,19 +7,47 @@
 
 
 #include <dungeon/Room.hpp>
+#include <monsters/EnemyFactory.hpp>
 
 namespace Dungeon
 {
     namespace Generator
     {
+        using std::string;
+        using std::vector;
+        using Monsters::EnemyFactory;
 
         class RoomGenerator {
         public:
-            RoomGenerator();
-
+            RoomGenerator(EnemyFactory* factory);
             virtual ~RoomGenerator();
+            Room *generateRoom(RoomType roomType, Location location);
+            void set_min_max_monster_level(int min, int max);
 
-            static Room *generateRoom(RoomType roomType, Location location);
+        private:
+            string generate_random_description();
+            void add_random_monsters(Room* room);
+            EnemyFactory* _factory;
+            int _min_level = 1;
+            int _max_level = 10;
+
+            vector<string> _size_options = {
+                "small",
+                "medium sized",
+                "big"
+            };
+
+            vector<string> _light_options = {
+                "brightly lit",
+                "moody lit",
+                "dark"
+            };
+
+            vector<string> _clean_options = {
+                "clean",
+                "dirty",
+                "disgusting"
+            };
         };
 
     }

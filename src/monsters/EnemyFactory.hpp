@@ -13,6 +13,8 @@
 
 namespace Monsters {
     using std::string;
+    using std::vector;
+    using std::pair;
 
 
     class EnemyFactory {
@@ -20,8 +22,10 @@ namespace Monsters {
         EnemyFactory(string monsters_file_name);
 
         Enemy create_enemy(string name);
+        Enemy create_random_enemy(int min_level, int max_level);
     private:
         MonsterMap _known_monsters;
+        vector<string> get_possible_enemies(int min_level, int max_level);
     };
 }
 

@@ -52,4 +52,9 @@ namespace Monsters {
     {
         return this->_damage;
     }
+
+    Enemy *Enemy::clone()
+    {
+        return new Enemy(*this);
+    }
 }

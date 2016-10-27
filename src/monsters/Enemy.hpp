@@ -20,6 +20,7 @@ namespace Monsters
         Enemy(string name, int level, int hit_chance, int hit_times, Damage damage, int defence, int health);
         Enemy(const Enemy& obj);
         Enemy& operator=(const Enemy& obj);
+        Enemy* clone();
 
         string get_name();
         Stats& get_stats();

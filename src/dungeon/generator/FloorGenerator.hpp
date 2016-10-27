@@ -19,7 +19,7 @@ namespace Dungeon
 
         class FloorGenerator {
         public:
-            FloorGenerator();
+            FloorGenerator(EnemyFactory* factory);
             virtual ~FloorGenerator();
             Floor* generate_floor(size_t height, size_t width);
 
@@ -29,7 +29,7 @@ namespace Dungeon
                 {PlanRoomType::start, RoomType::start},
                 {PlanRoomType::end, RoomType::end}
             };
-            RoomGenerator roomGenerator;
+            RoomGenerator _room_generator;
             Floor* _convert_floor_plan_to_floor(FloorPlan* fp);
             Room* convert_type_location_to_room(size_t width, size_t height, PlanRoomType type);
         };
