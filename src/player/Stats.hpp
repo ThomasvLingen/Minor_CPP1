@@ -12,6 +12,11 @@ namespace Player {
         int current_health;
     };
 
+    struct Damage {
+        int min;
+        int max;
+    };
+
     struct Stats {
         int level;
         Health health;      /// When health reaches 0, the player dies

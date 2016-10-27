@@ -5,7 +5,7 @@
 #include "Enemy.hpp"
 
 namespace Monsters {
-    Enemy::Enemy(std::string name, int level, int hit_chance, int hit_times, Monsters::Damage damage, int defence, int health)
+    Enemy::Enemy(std::string name, int level, int hit_chance, int hit_times, Damage damage, int defence, int health)
     : _name(name)
     , _stats(Stats {
         .level = level,

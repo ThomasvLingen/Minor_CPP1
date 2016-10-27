@@ -13,11 +13,7 @@ namespace Monsters
     using std::string;
     using Player::Stats;
     using Player::Health;
-
-    struct Damage {
-        int min;
-        int max;
-    };
+    using Player::Damage;
 
     class Enemy {
     public:
