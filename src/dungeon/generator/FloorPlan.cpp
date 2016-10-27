@@ -207,25 +207,11 @@ namespace Dungeon
         {
             std::vector<int> weights;
             std::vector<int> return_values;
+            
             for (Neighbour neighbour : neighbours) {
-                switch (neighbour.first) {
-                    case NeighbourSide::left :
-                        return_values.push_back(i_left);
-                        weights.push_back(all_weights[i_left]);
-                        break;
-                    case NeighbourSide::right :
-                        return_values.push_back(i_right);
-                        weights.push_back(all_weights[i_right]);
-                        break;
-                    case NeighbourSide::down :
-                        return_values.push_back(i_down);
-                        weights.push_back(all_weights[i_down]);
-                        break;
-                    case NeighbourSide::up :
-                        return_values.push_back(i_up);
-                        weights.push_back(all_weights[i_up]);
-                        break;
-                }
+                int side_index = this->_neighbour_side_to_int[neighbour.first];
+                return_values.push_back(side_index);
+                weights.push_back(all_weights[side_index]);
             }
 
             return RANDOM.get_weighted_int(weights, return_values);

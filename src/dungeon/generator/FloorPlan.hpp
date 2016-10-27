@@ -15,6 +15,8 @@ namespace Dungeon
 {
     namespace Generator
     {
+        using std::map;
+
         enum PlanRoomType {
             none, start, normal, end
         };
@@ -44,6 +46,12 @@ namespace Dungeon
             size_t _width;
             Location _start_room;
             Location _end_room;
+            map<NeighbourSide, int> _neighbour_side_to_int = {
+                {NeighbourSide::left, 0},
+                {NeighbourSide::right, 1},
+                {NeighbourSide::down, 2},
+                {NeighbourSide::up, 3}
+            };
 
             std::vector<int> get_all_weights();//FloorPlan::Loc current_location, FloorPlan::Loc target_location);
             std::map<NeighbourSide, Location> get_open_neighbours(Location location);

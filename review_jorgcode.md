@@ -143,7 +143,7 @@ Maybe this can be loopfied and mappified
 **yes**
 
 `FloorPlan.cpp:196-205`
-Map this instead
+~~Map this instead~~
 
 **yes**
 
