@@ -16,6 +16,7 @@ namespace Dungeon
     namespace Generator
     {
         using std::map;
+        using std::pair;
 
         enum PlanRoomType {
             none, start, normal, end
@@ -51,6 +52,20 @@ namespace Dungeon
                 {NeighbourSide::right, 1},
                 {NeighbourSide::down, 2},
                 {NeighbourSide::up, 3}
+            };
+
+            map<int, NeighbourSide> _int_to_neighbour_side = {
+                {0, NeighbourSide::left},
+                {1, NeighbourSide::right},
+                {2, NeighbourSide::down},
+                {3, NeighbourSide::up}
+            };
+
+            map<NeighbourSide, pair<int, int>> _neighbour_side_to_width_height_difference = { //pair: width | height
+                {NeighbourSide::left,   {-1, 0}},
+                {NeighbourSide::right,  {+1, 0}},
+                {NeighbourSide::down,   {0, -1}},
+                {NeighbourSide::up,     {0, +1}}
             };
 
             std::vector<int> get_all_weights();//FloorPlan::Loc current_location, FloorPlan::Loc target_location);

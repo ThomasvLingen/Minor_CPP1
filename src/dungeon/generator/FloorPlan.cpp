@@ -17,13 +17,12 @@ namespace Dungeon
     {
 
         FloorPlan::FloorPlan(size_t height, size_t width)
+        : _height(height)
+        , _width(width)
         {
             if (height < 3 || width < 3) {
                 throw std::invalid_argument("Height and width can not be smaller than 3!");
             }
-
-            this->_height = height;
-            this->_width = width;
 
             this->_plan.resize(height);
             for (size_t height_index = 0; height_index < height; height_index++) {
@@ -110,33 +109,15 @@ namespace Dungeon
             Neighbours possible_locations;
             Neighbours available_locations;
 
-            possible_locations.insert(
-                FloorPlan::Neighbour(
-                    NeighbourSide::left,
-                    {location.width_index - 1, location.height_index}
-                )
-            );
-
-            possible_locations.insert(
-                FloorPlan::Neighbour(
-                    NeighbourSide::right,
-                    {location.width_index + 1, location.height_index}
-                )
-            );
-
-            possible_locations.insert(
-                FloorPlan::Neighbour(
-                    NeighbourSide::down,
-                    {location.width_index, location.height_index - 1}
-                )
-            );
-
-            possible_locations.insert(
-                FloorPlan::Neighbour(
-                    NeighbourSide::up,
-                    {location.width_index, location.height_index + 1}
-                )
-            );
+            for(pair<NeighbourSide, pair<int,int>> side_to_difference : _neighbour_side_to_width_height_difference){
+                possible_locations.insert(
+                    FloorPlan::Neighbour(
+                        side_to_difference.first,
+                        {location.width_index + side_to_difference.second.first,
+                        location.height_index + side_to_difference.second.second}
+                    )
+                );
+            }
 
             for (Neighbour possible_loc: possible_locations) {
                 if (is_open_location(possible_loc.second)) {
@@ -188,18 +169,7 @@ namespace Dungeon
 
             int location = get_weighted_available_neighbour(neighbours, weights);
 
-            switch (location) {
-                case i_left: //left
-                    return neighbours[NeighbourSide::left];
-                case i_right: //right
-                    return neighbours[NeighbourSide::right];
-                case i_down: //down
-                    return neighbours[NeighbourSide::down];
-                case i_up: //up
-                    return neighbours[NeighbourSide::up];
-            }
-
-            throw "unexpected";
+            return neighbours[this->_int_to_neighbour_side[location]];
         }
 
 

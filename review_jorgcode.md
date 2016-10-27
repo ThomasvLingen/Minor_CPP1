@@ -108,7 +108,7 @@ You can use an initialiser list.
 **yes**
 
 `FloorPlan.cpp:35`
-This method does no bounds checking, setting a room outside of the map range means an exception
+~~This method does no bounds checking, setting a room outside of the map range means an exception~~
 
 **yes**
 
@@ -159,7 +159,7 @@ see [this](http://stackoverflow.com/questions/14047191/overloading-operators-in-
 **yes, very good**
 
 `FloorPlan.cpp:168`
-Mappify
+~~Mappify~~
 
 **yes**
 
