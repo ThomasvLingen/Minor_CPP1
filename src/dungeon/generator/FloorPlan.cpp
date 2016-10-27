@@ -1,15 +1,9 @@
 //
 // Created by jazula on 10/24/16.
 //
-
 #include <stdexcept>
 #include <iostream>
 #include "FloorPlan.hpp"
-
-#define i_left 0
-#define i_right 1
-#define i_down 2
-#define i_up 3
 
 namespace Dungeon
 {
@@ -61,12 +55,12 @@ namespace Dungeon
             std::vector<Location> created_rooms;
             int count = 1;
             int max_count = ((int) this->_height * (int) this->_width) / 5; //perhaps get from argument
-            
+
 
             while (count <= max_count) { //while loop, dont always want to raise count
                 new_location = get_prefered_neighbour_loc(current_location);
 
-                if (compare_location(new_location, current_location)) {
+                if (new_location == current_location) {
                     current_location = created_rooms[RANDOM.get_random_int(0, created_rooms.size() - 1)];
                     continue;
                 }
@@ -129,18 +123,6 @@ namespace Dungeon
                 return false;
             }
             if (!(this->_plan[location.height_index][location.width_index] == PlanRoomType::none)) {
-                return false;
-            }
-
-            return true;
-        }
-
-        bool FloorPlan::compare_location(Location loc1, Location loc2)
-        {
-            if (loc1.height_index != loc2.height_index) {
-                return false;
-            }
-            if (loc1.width_index != loc2.width_index) {
                 return false;
             }
 

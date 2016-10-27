@@ -68,10 +68,9 @@ namespace Dungeon
                 {NeighbourSide::up,     {0, +1}}
             };
 
-            std::vector<int> get_all_weights();//FloorPlan::Loc current_location, FloorPlan::Loc target_location);
+            std::vector<int> get_all_weights();
             std::map<NeighbourSide, Location> get_open_neighbours(Location location);
             bool is_open_location(Location location);
-            bool compare_location(Location loc1, Location loc2);
             Location get_prefered_neighbour_loc(Location current_location);
             int get_weighted_available_neighbour(Neighbours neighbours, std::vector<int> all_weights);
             void set_room(Location loc, PlanRoomType type);

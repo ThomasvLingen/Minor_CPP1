@@ -20,6 +20,11 @@ namespace Dungeon
     struct Location {
         int width_index;
         int height_index;
+
+        bool operator==(const Location& a) const
+        {
+            return (width_index == a.width_index && height_index == a.height_index);
+        }
     };
 
     class Room {
