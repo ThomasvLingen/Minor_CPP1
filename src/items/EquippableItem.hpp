@@ -19,6 +19,9 @@ namespace Items {
         Damage get_damage();
         void set_damage(Damage new_damage);
         void set_damage(int min, int max);
+
+        virtual void use(Player::Player *target) override;
+
     private:
         Damage _damage;
     };

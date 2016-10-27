@@ -7,7 +7,7 @@
 
 namespace Items {
     HealthPotion::HealthPotion()
-    : Item("Health potion", "Refills your health")
+    : Item("Health potion", "Refills your health", 1)
     {
 
     }

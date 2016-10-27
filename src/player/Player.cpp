@@ -79,4 +79,14 @@ namespace Player {
     {
         return this->_name;
     }
+
+    Items::EquippableItem *Player::get_weapon()
+    {
+        return this->_weapon;
+    }
+
+    void Player::set_weapon(Items::EquippableItem *new_weapon)
+    {
+        this->_weapon = new_weapon;
+    }
 }

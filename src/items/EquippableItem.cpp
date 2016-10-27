@@ -3,10 +3,11 @@
 //
 
 #include "EquippableItem.hpp"
+#include <player/Player.hpp>
 
 namespace Items {
     EquippableItem::EquippableItem(string name, string description, Damage dmg)
-        : Item(name, description)
+        : Item(name, description, 1)
         , _damage(dmg)
     {
     }
@@ -27,6 +28,11 @@ namespace Items {
             .min = min,
             .max = max
         });
+    }
+
+    void EquippableItem::use(Player::Player *target)
+    {
+        target->set_weapon(this);
     }
 }
 

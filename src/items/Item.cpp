@@ -6,9 +6,10 @@
 
 namespace Items {
 
-    Item::Item(string name, string description)
+    Item::Item(string name, string description, int uses)
     : _name(name)
     , _description(description)
+    , _uses(uses)
     {
 
     }

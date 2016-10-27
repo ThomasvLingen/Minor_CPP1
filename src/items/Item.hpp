@@ -16,7 +16,7 @@ namespace Items {
 
     class Item {
     public:
-        Item(string name, string description);
+        Item(string name, string description, int uses);
         virtual ~Item();
 
         string get_name();

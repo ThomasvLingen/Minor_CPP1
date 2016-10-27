@@ -11,6 +11,7 @@
 
 #include <items/Item.hpp>
 #include <iostream>
+#include <items/EquippableItem.hpp>
 #include "Stats.hpp"
 
 namespace Player {
@@ -29,6 +30,8 @@ namespace Player {
 
         Stats& get_stats();
         string& get_name();
+        Items::EquippableItem* get_weapon();
+        void set_weapon(Items::EquippableItem* new_weapon);
 
         void reset_stats();
         void reset_stats_for_creation();
@@ -42,6 +45,7 @@ namespace Player {
     private:
         string _name;
         Stats _stats;
+        Items::EquippableItem* _weapon;
     };
 }
 
