@@ -13,15 +13,14 @@ namespace Dungeon
 {
     namespace Generator
     {
+        using std::size_t;
 
         class DungeonGenerator {
 
         public:
             DungeonGenerator();
-
             virtual ~DungeonGenerator();
-
-            Dungeon create_dungeon(std::size_t n_floors, std::size_t height, std::size_t width);
+            Dungeon create_dungeon(size_t n_floors, size_t height, size_t width);
 
         private:
             FloorGenerator floorGenerator;

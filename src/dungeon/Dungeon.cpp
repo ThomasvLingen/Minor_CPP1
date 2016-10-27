@@ -7,7 +7,7 @@
 namespace Dungeon
 {
 
-    Dungeon::Dungeon(std::vector<Floor *> floors)
+    Dungeon::Dungeon(vector<Floor *> floors)
     {
         this->_floors = floors;
     }

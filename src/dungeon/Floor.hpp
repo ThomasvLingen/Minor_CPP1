@@ -12,27 +12,27 @@
 
 namespace Dungeon
 {
+    using std::size_t;
+    using std::vector;
+    using std::map;
 
     class Floor { //perhaps make functions to interact and set map instead of making it public (maybe even friend classes?)
     public:
-        Floor(std::size_t height, std::size_t width);
+        Floor(size_t height, size_t width);
 
         virtual ~Floor();
-
         void set_room(Room *room_ptr);
-
         Room *get_room(Location location);
-
         void print_raw_map(); //perhaps return a string instead of printing it
         size_t get_height();
         size_t get_width();
 
     private:
-        std::vector<std::vector<Room *>> _map;
-        std::vector<std::vector<int>> _adjacency_matrix;
+        vector<vector<Room *>> _map;
+        vector<vector<int>> _adjacency_matrix;
         size_t _height;
         size_t _width;
-        std::map<RoomType, char> _room_type_to_char = {
+        map<RoomType, char> _room_type_to_char = {
             {RoomType::normal,        'N'},
             {RoomType::end,           'E'},
             {RoomType::boss,          '@'},

@@ -17,6 +17,7 @@ namespace Dungeon
     {
         using std::map;
         using std::pair;
+        using std::vector;
 
         enum PlanRoomType {
             none, start, normal, end
@@ -27,7 +28,7 @@ namespace Dungeon
 
         class FloorPlan {
         public:
-            typedef std::vector<std::vector<PlanRoomType>> Plan;
+            typedef vector<vector<PlanRoomType>> Plan;
 
         public:
             FloorPlan(size_t height, size_t width);
@@ -39,8 +40,8 @@ namespace Dungeon
             size_t get_width();
 
         private:
-            typedef std::map<NeighbourSide, Location> Neighbours;
-            typedef std::pair<NeighbourSide, Location> Neighbour;
+            typedef map<NeighbourSide, Location> Neighbours;
+            typedef pair<NeighbourSide, Location> Neighbour;
 
             Plan _plan;
             size_t _height;
@@ -68,13 +69,13 @@ namespace Dungeon
                 {NeighbourSide::up,     {0, +1}}
             };
 
-            std::vector<int> get_all_weights();
-            std::map<NeighbourSide, Location> get_open_neighbours(Location location);
+            vector<int> get_all_weights();
+            map<NeighbourSide, Location> get_open_neighbours(Location location);
             bool is_open_location(Location location);
             Location get_prefered_neighbour_loc(Location current_location);
-            int get_weighted_available_neighbour(Neighbours neighbours, std::vector<int> all_weights);
+            int get_weighted_available_neighbour(Neighbours neighbours, vector<int> all_weights);
             void set_room(Location loc, PlanRoomType type);
-            void set_end_room(std::vector<Location> &possible_locations);
+            void set_end_room(vector<Location> &possible_locations);
 
         };
 

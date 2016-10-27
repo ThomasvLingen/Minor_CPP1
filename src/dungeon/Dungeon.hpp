@@ -11,14 +11,16 @@
 
 namespace Dungeon
 {
+    using std::vector;
+
     class Dungeon {
     public:
-        Dungeon(std::vector<Floor *> floors);
+        Dungeon(vector<Floor *> floors);
 
         virtual ~Dungeon();
 
     private:
-        std::vector<Floor *> _floors;
+        vector<Floor *> _floors;
     };
 }
 

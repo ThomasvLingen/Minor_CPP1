@@ -10,6 +10,7 @@ namespace Dungeon
 {
     namespace Generator
     {
+        using std::vector;
 
         FloorGenerator::FloorGenerator()
         {}
@@ -17,7 +18,7 @@ namespace Dungeon
         FloorGenerator::~FloorGenerator()
         {}
 
-        Floor *FloorGenerator::generate_floor(std::size_t height, std::size_t width)
+        Floor *FloorGenerator::generate_floor(size_t height, size_t width)
         {
             FloorPlan floorPlan(height, width);
             floorPlan.set_random_start_room();
@@ -31,7 +32,7 @@ namespace Dungeon
             int height_index = 0;
             int width_index = 0;
             Floor *floor = new Floor(fp->get_height(), fp->get_width());
-            for (std::vector<PlanRoomType> row: fp->get_plan()) {
+            for (vector<PlanRoomType> row: fp->get_plan()) {
                 for (PlanRoomType type: row) {
                     if (type != PlanRoomType::none) {
                         Room *room = convert_type_location_to_room(width_index, height_index, type);

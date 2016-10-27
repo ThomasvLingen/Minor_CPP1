@@ -20,12 +20,12 @@ namespace Dungeon
 
         }
 
-        Dungeon DungeonGenerator::create_dungeon(std::size_t n_floors, std::size_t height, std::size_t width)
+        Dungeon DungeonGenerator::create_dungeon(size_t n_floors, size_t height, size_t width)
         {
             std::vector<Floor *> floors;
             floors.reserve(n_floors);
 
-            for (std::size_t index = 0; index < n_floors; index++) {
+            for (size_t index = 0; index < n_floors; index++) {
                 floors.push_back(floorGenerator.generate_floor(height, width));
             }
 

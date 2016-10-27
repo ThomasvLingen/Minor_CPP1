@@ -15,12 +15,13 @@ namespace Dungeon
     namespace Generator
     {
         using std::map;
+        using std::size_t;
 
         class FloorGenerator {
         public:
             FloorGenerator();
             virtual ~FloorGenerator();
-            Floor* generate_floor(std::size_t height, std::size_t width);
+            Floor* generate_floor(size_t height, size_t width);
 
         private:
             map<PlanRoomType, RoomType> _plan_room_type_to_room_type_map = {

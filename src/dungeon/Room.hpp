@@ -13,6 +13,8 @@
 namespace Dungeon
 {
     using Items::Item;
+    using std::string;
+    using std::vector;
 
     enum RoomType {
         start, end, boss, normal, stair_up, stair_down
@@ -29,17 +31,17 @@ namespace Dungeon
 
     class Room {
     public:
-        Room(RoomType room_type, Location location, std::string _description);
+        Room(RoomType room_type, Location location, string _description);
         virtual ~Room();
 
-        std::vector<Monsters::Enemy> monsters;
-        std::vector<Item> items;
+        vector<Monsters::Enemy> monsters;
+        vector<Item> items;
         RoomType room_type;
         Location location;
 
 
     private:
-        std::string _description;
+        string _description;
 
     };
 

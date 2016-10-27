@@ -52,7 +52,7 @@ namespace Dungeon
         {
             Location current_location = this->_start_room; //perhaps get from argument
             Location new_location;
-            std::vector<Location> created_rooms;
+            vector<Location> created_rooms;
             int count = 1;
             int max_count = ((int) this->_height * (int) this->_width) / 5; //perhaps get from argument
 
@@ -74,9 +74,9 @@ namespace Dungeon
             set_end_room(created_rooms);
         }
 
-        std::vector<int> FloorPlan::get_all_weights()
+        vector<int> FloorPlan::get_all_weights()
         {
-            std::vector<int> weights;
+            vector<int> weights;
             weights.resize(4, 10); //default weight
 
             if (this->_height > this->_width) {
@@ -140,7 +140,7 @@ namespace Dungeon
                 return current_location;
             }
 
-            std::vector<int> weights = get_all_weights();//current_location, target_location);
+            vector<int> weights = get_all_weights();//current_location, target_location);
 
             int location = get_weighted_available_neighbour(neighbours, weights);
 
@@ -148,10 +148,10 @@ namespace Dungeon
         }
 
 
-        int FloorPlan::get_weighted_available_neighbour(FloorPlan::Neighbours neighbours, std::vector<int> all_weights)
+        int FloorPlan::get_weighted_available_neighbour(FloorPlan::Neighbours neighbours, vector<int> all_weights)
         {
-            std::vector<int> weights;
-            std::vector<int> return_values;
+            vector<int> weights;
+            vector<int> return_values;
 
             for (Neighbour neighbour : neighbours) {
                 int side_index = this->_neighbour_side_to_int[neighbour.first];
@@ -177,7 +177,7 @@ namespace Dungeon
             return this->_width;
         }
 
-        void FloorPlan::set_end_room(std::vector<Location> &possible_locations)
+        void FloorPlan::set_end_room(vector<Location> &possible_locations)
         {
             Location location = possible_locations[RANDOM.get_random_int(0, possible_locations.size() - 1)];
             set_room(location, PlanRoomType::end);

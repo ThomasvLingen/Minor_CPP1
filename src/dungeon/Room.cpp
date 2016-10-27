@@ -8,7 +8,7 @@ namespace Dungeon
 {
 
 
-    Room::Room(RoomType room_type, Location location, std::string _description)
+    Room::Room(RoomType room_type, Location location, string _description)
     : room_type(room_type)
     , location(location)
     , _description(_description)

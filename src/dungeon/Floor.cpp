@@ -8,21 +8,23 @@
 
 namespace Dungeon
 {
+    using std::cout;
+    using std::endl;
 
-    Floor::Floor(std::size_t height, std::size_t width)
+    Floor::Floor(size_t height, size_t width)
     : _height(height)
     , _width(width)
     {
         this->_map.reserve(height);
         for (size_t index = 0; index < height; index++) {
-            _map.push_back(std::vector<Room *>());
+            _map.push_back(vector<Room *>());
             _map[index].resize(width);
         }
     }
 
     Floor::~Floor()
     {
-        for (std::vector<Room *> room_vector : _map) {
+        for (vector<Room *> room_vector : _map) {
             for (Room *room : room_vector) {
                 delete room;
             }
@@ -45,7 +47,7 @@ namespace Dungeon
 
     void Floor::print_raw_map()
     {
-        for (std::vector<Room *> room_vector : _map) {
+        for (vector<Room *> room_vector : _map) {
             for (Room *room : room_vector) {
                 char to_print;
                 if (room == nullptr) {
@@ -53,9 +55,9 @@ namespace Dungeon
                 } else {
                     to_print = this->_room_type_to_char[room->room_type];
                 }
-                std::cout << to_print << " ";
+                cout << to_print << " ";
             }
-            std::cout << std::endl;
+            cout << endl;
         }
     }
 
