@@ -54,21 +54,17 @@ namespace Dungeon
             this->_start_room = {random_start_width_index, random_start_height_index};
         }
 
-        void FloorPlan::generate_end_room_starting_from_start_room() //split this function
+        void FloorPlan::generate_end_room_starting_from_start_room()
         {
-            Location current_location = this->_start_room;
+            Location current_location = this->_start_room; //perhaps get from argument
             Location new_location;
-            Location target_end_room_location;
-            Neighbours neighbours;
             std::vector<Location> created_rooms;
-
             int count = 1;
-            int max_count = ((int) this->_height * (int) this->_width) / 5;
+            int max_count = ((int) this->_height * (int) this->_width) / 5; //perhaps get from argument
+            
 
             while (count <= max_count) { //while loop, dont always want to raise count
-
-                neighbours = get_open_neighbours(current_location);
-                new_location = get_prefered_neighbour_loc(neighbours, current_location);
+                new_location = get_prefered_neighbour_loc(current_location);
 
                 if (compare_location(new_location, current_location)) {
                     current_location = created_rooms[RANDOM.get_random_int(0, created_rooms.size() - 1)];
@@ -79,13 +75,9 @@ namespace Dungeon
 
                 created_rooms.push_back(new_location);
                 current_location = new_location;
-                target_end_room_location = new_location;
-
                 count++;
             }
-
-            set_room(target_end_room_location, PlanRoomType::end);
-            this->_end_room = target_end_room_location;
+            set_end_room(created_rooms);
         }
 
         std::vector<int> FloorPlan::get_all_weights()
@@ -94,11 +86,11 @@ namespace Dungeon
             weights.resize(4, 10); //default weight
 
             if (this->_height > this->_width) {
-                weights[i_up] += 10;
-                weights[i_down] += 10;
+                weights[_neighbour_side_to_int[NeighbourSide::up]] += 10;
+                weights[_neighbour_side_to_int[NeighbourSide::down]]  += 10;
             } else if (this->_height < this->_width) {
-                weights[i_right] += 10;
-                weights[i_left] += 10;
+                weights[_neighbour_side_to_int[NeighbourSide::right]]  += 10;
+                weights[_neighbour_side_to_int[NeighbourSide::left]] += 10;
             }
 
             return weights;
@@ -159,8 +151,9 @@ namespace Dungeon
 /// \param current_location
 /// \param target_location
 /// \return returns current_location if no neighbours, otherwise a neighbour location
-        Location FloorPlan::get_prefered_neighbour_loc(FloorPlan::Neighbours neighbours, Location current_location)
+        Location FloorPlan::get_prefered_neighbour_loc(Location current_location)
         {
+            FloorPlan::Neighbours neighbours = get_open_neighbours(current_location);
             if (neighbours.size() == 0) {
                 return current_location;
             }
@@ -177,7 +170,7 @@ namespace Dungeon
         {
             std::vector<int> weights;
             std::vector<int> return_values;
-            
+
             for (Neighbour neighbour : neighbours) {
                 int side_index = this->_neighbour_side_to_int[neighbour.first];
                 return_values.push_back(side_index);
@@ -200,6 +193,13 @@ namespace Dungeon
         size_t FloorPlan::get_width()
         {
             return this->_width;
+        }
+
+        void FloorPlan::set_end_room(std::vector<Location> &possible_locations)
+        {
+            Location location = possible_locations[RANDOM.get_random_int(0, possible_locations.size() - 1)];
+            set_room(location, PlanRoomType::end);
+            this->_end_room = location;
         }
 
     }

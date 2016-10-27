@@ -72,9 +72,10 @@ namespace Dungeon
             std::map<NeighbourSide, Location> get_open_neighbours(Location location);
             bool is_open_location(Location location);
             bool compare_location(Location loc1, Location loc2);
-            Location get_prefered_neighbour_loc(Neighbours neighbours, Location current_location);
+            Location get_prefered_neighbour_loc(Location current_location);
             int get_weighted_available_neighbour(Neighbours neighbours, std::vector<int> all_weights);
             void set_room(Location loc, PlanRoomType type);
+            void set_end_room(std::vector<Location> &possible_locations);
 
         };
 
