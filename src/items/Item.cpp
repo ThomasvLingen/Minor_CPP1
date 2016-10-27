@@ -13,6 +13,11 @@ namespace Items {
 
     }
 
+    Item::~Item()
+    {
+
+    }
+
     string Item::get_name()
     {
         return this->_name;
