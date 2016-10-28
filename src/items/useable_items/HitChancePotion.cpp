@@ -8,7 +8,7 @@
 namespace Items {
 
     HitChancePotion::HitChancePotion()
-        : Item("Max HP stat potion", "Said to boost your vitality", 1)
+        : Item("Attack stat potion", "Said to boost your attack", 1)
     {
     }
 
