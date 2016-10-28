@@ -3,6 +3,7 @@
 //
 
 #include <items/useable_items/HealthPotion.hpp>
+#include <items/useable_items/HpStatPotion.hpp>
 #include "ItemFactory.hpp"
 #include "WeaponFileParser.hpp"
 #include "util/RandomUtil.hpp"
@@ -34,7 +35,8 @@ namespace Items {
     {
         // This is high binding and therefore dirty
         vector<Item*> useable_items = {
-            new HealthPotion()
+            new HealthPotion(),
+            new HpStatPotion()
         };
 
         for (Item* item : useable_items) {
