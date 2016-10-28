@@ -3,6 +3,7 @@
 //
 
 #include <util/StrUtil.hpp>
+#include <player/PlayerFileParser.hpp>
 #include "CharacterMenu.hpp"
 #include "CreateCharacterState.hpp"
 #include "Game.hpp"
@@ -40,6 +41,9 @@ namespace States {
             }
             else if (result == "save") {
                 this->_save_handler();
+            }
+            else if (result == "load") {
+                this->_load_handler();
             }
             else if (result == "back") {
                 this->_back_handler();
@@ -126,5 +130,19 @@ namespace States {
         Util::StrUtil::write_lines_to_file("./saved_players", output_lines);
 
         cout << "Characters saved to file" << endl << endl;
+    }
+
+    void CharacterMenu::_load_handler()
+    {
+        // Reset old players
+        this->game.players.empty();
+
+        vector<Player*> loaded_players = ::Player::PlayerFileParser::parse_players_file("./saved_players");
+
+        for (Player* player : loaded_players) {
+            this->game.players.add_player(player);
+        }
+
+        cout << "Loaded players" << endl;
     }
 }

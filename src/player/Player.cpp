@@ -152,8 +152,15 @@ namespace Player {
         lines.push_back(fmt::format("[{};{}]", this->get_name(), this->get_stats().to_string()));
         if (this->_weapon != nullptr) {
             lines.push_back(this->_weapon->to_string());
+        } else {
+            lines.push_back("<>");
         }
 
         return lines;
+    }
+
+    void Player::set_stats(Stats new_stats)
+    {
+        this->_stats = new_stats;
     }
 }

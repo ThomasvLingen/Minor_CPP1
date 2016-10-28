@@ -89,4 +89,11 @@ namespace Player {
     {
         return this->players.size();
     }
+
+    void PlayerCollection::empty()
+    {
+        for (Player* player : this->players) {
+            this->remove_player(player);
+        }
+    }
 }

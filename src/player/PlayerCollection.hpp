@@ -23,6 +23,7 @@ namespace Player {
 
         void add_player(Player* to_add);
         void remove_player(Player* to_remove);
+        void empty();
         void select_player(Player* to_select);
         void select_player(size_t index);
         Player* get_selected_player();

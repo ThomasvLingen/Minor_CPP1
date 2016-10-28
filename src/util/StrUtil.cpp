@@ -101,5 +101,10 @@ namespace Util {
         // If this is equal to the end, there isn't a non-digit char
         return first_non_digit_char == str.end();
     }
+
+    bool StrUtil::string_contains_substr(std::string haystack, std::string needle)
+    {
+        return haystack.find(needle) != std::string::npos;
+    }
 }
 

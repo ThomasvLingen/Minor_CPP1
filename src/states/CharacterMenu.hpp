@@ -22,7 +22,7 @@ namespace States {
     private:
         CLI::OptionsQuestion _menu = {
             .question = "This is the character menu, please select something from the menu",
-            .options = {"Create", "List", "Select", "Remove", "Save", "Back"}
+            .options = {"Create", "List", "Select", "Remove", "Save", "Load", "Back"}
         };
         bool _state_active = true;
 
@@ -32,6 +32,7 @@ namespace States {
         void _select_handler();
         void _remove_handler();
         void _save_handler();
+        void _load_handler();
         void _back_handler();
     };
 }

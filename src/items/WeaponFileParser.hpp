@@ -20,8 +20,8 @@ namespace Items {
     class WeaponFileParser {
     public:
         static WeaponMap parse_weapons_file(string filename);
+        static EquippableItem parse_weapon(string weapon_string);
     private:
-        static EquippableItem _parse_weapon(string weapon_string);
 
         static string _get_name(vector<string> weapon_props);
         static string _get_description(vector<string> weapon_props);

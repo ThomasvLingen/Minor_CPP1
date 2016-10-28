@@ -16,6 +16,7 @@ namespace Util {
     public:
         static void filter_non_object_lines(vector<string>& lines);
         static void remove_brackets_from_object_lines(vector<string>& lines);
+        static void remove_brackets_from_weapon_lines(vector<string>& lines);
         static vector<string> get_object_lines(vector<string>& lines);
         static vector<string> get_object_properties(string object_string);
     private:

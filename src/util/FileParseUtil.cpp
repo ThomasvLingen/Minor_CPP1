@@ -44,6 +44,21 @@ namespace Util {
         }
     }
 
+    void FileParseUtil::remove_brackets_from_weapon_lines(vector<string> &lines)
+    {
+        for (string& line : lines) {
+            line.erase(
+                std::remove(line.begin(), line.end(), '<'),
+                line.end()
+            );
+
+            line.erase(
+                std::remove(line.begin(), line.end(), '>'),
+                line.end()
+            );
+        }
+    }
+
     vector<string> FileParseUtil::get_object_lines(vector<string> &lines)
     {
         vector<string> enemy_lines;

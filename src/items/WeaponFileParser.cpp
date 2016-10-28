@@ -16,7 +16,7 @@ namespace Items {
         lines = Util::FileParseUtil::get_object_lines(lines);
 
         for (string weapon_string : lines) {
-            EquippableItem parsed_weapon = WeaponFileParser::_parse_weapon(weapon_string);
+            EquippableItem parsed_weapon = WeaponFileParser::parse_weapon(weapon_string);
 
             map.insert(WeaponMap::value_type(parsed_weapon.get_name(), parsed_weapon));
         }
@@ -24,7 +24,7 @@ namespace Items {
         return map;
     }
 
-    EquippableItem WeaponFileParser::_parse_weapon(string weapon_string)
+    EquippableItem WeaponFileParser::parse_weapon(string weapon_string)
     {
         vector<string> weapon_properties = Util::FileParseUtil::get_object_properties(weapon_string);
 

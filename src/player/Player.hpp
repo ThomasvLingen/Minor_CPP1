@@ -30,6 +30,7 @@ namespace Player {
         vector<Item*> items;
 
         Stats& get_stats();
+        void set_stats(Stats new_stats);
         string& get_name();
         Items::EquippableItem* get_weapon();
         void set_weapon(Items::EquippableItem* new_weapon);

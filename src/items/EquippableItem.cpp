@@ -52,7 +52,7 @@ namespace Items {
     /// \return
     string EquippableItem::to_string()
     {
-        return fmt::format("<{};{};{};{}>", this->get_name(), this->get_description(), this->get_damage().min, this->get_damage().max);
+        return fmt::format("<{};{};{}-{}>", this->get_name(), this->get_description(), this->get_damage().min, this->get_damage().max);
     }
 }
 
