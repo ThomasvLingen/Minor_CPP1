@@ -13,6 +13,12 @@ namespace Dungeon
 {
     using std::vector;
 
+    struct DungeonDimensions {
+        size_t width;
+        size_t height;
+        size_t floors;
+    };
+
     class Dungeon {
     public:
         Dungeon(vector<Floor *> floors);

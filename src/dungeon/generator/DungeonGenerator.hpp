@@ -20,6 +20,7 @@ namespace Dungeon
         public:
             DungeonGenerator(EnemyFactory* enemyFactory);
             virtual ~DungeonGenerator();
+            Dungeon create_dungeon(DungeonDimensions dimensions);
             Dungeon create_dungeon(size_t n_floors, size_t height, size_t width);
 
         private:

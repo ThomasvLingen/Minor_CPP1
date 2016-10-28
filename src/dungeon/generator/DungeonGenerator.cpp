@@ -33,5 +33,10 @@ namespace Dungeon
             return Dungeon(floors);
         }
 
+        Dungeon DungeonGenerator::create_dungeon(DungeonDimensions dimensions)
+        {
+            return this->create_dungeon(dimensions.floors, dimensions.height, dimensions.width);
+        }
+
     }
 }
