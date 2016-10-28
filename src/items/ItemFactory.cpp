@@ -5,6 +5,7 @@
 #include <items/useable_items/HealthPotion.hpp>
 #include "ItemFactory.hpp"
 #include "WeaponFileParser.hpp"
+#include "util/RandomUtil.hpp"
 
 namespace Items {
 
@@ -49,5 +50,14 @@ namespace Items {
     Item *ItemFactory::create_item(string name)
     {
         return this->_known_items[name]->clone();
+    }
+
+    Item* ItemFactory::get_random_item(){
+        int random_index = RANDOM.get_random_int(0, this->_known_items.size() - 1);
+
+        ItemMap::iterator random = this->_known_items.begin();
+        advance(random, random_index);
+
+        return create_item((*random).first);
     }
 }

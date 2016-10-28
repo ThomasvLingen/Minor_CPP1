@@ -38,7 +38,7 @@ namespace Monsters
     {
         vector<string> possible_enemies;
 
-        for(auto possible_enemy : this->_known_monsters){
+        for(auto& possible_enemy : this->_known_monsters){
             int level = possible_enemy.second.get_stats().level;
             if(level >= min_level && level <= max_level){
                 possible_enemies.push_back(possible_enemy.first);

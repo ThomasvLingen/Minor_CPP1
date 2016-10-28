@@ -18,7 +18,7 @@ namespace Dungeon
         class DungeonGenerator {
 
         public:
-            DungeonGenerator(EnemyFactory* enemyFactory);
+            DungeonGenerator(EnemyFactory* enemyFactory, ItemFactory* itemFactory);
             virtual ~DungeonGenerator();
             Dungeon create_dungeon(DungeonDimensions dimensions);
             Dungeon create_dungeon(size_t n_floors, size_t height, size_t width);

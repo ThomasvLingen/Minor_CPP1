@@ -6,6 +6,8 @@
 #include <util/RandomUtil.hpp>
 #include "RoomGenerator.hpp"
 
+#define ITEM_CHANGE_PERCENTAGE 6
+
 namespace Dungeon
 {
     namespace Generator
@@ -13,8 +15,9 @@ namespace Dungeon
         using fmt::format;
         using Util::RandomUtil;
 
-        RoomGenerator::RoomGenerator(EnemyFactory* enemyFactory)
+        RoomGenerator::RoomGenerator(EnemyFactory* enemyFactory, ItemFactory* itemFactory)
         : _enemy_factory(enemyFactory)
+        , _item_factory(itemFactory)
         {
 
         }
@@ -26,6 +29,7 @@ namespace Dungeon
         {
             Room* new_room = new Room(roomType, location, generate_random_description());
             add_random_monsters(new_room);
+            add_random_item(new_room);
 
             return new_room;
         }
@@ -58,5 +62,14 @@ namespace Dungeon
             this->_max_level = max;
         }
 
+        void RoomGenerator::add_random_item(Room *room)
+        {
+            bool add_item = RANDOM.weighted_coin_toss(ITEM_CHANGE_PERCENTAGE);
+            //use the weighted int function when creating more than one item
+
+            if(add_item){
+                room->item = _item_factory->get_random_item();
+            }
+        }
     }
 }

@@ -7,10 +7,13 @@
 
 #include <map>
 #include "Item.hpp"
+#include <iterator>
 
 namespace Items {
     using std::string;
     using std::map;
+    using std::iterator;
+    using std::advance;
 
     typedef map<string, Item*> ItemMap;
 
@@ -23,6 +26,7 @@ namespace Items {
         void register_useables();
 
         Item* create_item(string name);
+        Item* get_random_item();
     private:
         ItemMap _known_items;
         void _register_item(Item* new_item);

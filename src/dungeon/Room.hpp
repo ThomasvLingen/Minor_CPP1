@@ -38,7 +38,7 @@ namespace Dungeon
         virtual ~Room();
 
         list<Enemy*> monsters;
-        list<Item*> items;
+        Item* item; // no need for more then 1 item
         RoomType room_type;
         Location location;
 

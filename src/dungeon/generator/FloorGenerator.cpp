@@ -13,8 +13,8 @@ namespace Dungeon
     {
         using std::vector;
 
-        FloorGenerator::FloorGenerator(EnemyFactory* enemyFactory)
-        : _room_generator(enemyFactory)
+        FloorGenerator::FloorGenerator(EnemyFactory* enemyFactory, ItemFactory* itemFactory)
+        : _room_generator(enemyFactory, itemFactory)
         {
         }
 
@@ -56,7 +56,6 @@ namespace Dungeon
                 _plan_room_type_to_room_type_map[type],
                 {(int)width, (int)height}
             );
-
             return room;
         }
 

@@ -13,7 +13,7 @@ namespace Dungeon
     , location(location)
     , _description(_description)
     {
-
+        this->item = nullptr;
     }
 
     Room::~Room()
@@ -22,9 +22,7 @@ namespace Dungeon
             delete(enemy);
         }
 
-        for(Item* item : items){
-            delete(item);
-        }
+        delete(item);
     }
 
     const string &Room::get_description()

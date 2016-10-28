@@ -19,7 +19,7 @@ namespace Dungeon
 
         class FloorGenerator {
         public:
-            FloorGenerator(EnemyFactory* enemyFactory);
+            FloorGenerator(EnemyFactory* enemyFactory, ItemFactory* itemFactory);
             virtual ~FloorGenerator();
             Floor* generate_floor(size_t height, size_t width);
 

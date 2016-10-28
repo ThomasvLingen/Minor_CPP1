@@ -10,8 +10,8 @@ namespace Dungeon
     namespace Generator
     {
 
-        DungeonGenerator::DungeonGenerator(EnemyFactory* enemyFactory)
-        : _floor_generator(enemyFactory)
+        DungeonGenerator::DungeonGenerator(EnemyFactory* enemyFactory, ItemFactory* itemFactory)
+        : _floor_generator(enemyFactory, itemFactory)
         {
 
         }
