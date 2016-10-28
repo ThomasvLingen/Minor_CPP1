@@ -12,6 +12,8 @@ namespace Dungeon
     namespace Generator
     {
         using std::vector;
+        using std::cout;
+        using std::endl;
 
         FloorGenerator::FloorGenerator(EnemyFactory* enemyFactory, ItemFactory* itemFactory)
         : _room_generator(enemyFactory, itemFactory)
@@ -25,12 +27,43 @@ namespace Dungeon
         {
             PlanRoomType start_room_plan_type = this->_room_type_to_plan_room_type_map[start_room_type];
             PlanRoomType end_room_plan_type   = this->_room_type_to_plan_room_type_map[end_room_type];
+            FloorPlan* floorPlan = nullptr;
+            Floor* new_floor = nullptr;
 
-            FloorPlan floorPlan(height, width, start_room_plan_type, end_room_plan_type);
-            floorPlan.set_random_start_room();
-            floorPlan.generate_end_room_starting_from_start_room();
+            try {
+                floorPlan = new FloorPlan(height, width, start_room_plan_type, end_room_plan_type);
+            } catch(std::exception &exception) {
+                cout << exception.what() << endl;
+                return nullptr;
+            }
 
-            return this->_convert_floor_plan_to_floor(&floorPlan);
+            try {
+                floorPlan->set_random_start_room();
+            } catch(std::exception &exception) {
+                cout << "Failed to set a start room::" << endl << "\t";
+                cout << exception.what() << endl;
+                floorPlan->set_start_room({0,0});
+                cout << endl << "Setting 0,0 as starting room" << endl;
+            }
+
+            try {
+                floorPlan->generate_end_room_starting_from_start_room();
+            } catch (std::exception &exception) {
+                cout << "Failed to generate end room:" << endl << "\t";
+                cout << exception.what() << endl;
+                return nullptr;
+            }
+
+            try {
+                new_floor = this->_convert_floor_plan_to_floor(floorPlan);
+            } catch (std::exception &exception) {
+                cout << "Failed to convert floorplan to floor:" << endl << "\t";
+                cout << exception.what() << endl;
+                return nullptr;
+            }
+
+            delete(floorPlan);
+            return new_floor;
         }
 
         Floor *FloorGenerator::_convert_floor_plan_to_floor(FloorPlan* fp)

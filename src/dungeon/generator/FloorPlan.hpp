@@ -34,6 +34,7 @@ namespace Dungeon
             FloorPlan(size_t height, size_t width, PlanRoomType start_room_type, PlanRoomType end_room_type);
             virtual ~FloorPlan();
             void set_random_start_room();
+            void set_start_room(Location location);
             void generate_end_room_starting_from_start_room();
             Plan get_plan();
             size_t get_height();

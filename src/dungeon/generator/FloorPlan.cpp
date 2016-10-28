@@ -185,5 +185,11 @@ namespace Dungeon
             this->_end_room = location;
         }
 
+        void FloorPlan::set_start_room(Location location)
+        {
+            this->set_room(location, this->_start_room_type);
+            this->_start_room = location;
+        }
+
     }
 }
