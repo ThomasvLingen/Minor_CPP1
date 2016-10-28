@@ -14,8 +14,8 @@ namespace Dungeon
         : _height(height)
         , _width(width)
         {
-            if (height < 3 || width < 3) {
-                throw std::invalid_argument("Height and width can not be smaller than 3!");
+            if (height < 5 || width < 5) {
+                throw std::invalid_argument("Height and width can not be smaller than 5!");
             }
 
             this->_plan.resize(height);
