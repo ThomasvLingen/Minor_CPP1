@@ -28,8 +28,11 @@ namespace Dungeon
             floors.reserve(n_floors);
 
             for (size_t index = 0; index < n_floors; index++) {
-                Floor* new_floor = _floor_generator.generate_floor(height, width);
+                pair<RoomType, RoomType> room_types = get_start_end_room_types((int)index, (int)n_floors);
+
+                Floor* new_floor = _floor_generator.generate_floor(height, width, room_types.first, room_types.second);
                 new_floor->set_level_range(this->_get_level_range((int)index, (int)n_floors));
+
                 floors.push_back(new_floor);
             }
 
@@ -49,8 +52,16 @@ namespace Dungeon
             if(index >= (int)_level_strengths.size()){
                 index = (int)_level_strengths.size() - 1;
             }
-            
+
             return _level_strengths[index];
+        }
+
+        pair<RoomType, RoomType> DungeonGenerator::get_start_end_room_types(int floor_n, int number_of_floors)
+        {
+            RoomType start_room = (floor_n == 0) ? RoomType::start : RoomType::stair_up;
+            RoomType end_room   = (floor_n == number_of_floors - 1) ? RoomType::boss : RoomType::stair_down;
+
+            return pair<RoomType, RoomType> {start_room, end_room};
         }
 
     }

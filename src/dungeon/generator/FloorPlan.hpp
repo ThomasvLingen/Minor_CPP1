@@ -20,7 +20,7 @@ namespace Dungeon
         using std::vector;
 
         enum PlanRoomType {
-            none, start, normal, end
+            none, start, normal, end, stair_up, stair_down, boss
         };
         enum NeighbourSide {
             left, right, up, down
@@ -31,7 +31,7 @@ namespace Dungeon
             typedef vector<vector<PlanRoomType>> Plan;
 
         public:
-            FloorPlan(size_t height, size_t width);
+            FloorPlan(size_t height, size_t width, PlanRoomType start_room_type, PlanRoomType end_room_type);
             virtual ~FloorPlan();
             void set_random_start_room();
             void generate_end_room_starting_from_start_room();
@@ -48,6 +48,10 @@ namespace Dungeon
             size_t _width;
             Location _start_room;
             Location _end_room;
+            PlanRoomType _start_room_type   = PlanRoomType::stair_up;
+            PlanRoomType _end_room_type     = PlanRoomType::stair_down;
+            vector<Location> _created_rooms;
+
             map<NeighbourSide, int> _neighbour_side_to_int = {
                 {NeighbourSide::left, 0},
                 {NeighbourSide::right, 1},

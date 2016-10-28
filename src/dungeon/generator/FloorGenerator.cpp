@@ -21,9 +21,12 @@ namespace Dungeon
         FloorGenerator::~FloorGenerator()
         {}
 
-        Floor *FloorGenerator::generate_floor(size_t height, size_t width)
+        Floor *FloorGenerator::generate_floor(size_t height, size_t width, RoomType start_room_type, RoomType end_room_type)
         {
-            FloorPlan floorPlan(height, width);
+            PlanRoomType start_room_plan_type = this->_room_type_to_plan_room_type_map[start_room_type];
+            PlanRoomType end_room_plan_type   = this->_room_type_to_plan_room_type_map[end_room_type];
+
+            FloorPlan floorPlan(height, width, start_room_plan_type, end_room_plan_type);
             floorPlan.set_random_start_room();
             floorPlan.generate_end_room_starting_from_start_room();
 

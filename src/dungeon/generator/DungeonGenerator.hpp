@@ -28,6 +28,7 @@ namespace Dungeon
         private:
             FloorGenerator _floor_generator;
             level_range _get_level_range(int floor_n, int number_of_floors);
+            pair<RoomType, RoomType> get_start_end_room_types(int floor_n, int number_of_floors);
             vector<level_range> _level_strengths = {
                 {1, 2},
                 {2, 4},

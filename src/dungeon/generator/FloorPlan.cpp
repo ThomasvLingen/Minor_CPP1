@@ -10,9 +10,11 @@ namespace Dungeon
     namespace Generator
     {
 
-        FloorPlan::FloorPlan(size_t height, size_t width)
+        FloorPlan::FloorPlan(size_t height, size_t width, PlanRoomType start_room_type, PlanRoomType end_room_type)
         : _height(height)
         , _width(width)
+        , _start_room_type(start_room_type)
+        , _end_room_type(end_room_type)
         {
             if (height < 5 || width < 5) {
                 throw std::invalid_argument("Height and width can not be smaller than 5!");
@@ -44,7 +46,7 @@ namespace Dungeon
             int random_start_height_index = RANDOM.get_random_int(0, (int) this->_height - 1);
             int random_start_width_index = RANDOM.get_random_int(0, (int) this->_width - 1);
 
-            this->_plan[random_start_height_index][random_start_width_index] = PlanRoomType::start;
+            this->_plan[random_start_height_index][random_start_width_index] = this->_start_room_type;
             this->_start_room = {random_start_width_index, random_start_height_index};
         }
 
@@ -52,26 +54,25 @@ namespace Dungeon
         {
             Location current_location = this->_start_room; //perhaps get from argument
             Location new_location;
-            vector<Location> created_rooms;
+
             int count = 1;
             int max_count = ((int) this->_height * (int) this->_width) / 5; //perhaps get from argument
-
 
             while (count <= max_count) { //while loop, dont always want to raise count
                 new_location = get_prefered_neighbour_loc(current_location);
 
                 if (new_location == current_location) {
-                    current_location = created_rooms[RANDOM.get_random_int(0, created_rooms.size() - 1)];
+                    current_location = _created_rooms[RANDOM.get_random_int(0, _created_rooms.size() - 1)];
                     continue;
                 }
 
                 set_room(new_location, PlanRoomType::normal);
 
-                created_rooms.push_back(new_location);
+                _created_rooms.push_back(new_location);
                 current_location = new_location;
                 count++;
             }
-            set_end_room(created_rooms);
+            set_end_room(_created_rooms);
         }
 
         vector<int> FloorPlan::get_all_weights()
@@ -180,7 +181,7 @@ namespace Dungeon
         void FloorPlan::set_end_room(vector<Location> &possible_locations)
         {
             Location location = possible_locations[RANDOM.get_random_int(0, possible_locations.size() - 1)];
-            set_room(location, PlanRoomType::end);
+            set_room(location, this->_end_room_type);
             this->_end_room = location;
         }
 
