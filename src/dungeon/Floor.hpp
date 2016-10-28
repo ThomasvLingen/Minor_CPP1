@@ -26,7 +26,8 @@ namespace Dungeon
         virtual ~Floor();
         void set_room(Room *room_ptr);
         Room *get_room(Location location);
-        void print_raw_map(); //perhaps return a string instead of printing it
+        void print_floor(); //perhaps return a string instead of printing it
+        void print_floor(bool god_mode);
         size_t get_height();
         size_t get_width();
         void set_level_range(level_range range);
@@ -47,10 +48,10 @@ namespace Dungeon
         };
 
         void check_location(Location location);
-        char get_room_print_char(Room* room);
-        bool are_rooms_connected(Room *current_room, Room *next_room);
-        void print_row(vector<Room*>& row);
-        void print_vertical_tunnels(vector<Room*>& current_row, vector<Room*>& next_row);
+        char get_room_print_char(Room* room, bool god_mode);
+        bool should_draw_tunnel_between_rooms(Room *current_room, Room *next_room, bool god_mode);
+        void print_row(vector<Room*>& row, bool god_mode);
+        void print_vertical_tunnels(vector<Room*>& current_row, vector<Room*>& next_row, bool god_mode);
     };
 
 }

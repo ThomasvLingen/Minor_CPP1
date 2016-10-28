@@ -45,17 +45,22 @@ namespace Dungeon
         return this->_map[location.height_index][location.width_index];
     }
 
-    void Floor::print_raw_map()
+    void Floor::print_floor()
+    {
+        print_floor(false);
+    }
+
+    void Floor::print_floor(bool god_mode)
     {
         for (size_t height_index = 0; height_index < _height; height_index++) {
             vector<Room*>& row = _map[height_index];
-            print_row(row);
+            print_row(row, god_mode);
 
             cout << endl;
 
             if(height_index + 1 < _height){
                 vector<Room*>& next_row = _map[height_index + 1];
-                print_vertical_tunnels(row, next_row);
+                print_vertical_tunnels(row, next_row, god_mode);
             }
 
             cout << endl;
@@ -86,34 +91,40 @@ namespace Dungeon
         this->_level_range = range;
     }
 
-    char Floor::get_room_print_char(Room *room)
+    char Floor::get_room_print_char(Room *room, bool god_mode)
     {
-        if (room == nullptr) {
-            return '.';
-        } else {
-            return this->_room_type_to_char[room->room_type];
+        if (room != nullptr) {
+            if(room->is_discovered() || god_mode){
+                return this->_room_type_to_char[room->room_type];
+            }
         }
+        return '.';
     }
 
-    bool Floor::are_rooms_connected(Room *current_room, Room *next_room)
+    bool Floor::should_draw_tunnel_between_rooms(Room *current_room, Room *next_room, bool god_mode)
     {
         if(next_room != nullptr && current_room != nullptr){
-            return (current_room->is_discovered() || next_room->is_discovered());
+            if(god_mode){
+                return true;
+            } else {
+                return (current_room->is_discovered() || next_room->is_discovered());
+            }
         }else {
             return false;
         }
     }
 
-    void Floor::print_row(vector<Room *> &row)
+    void Floor::print_row(vector<Room *> &row, bool god_mode)
     {
         for (size_t width_index = 0; width_index < _width; width_index++) {
             Room* room = row[width_index];
 
-            cout << get_room_print_char(room);
+            cout << get_room_print_char(room, god_mode);
+
             if(width_index + 1 < _width) {
                 Room* next_room = row[width_index + 1];
 
-                if(are_rooms_connected(room, next_room)){
+                if(should_draw_tunnel_between_rooms(room, next_room, god_mode)){
                     cout << "--";
                 } else {
                     cout << "  ";
@@ -124,10 +135,10 @@ namespace Dungeon
         }
     }
 
-    void Floor::print_vertical_tunnels(vector<Room *> &current_row, vector<Room *> &next_row)
+    void Floor::print_vertical_tunnels(vector<Room *> &current_row, vector<Room *> &next_row, bool god_mode)
     {
         for (size_t width_index = 0; width_index < _width; width_index++){
-            bool connected = are_rooms_connected(current_row[width_index], next_row[width_index]);
+            bool connected = should_draw_tunnel_between_rooms(current_row[width_index], next_row[width_index], god_mode);
             if(connected){
                 cout << "|";
             } else {
