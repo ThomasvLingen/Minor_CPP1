@@ -28,7 +28,7 @@ namespace States {
     private:
         CLI::OptionsQuestion _menu = {
             .question= "Welcome to Not Rogue™, please select something to do from the menu",
-            .options = {"Create character", "Credits", "Quit"}
+            .options = {"Create character", "Set dungeon dimensions", "Credits", "Quit"}
         };
 
         string _credits = R"(Made by:
@@ -42,6 +42,8 @@ Thomas van Lingen
         void quit_handler();
         void credits_handler();
         void create_character_handler();
+
+        void set_dungeon_dimensions_handler();
     };
 }
 

@@ -47,4 +47,9 @@ namespace Game {
     {
         this->_running = false;
     }
+
+    void Game::set_dungeon_dimensions(DungeonDimensions new_dimensions)
+    {
+        this->dimensions = new_dimensions;
+    }
 }

@@ -5,47 +5,59 @@
 #include <Game.hpp>
 #include "MenuState.hpp"
 #include "CreateCharacterState.hpp"
+#include "SetDungeonDimensionsState.hpp"
 
-States::MenuState::MenuState(Game::Game &game)
-: State(game)
-{
+namespace States {
+    MenuState::MenuState(Game::Game &game)
+    : State(game)
+    {
 
-}
+    }
 
-void States::MenuState::run()
-{
-    while (this->_state_active) {
-        string result = this->game.cli.ask_for_options(this->_menu);
+    void MenuState::run()
+    {
+        while (this->_state_active) {
+            string result = this->game.cli.ask_for_options(this->_menu);
 
-        if (result == "quit") {
-            this->quit_handler();
-        }
-        else if (result == "credits") {
-            this->credits_handler();
-        }
-        else if (result == "create character") {
-            this->create_character_handler();
+            if (result == "quit") {
+                this->quit_handler();
+            }
+            else if (result == "set dungeon dimensions") {
+                this->set_dungeon_dimensions_handler();
+            }
+            else if (result == "credits") {
+                this->credits_handler();
+            }
+            else if (result == "create character") {
+                this->create_character_handler();
+            }
         }
     }
-}
 
-States::MenuState::~MenuState()
-{
-}
+    MenuState::~MenuState()
+    {
+    }
 
-void States::MenuState::quit_handler()
-{
-    this->game.quit();
-    this->_state_active = false;
-}
+    void MenuState::quit_handler()
+    {
+        this->game.quit();
+        this->_state_active = false;
+    }
 
-void States::MenuState::credits_handler()
-{
-    cout << endl << this->_credits << endl;
-}
+    void MenuState::credits_handler()
+    {
+        cout << endl << this->_credits << endl;
+    }
 
-void States::MenuState::create_character_handler()
-{
-    this->game.change_state(new CreateCharacterState(this->game));
-    this->_state_active = false;
+    void MenuState::create_character_handler()
+    {
+        this->game.change_state(new CreateCharacterState(this->game));
+        this->_state_active = false;
+    }
+
+    void MenuState::set_dungeon_dimensions_handler()
+    {
+        this->game.change_state(new SetDungeonDimensionsState(this->game));
+        this->_state_active = false;
+    }
 }

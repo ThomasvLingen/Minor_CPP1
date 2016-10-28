@@ -8,9 +8,11 @@
 #include <states/State.hpp>
 #include <states/CommandLineInterface.hpp>
 #include <player/PlayerCollection.hpp>
+#include <dungeon/Dungeon.hpp>
 
 namespace Game {
     using std::string;
+    using Dungeon::DungeonDimensions;
 
     class Game {
     public:
@@ -23,11 +25,13 @@ namespace Game {
         void run();
         void quit();
         void change_state(States::State* state);
+        void set_dungeon_dimensions(DungeonDimensions new_dimensions);
 
     private:
         bool _running = true;
         States::State* _current_state;
         States::State* _old_state;
+        DungeonDimensions dimensions;
 
         void delete_old_state();
     };
