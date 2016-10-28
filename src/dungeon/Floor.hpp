@@ -39,9 +39,9 @@ namespace Dungeon
         size_t _height;
         size_t _width;
         map<RoomType, char> _room_type_to_char = {
-            {RoomType::normal,        'N'},
+            {RoomType::normal,        'n'},
             {RoomType::end,           'E'},
-            {RoomType::boss,          '@'},
+            {RoomType::boss,          'B'},
             {RoomType::start,         'S'},
             {RoomType::stair_down,    'D'},
             {RoomType::stair_up,      'U'}
