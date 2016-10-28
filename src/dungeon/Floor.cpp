@@ -80,4 +80,9 @@ namespace Dungeon
         }
     }
 
+    void Floor::set_level_range(level_range range)
+    {
+        this->_level_range = range;
+    }
+
 }

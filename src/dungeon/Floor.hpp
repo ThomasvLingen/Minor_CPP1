@@ -15,6 +15,9 @@ namespace Dungeon
     using std::size_t;
     using std::vector;
     using std::map;
+    using std::pair;
+
+    typedef pair<int,int> level_range;
 
     class Floor { //perhaps make functions to interact and set map instead of making it public (maybe even friend classes?)
     public:
@@ -26,8 +29,10 @@ namespace Dungeon
         void print_raw_map(); //perhaps return a string instead of printing it
         size_t get_height();
         size_t get_width();
+        void set_level_range(level_range range);
 
     private:
+        level_range _level_range;
         vector<vector<Room *>> _map;
         vector<vector<int>> _adjacency_matrix;
         size_t _height;

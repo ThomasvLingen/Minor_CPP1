@@ -14,6 +14,8 @@ namespace Dungeon
     namespace Generator
     {
         using std::size_t;
+        using std::vector;
+        using std::pair;
 
         class DungeonGenerator {
 
@@ -25,6 +27,14 @@ namespace Dungeon
 
         private:
             FloorGenerator _floor_generator;
+            level_range _get_level_range(int floor_n, int number_of_floors);
+            vector<level_range> _level_strengths = {
+                {1, 2},
+                {2, 4},
+                {4, 6},
+                {6, 8},
+                {8, 10}
+            };
         };
 
     }
