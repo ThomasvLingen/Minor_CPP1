@@ -22,24 +22,30 @@ namespace Dungeon
 
         }
 
-        Dungeon DungeonGenerator::create_dungeon(size_t n_floors, size_t height, size_t width)
+        Dungeon* DungeonGenerator::create_dungeon(size_t n_floors, size_t height, size_t width)
         {
+            Floor* new_floor = nullptr;
             std::vector<Floor *> floors;
             floors.reserve(n_floors);
 
             for (size_t index = 0; index < n_floors; index++) {
                 pair<RoomType, RoomType> room_types = get_start_end_room_types((int)index, (int)n_floors);
+                new_floor = _floor_generator.generate_floor(height, width, room_types.first, room_types.second);
 
-                Floor* new_floor = _floor_generator.generate_floor(height, width, room_types.first, room_types.second);
+                if(new_floor == nullptr){
+                    std::cout << "Failed to create dungeon" << std::endl;
+                    return nullptr;
+                }
+
                 new_floor->set_level_range(this->_get_level_range((int)index, (int)n_floors));
 
                 floors.push_back(new_floor);
             }
 
-            return Dungeon(floors);
+            return new Dungeon(floors);
         }
 
-        Dungeon DungeonGenerator::create_dungeon(DungeonDimensions dimensions)
+        Dungeon* DungeonGenerator::create_dungeon(DungeonDimensions dimensions)
         {
             return this->create_dungeon(dimensions.floors, dimensions.height, dimensions.width);
         }
