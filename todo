@@ -1,4 +1,3 @@
-exception handling
 dungeon state
 random enemy logica verplaatsen naar het enteren van de room ipv met room creation
 ALGA
@@ -6,6 +5,7 @@ kill thomas
 
 === DONE ====
 5 items hebben
+exception handling
 Hero saven/laden
 dungeon dimensions
 selecteren van hero

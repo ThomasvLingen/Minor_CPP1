@@ -45,9 +45,10 @@ namespace Dungeon
         {
             int random_start_height_index = RANDOM.get_random_int(0, (int) this->_height - 1);
             int random_start_width_index = RANDOM.get_random_int(0, (int) this->_width - 1);
+            Location location = {random_start_width_index, random_start_height_index};
 
-            this->_plan[random_start_height_index][random_start_width_index] = this->_start_room_type;
-            this->_start_room = {random_start_width_index, random_start_height_index};
+            this->set_room(location, this->_start_room_type);
+            this->_start_room = location;
         }
 
         void FloorPlan::generate_end_room_starting_from_start_room()
