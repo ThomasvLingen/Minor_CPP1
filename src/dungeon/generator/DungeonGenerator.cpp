@@ -49,8 +49,7 @@ namespace Dungeon
             if(index >= (int)_level_strengths.size()){
                 index = (int)_level_strengths.size() - 1;
             }
-
-            std::cout << _level_strengths[index].first << "-" << _level_strengths[index].second << std::endl;
+            
             return _level_strengths[index];
         }
 
