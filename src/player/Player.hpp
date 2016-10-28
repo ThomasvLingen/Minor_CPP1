@@ -8,6 +8,7 @@
 #include <string>
 #include <vector>
 #include <map>
+#include <algorithm>
 
 #include <items/Item.hpp>
 #include <iostream>
@@ -26,12 +27,16 @@ namespace Player {
     public:
         Player(string name);
 
-        vector<Item> items;
+        vector<Item*> items;
 
         Stats& get_stats();
         string& get_name();
         Items::EquippableItem* get_weapon();
         void set_weapon(Items::EquippableItem* new_weapon);
+
+        void use_item(size_t item_index);
+        void add_item(Item* item);
+        void remove_item(Item* item);
 
         void reset_stats();
         void reset_stats_for_creation();
@@ -41,6 +46,7 @@ namespace Player {
         bool roll_hit();
 
         void print();
+        void print_items();
 
     private:
         string _name;

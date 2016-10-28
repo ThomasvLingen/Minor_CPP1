@@ -27,7 +27,8 @@ namespace Items {
 
         bool is_usable();
 
-        virtual void use(Player::Player* target)=0;
+        void use(Player::Player* target);
+        virtual void use_handler(Player::Player *target)=0;
     protected:
         string _name;
         string _description;

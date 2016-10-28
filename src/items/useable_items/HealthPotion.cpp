@@ -23,7 +23,7 @@ namespace Items {
         return new HealthPotion(*this);
     }
 
-    void HealthPotion::use(Player::Player *target)
+    void HealthPotion::use_handler(Player::Player *target)
     {
         this->_uses--;
 

@@ -46,4 +46,12 @@ namespace Items {
     {
         return this->_uses;
     }
+
+    void Item::use(Player::Player *target)
+    {
+        if (this->is_usable()) {
+            this->use_handler(target);
+            this->_uses--;
+        }
+    }
 }

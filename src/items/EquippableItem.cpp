@@ -42,7 +42,7 @@ namespace Items {
         });
     }
 
-    void EquippableItem::use(Player::Player *target)
+    void EquippableItem::use_handler(Player::Player *target)
     {
         target->set_weapon(this);
     }

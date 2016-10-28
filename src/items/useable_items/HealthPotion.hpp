@@ -18,7 +18,7 @@ namespace Items {
         HealthPotion* clone();
     private:
     public:
-        virtual void use(Player::Player *target) override;
+        virtual void use_handler(Player::Player *target) override;
     };
 }
 

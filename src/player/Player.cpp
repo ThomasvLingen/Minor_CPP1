@@ -59,17 +59,6 @@ namespace Player {
         stats.defence = 20;
     }
 
-    void Player::print()
-    {
-        Stats& stats = this->get_stats();
-
-        // TODO: once items are ready, print items
-        cout << fmt::format("[{}]", this->get_name()) << endl;
-        cout << fmt::format("Level: {} exp [{}-{}]", stats.level, stats.exp, this->get_exp_to_next_level()) << endl;
-        cout << fmt::format("Health: {}/{}", stats.health.current_health, stats.health.max_health) << endl;
-        cout << fmt::format("ATK/DEF: {}/{}", stats.hit_chance, stats.defence) << endl;
-    }
-
     Stats &Player::get_stats()
     {
         return this->_stats;
@@ -88,5 +77,63 @@ namespace Player {
     void Player::set_weapon(Items::EquippableItem *new_weapon)
     {
         this->_weapon = new_weapon;
+    }
+
+    /// This throws an exception if the index is invalid
+    /// \param item_index item index to use
+    void Player::use_item(size_t item_index)
+    {
+        Item* target_item;
+
+        try {
+            target_item = this->items.at(item_index);
+        } catch (std::exception e) {
+            cout << "Cannot use item at index " << item_index << endl;
+            return;
+        }
+
+        // If item is usable, use it!
+        if (target_item->is_usable()) {
+            target_item->use_handler(this);
+
+            // If item is not usable anymore, remove it from inventory
+            if (!target_item->is_usable()) {
+                this->remove_item(target_item);
+            }
+        }
+    }
+
+    void Player::add_item(Item *item)
+    {
+        this->items.push_back(item);
+    }
+
+    void Player::remove_item(Item *item)
+    {
+        this->items.erase(
+            std::remove(this->items.begin(), this->items.end(), item),
+            this->items.end()
+        );
+    }
+
+    void Player::print()
+    {
+        Stats& stats = this->get_stats();
+
+        cout << fmt::format("[{}]", this->get_name()) << endl;
+        cout << fmt::format("Level: {} exp [{}-{}]", stats.level, stats.exp, this->get_exp_to_next_level()) << endl;
+        cout << fmt::format("Health: {}/{}", stats.health.current_health, stats.health.max_health) << endl;
+        cout << fmt::format("ATK/DEF: {}/{}", stats.hit_chance, stats.defence) << endl;
+        this->print_items();
+    }
+
+    void Player::print_items()
+    {
+        cout << "Items:" << endl;
+        for (size_t item_index = 0; item_index < this->items.size(); item_index++) {
+            Item* item = this->items[item_index];
+
+            cout << fmt::format("[{}] {} - {} - {} uses", item_index, item->get_name(), item->get_description(), item->get_uses()) << endl;
+        }
     }
 }
