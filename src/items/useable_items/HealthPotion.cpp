@@ -25,8 +25,6 @@ namespace Items {
 
     void HealthPotion::use_handler(Player::Player *target)
     {
-        this->_uses--;
-
         Stats &stats = target->get_stats();
         stats.health.current_health = stats.health.max_health;
     }
