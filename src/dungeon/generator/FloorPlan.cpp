@@ -95,7 +95,7 @@ namespace Dungeon
             Neighbours possible_locations;
             Neighbours available_locations;
 
-            for(pair<NeighbourSide, pair<int,int>> side_to_difference : _neighbour_side_to_width_height_difference){
+            for(auto& side_to_difference : _neighbour_side_to_width_height_difference){
                 possible_locations.insert(
                     FloorPlan::Neighbour(
                         side_to_difference.first,
@@ -105,7 +105,7 @@ namespace Dungeon
                 );
             }
 
-            for (Neighbour possible_loc: possible_locations) {
+            for (auto& possible_loc: possible_locations) {
                 if (is_open_location(possible_loc.second)) {
                     available_locations.insert(possible_loc);
                 }
@@ -153,7 +153,7 @@ namespace Dungeon
             vector<int> weights;
             vector<int> return_values;
 
-            for (Neighbour neighbour : neighbours) {
+            for (auto& neighbour : neighbours) {
                 int side_index = this->_neighbour_side_to_int[neighbour.first];
                 return_values.push_back(side_index);
                 weights.push_back(all_weights[side_index]);
