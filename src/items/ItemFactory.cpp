@@ -6,6 +6,7 @@
 #include <items/useable_items/HpStatPotion.hpp>
 #include <items/useable_items/HitChancePotion.hpp>
 #include <items/useable_items/DefencePotion.hpp>
+#include <items/useable_items/Whetstone.hpp>
 #include "ItemFactory.hpp"
 #include "WeaponFileParser.hpp"
 #include "util/RandomUtil.hpp"
@@ -40,7 +41,8 @@ namespace Items {
             new HealthPotion(),
             new HpStatPotion(),
             new HitChancePotion(),
-            new DefencePotion()
+            new DefencePotion(),
+            new WhetStone()
         };
 
         for (Item* item : useable_items) {

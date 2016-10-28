@@ -54,5 +54,10 @@ namespace Items {
     {
         return fmt::format("<{};{};{}-{}>", this->get_name(), this->get_description(), this->get_damage().min, this->get_damage().max);
     }
+
+    void EquippableItem::increase_max_damage(int damage_increase)
+    {
+        this->_damage.max += damage_increase;
+    }
 }
 

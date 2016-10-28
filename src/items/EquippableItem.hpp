@@ -21,6 +21,7 @@ namespace Items {
         Damage get_damage();
         void set_damage(Damage new_damage);
         void set_damage(int min, int max);
+        void increase_max_damage(int damage_increase);
 
         virtual void use_handler(Player::Player *target) override;
         string to_string();
