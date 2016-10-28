@@ -47,6 +47,7 @@ namespace Player {
 
         void print();
         void print_items();
+        vector<string> to_string();
 
     private:
         string _name;

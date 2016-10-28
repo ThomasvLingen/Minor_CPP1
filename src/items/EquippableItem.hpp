@@ -23,7 +23,7 @@ namespace Items {
         void set_damage(int min, int max);
 
         virtual void use_handler(Player::Player *target) override;
-
+        string to_string();
     private:
         Damage _damage;
     };

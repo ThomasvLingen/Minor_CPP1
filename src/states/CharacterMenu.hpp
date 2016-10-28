@@ -10,6 +10,8 @@
 
 
 namespace States {
+    using std::vector;
+
     class CharacterMenu : public State {
     public:
         CharacterMenu(Game::Game& game);

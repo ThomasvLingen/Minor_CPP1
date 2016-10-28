@@ -4,6 +4,7 @@
 
 #include "EquippableItem.hpp"
 #include <player/Player.hpp>
+#include <fmt/format.h>
 
 namespace Items {
     EquippableItem::EquippableItem(string name, string description, Damage dmg)
@@ -45,6 +46,13 @@ namespace Items {
     void EquippableItem::use_handler(Player::Player *target)
     {
         target->set_weapon(this);
+    }
+    /// This returns the weapon in string format. The format is as follows:
+    /// <name;description;min_damage;max_damage>
+    /// \return
+    string EquippableItem::to_string()
+    {
+        return fmt::format("<{};{};{};{}>", this->get_name(), this->get_description(), this->get_damage().min, this->get_damage().max);
     }
 }
 

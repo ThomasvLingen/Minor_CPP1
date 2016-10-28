@@ -12,6 +12,7 @@ namespace Player {
 
     Player::Player(string name)
     : _name(name)
+    , _weapon(nullptr)
     {
         this->reset_stats();
     }
@@ -135,5 +136,24 @@ namespace Player {
 
             cout << fmt::format("[{}] {} - {} - {} uses", item_index, item->get_name(), item->get_description(), item->get_uses()) << endl;
         }
+    }
+
+    /// This serialises the player into a vector of strings
+    /// The format for this is as follows:
+    /// [name;stats]
+    /// <equipped_item>
+    ///
+    /// \return
+    vector<string> Player::to_string()
+    {
+        // TODO: Maybe serialise useable items?
+        vector<string> lines;
+
+        lines.push_back(fmt::format("[{};{}]", this->get_name(), this->get_stats().to_string()));
+        if (this->_weapon != nullptr) {
+            lines.push_back(this->_weapon->to_string());
+        }
+
+        return lines;
     }
 }

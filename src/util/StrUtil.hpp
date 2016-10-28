@@ -13,6 +13,7 @@ namespace Util {
     class StrUtil {
     public:
         static std::vector<std::string> get_lines_from_file(std::string filename);
+        static void write_lines_to_file(std::string filename, std::vector<std::string> lines);
         static std::vector<std::string> split(std::string str, char delim);
         static bool vector_contains_string(std::vector<std::string> haystack, std::string needle);
         static std::string to_lower(std::string str);

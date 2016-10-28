@@ -5,7 +5,11 @@
 #ifndef MINOR_CPP1_STATS_HPP
 #define MINOR_CPP1_STATS_HPP
 
+#include <string>
+
 namespace Player {
+
+    using std::string;
 
     struct Health {
         int max_health;
@@ -26,6 +30,7 @@ namespace Player {
         int defence;        /// Chance for the enemy to miss
 
         void set_max_health(int new_health);
+        string to_string();
     };
 
 }

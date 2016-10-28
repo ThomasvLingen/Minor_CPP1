@@ -25,6 +25,22 @@ namespace Util {
         return lines;
     }
 
+    void StrUtil::write_lines_to_file(std::string filename, std::vector<std::string> lines)
+    {
+        std::ofstream output_file(filename);
+
+        if (output_file.is_open()) {
+            for (std::string& line : lines) {
+                output_file << line << std::endl;
+            }
+        } else {
+            std::cout << "For some reason, " << filename << " could not be opened" << std::endl;
+        }
+
+        output_file.close();
+    };
+
+
     std::vector<std::string> StrUtil::split(std::string str, char delim) {
         std::string copy = str;
         std::vector<std::string> tokens;

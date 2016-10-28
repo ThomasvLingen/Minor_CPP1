@@ -2,6 +2,7 @@
 // Created by mafn on 10/28/16.
 //
 
+#include <util/StrUtil.hpp>
 #include "CharacterMenu.hpp"
 #include "CreateCharacterState.hpp"
 #include "Game.hpp"
@@ -36,6 +37,9 @@ namespace States {
             }
             else if (result == "remove") {
                 this->_remove_handler();
+            }
+            else if (result == "save") {
+                this->_save_handler();
             }
             else if (result == "back") {
                 this->_back_handler();
@@ -105,5 +109,22 @@ namespace States {
         } else {
             cout << "It's difficult to select a character when there are none." << endl;
         }
+    }
+
+    void CharacterMenu::_save_handler()
+    {
+        vector<string> output_lines;
+
+        for (Player* player : this->game.players.players) {
+            for (string line : player->to_string()) {
+                output_lines.push_back(line);
+            }
+
+            output_lines.push_back("");
+        }
+
+        Util::StrUtil::write_lines_to_file("./saved_players", output_lines);
+
+        cout << "Characters saved to file" << endl << endl;
     }
 }
