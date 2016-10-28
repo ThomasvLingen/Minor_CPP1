@@ -19,7 +19,7 @@ namespace Dungeon
 
         class RoomGenerator {
         public:
-            RoomGenerator(EnemyFactory* factory);
+            RoomGenerator(EnemyFactory* enemyFactory);
             virtual ~RoomGenerator();
             Room *generateRoom(RoomType roomType, Location location);
             void set_min_max_monster_level(int min, int max);
@@ -27,7 +27,7 @@ namespace Dungeon
         private:
             string generate_random_description();
             void add_random_monsters(Room* room);
-            EnemyFactory* _factory;
+            EnemyFactory* _enemy_factory;
             int _min_level = 1;
             int _max_level = 10;
 

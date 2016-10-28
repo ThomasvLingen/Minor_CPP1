@@ -13,8 +13,8 @@ namespace Dungeon
         using fmt::format;
         using Util::RandomUtil;
 
-        RoomGenerator::RoomGenerator(EnemyFactory* factory)
-        : _factory(factory)
+        RoomGenerator::RoomGenerator(EnemyFactory* enemyFactory)
+        : _enemy_factory(enemyFactory)
         {
 
         }
@@ -47,7 +47,7 @@ namespace Dungeon
             int random_amount = RANDOM.get_random_int(0, 3);
 
             for(int count = 0; count <= random_amount; count++){
-                Enemy* monster = _factory->create_random_enemy(_min_level, _max_level).clone();
+                Enemy* monster = _enemy_factory->create_random_enemy(_min_level, _max_level).clone();
                 room->monsters.push_back(monster);
             }
         }

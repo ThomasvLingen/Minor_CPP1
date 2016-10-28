@@ -13,8 +13,8 @@ namespace Dungeon
     {
         using std::vector;
 
-        FloorGenerator::FloorGenerator(EnemyFactory* factory)
-        : _room_generator(factory)
+        FloorGenerator::FloorGenerator(EnemyFactory* enemyFactory)
+        : _room_generator(enemyFactory)
         {
         }
 
