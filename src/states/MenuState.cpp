@@ -6,6 +6,7 @@
 #include "MenuState.hpp"
 #include "CreateCharacterState.hpp"
 #include "SetDungeonDimensionsState.hpp"
+#include "CharacterMenu.hpp"
 
 namespace States {
     MenuState::MenuState(Game::Game &game)
@@ -28,8 +29,8 @@ namespace States {
             else if (result == "credits") {
                 this->credits_handler();
             }
-            else if (result == "create character") {
-                this->create_character_handler();
+            else if (result == "character menu") {
+                this->character_menu_handler();
             }
         }
     }
@@ -49,15 +50,15 @@ namespace States {
         cout << endl << this->_credits << endl;
     }
 
-    void MenuState::create_character_handler()
-    {
-        this->game.change_state(new CreateCharacterState(this->game));
-        this->_state_active = false;
-    }
-
     void MenuState::set_dungeon_dimensions_handler()
     {
         this->game.change_state(new SetDungeonDimensionsState(this->game));
+        this->_state_active = false;
+    }
+
+    void MenuState::character_menu_handler()
+    {
+        this->game.change_state(new CharacterMenu(this->game));
         this->_state_active = false;
     }
 }

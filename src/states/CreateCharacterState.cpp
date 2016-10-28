@@ -4,6 +4,7 @@
 
 #include "CreateCharacterState.hpp"
 #include "MenuState.hpp"
+#include "CharacterMenu.hpp"
 #include <Game.hpp>
 #include <fmt/format.h>
 
@@ -36,7 +37,7 @@ namespace States {
 
         this->game.players.add_player(created_character);
 
-        this->game.change_state(new MenuState(this->game));
+        this->game.change_state(new CharacterMenu(this->game));
     }
 
     Player *CreateCharacterState::create_character()
