@@ -5,6 +5,7 @@
 #include <items/useable_items/HealthPotion.hpp>
 #include <items/useable_items/HpStatPotion.hpp>
 #include <items/useable_items/HitChancePotion.hpp>
+#include <items/useable_items/DefencePotion.hpp>
 #include "ItemFactory.hpp"
 #include "WeaponFileParser.hpp"
 #include "util/RandomUtil.hpp"
@@ -38,7 +39,8 @@ namespace Items {
         vector<Item*> useable_items = {
             new HealthPotion(),
             new HpStatPotion(),
-            new HitChancePotion()
+            new HitChancePotion(),
+            new DefencePotion()
         };
 
         for (Item* item : useable_items) {
