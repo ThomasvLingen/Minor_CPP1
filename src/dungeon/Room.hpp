@@ -43,9 +43,10 @@ namespace Dungeon
         Location location;
 
         const string& get_description();
-
+        bool is_discovered();
 
     private:
+        bool _discovered = false;
         string _description;
 
     };

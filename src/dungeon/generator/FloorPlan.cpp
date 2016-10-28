@@ -56,7 +56,7 @@ namespace Dungeon
             Location new_location;
 
             int count = 1;
-            int max_count = ((int) this->_height * (int) this->_width) / 5; //perhaps get from argument
+            int max_count = ((int) this->_height * (int) this->_width) / 3; //perhaps get from argument
 
             while (count <= max_count) { //while loop, dont always want to raise count
                 new_location = get_prefered_neighbour_loc(current_location);

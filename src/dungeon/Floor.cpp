@@ -47,16 +47,17 @@ namespace Dungeon
 
     void Floor::print_raw_map()
     {
-        for (vector<Room *> room_vector : _map) {
-            for (Room *room : room_vector) {
-                char to_print;
-                if (room == nullptr) {
-                    to_print = '.';
-                } else {
-                    to_print = this->_room_type_to_char[room->room_type];
-                }
-                cout << to_print << " ";
+        for (size_t height_index = 0; height_index < _height; height_index++) {
+            vector<Room*>& row = _map[height_index];
+            print_row(row);
+
+            cout << endl;
+
+            if(height_index + 1 < _height){
+                vector<Room*>& next_row = _map[height_index + 1];
+                print_vertical_tunnels(row, next_row);
             }
+
             cout << endl;
         }
     }
@@ -83,6 +84,60 @@ namespace Dungeon
     void Floor::set_level_range(level_range range)
     {
         this->_level_range = range;
+    }
+
+    char Floor::get_room_print_char(Room *room)
+    {
+        if (room == nullptr) {
+            return '.';
+        } else {
+            return this->_room_type_to_char[room->room_type];
+        }
+    }
+
+    bool Floor::are_rooms_connected(Room *current_room, Room *next_room)
+    {
+        if(next_room != nullptr && current_room != nullptr){
+            return (current_room->is_discovered() || next_room->is_discovered());
+        }else {
+            return false;
+        }
+    }
+
+    void Floor::print_row(vector<Room *> &row)
+    {
+        for (size_t width_index = 0; width_index < _width; width_index++) {
+            Room* room = row[width_index];
+
+            cout << get_room_print_char(room);
+            if(width_index + 1 < _width) {
+                Room* next_room = row[width_index + 1];
+
+                if(are_rooms_connected(room, next_room)){
+                    cout << "--";
+                } else {
+                    cout << "  ";
+                }
+
+            }
+
+        }
+    }
+
+    void Floor::print_vertical_tunnels(vector<Room *> &current_row, vector<Room *> &next_row)
+    {
+        for (size_t width_index = 0; width_index < _width; width_index++){
+            bool connected = are_rooms_connected(current_row[width_index], next_row[width_index]);
+            if(connected){
+                cout << "|";
+            } else {
+                cout << " ";
+            }
+
+            if(width_index + 1 < _width){
+                cout << "  ";
+            }
+        }
     }
 
 }

@@ -29,4 +29,9 @@ namespace Dungeon
     {
         return this->_description;
     }
+
+    bool Room::is_discovered()
+    {
+        return _discovered;
+    }
 }

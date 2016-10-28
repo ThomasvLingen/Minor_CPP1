@@ -47,6 +47,10 @@ namespace Dungeon
         };
 
         void check_location(Location location);
+        char get_room_print_char(Room* room);
+        bool are_rooms_connected(Room *current_room, Room *next_room);
+        void print_row(vector<Room*>& row);
+        void print_vertical_tunnels(vector<Room*>& current_row, vector<Room*>& next_row);
     };
 
 }
