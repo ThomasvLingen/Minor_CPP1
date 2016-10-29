@@ -1,13 +1,11 @@
-dungeon state
-random enemy logica verplaatsen naar het enteren van de room ipv met room creation
+zorgen dat je uit de dungeon kan als je een boss hebt verslagen --> na dungeon terug naar main menu
+zorgen dat er een boss gegenned word
+speler moet dood kunnen
+
+Memory leaks?
+
 ALGA
 kill thomas
 
-=== DONE ====
-5 items hebben
-exception handling
-Hero saven/laden
-dungeon dimensions
-selecteren van hero
-Player Items add/remove/use (DONE)
-usen van items moet verplaats worden (DONE)
+==== Optional ====
+Vragen na dungeon of je wil saven
