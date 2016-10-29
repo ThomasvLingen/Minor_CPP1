@@ -2,6 +2,8 @@
 // Created by jazula on 10/17/16.
 //
 
+#include <iostream>
+#include <fmt/format.h>
 #include "Enemy.hpp"
 
 namespace Monsters {
@@ -56,5 +58,10 @@ namespace Monsters {
     Enemy *Enemy::clone()
     {
         return new Enemy(*this);
+    }
+
+    void Enemy::print()
+    {
+        std::cout << fmt::format("{} - {}", this->get_name(), this->get_stats().health.to_string()) << std::endl;
     }
 }

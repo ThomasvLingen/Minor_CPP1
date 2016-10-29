@@ -6,6 +6,7 @@
 #define MINOR_CPP1_STATS_HPP
 
 #include <string>
+#include <fmt/format.h>
 
 namespace Player {
 
@@ -14,6 +15,10 @@ namespace Player {
     struct Health {
         int max_health;
         int current_health;
+
+        string to_string() {
+            return fmt::format("{}/{}", this->current_health, this->max_health);
+        };
     };
 
     struct Damage {

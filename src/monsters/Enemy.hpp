@@ -26,6 +26,8 @@ namespace Monsters
         Stats& get_stats();
         Damage& get_damage();
 
+        void print();
+
     private:
         string _name;
         Stats _stats;
