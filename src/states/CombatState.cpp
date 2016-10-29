@@ -39,8 +39,8 @@ void States::CombatState::_search_handler()
 
     if(item != nullptr){
         cout << "You found a " << item->get_name() << endl;
-        cout << "\t" << item->get_description() << endl;
-        cout << "Added to items";
+        cout << "    " << item->get_description() << endl;
+        cout << "Added to items" << endl;
         player->add_item(item);
     } else {
         cout << "Nothing of interest was found" << endl;
