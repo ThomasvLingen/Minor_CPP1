@@ -229,4 +229,15 @@ namespace Player {
 
         cout << "You feel refreshed" << endl;
     }
+
+    vector<string> Player::get_item_names()
+    {
+        vector<string> item_names;
+
+        for (Item* item : this->items) {
+            item_names.push_back(item->get_name());
+        }
+
+        return item_names;
+    }
 }

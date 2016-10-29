@@ -31,6 +31,9 @@ void States::CombatState::run()
             this->_search_handler();
             next_turn = true;
         }
+        else if (result == "look at items") {
+            this->_look_at_items_handler();
+        }
         else if (result == "attack") {
             this->_attack_handler();
             next_turn = true;
@@ -42,6 +45,9 @@ void States::CombatState::run()
         else if (result == "rest"){
             this->_rest_handler();
             next_turn = true;
+        }
+        else if (result == "use item") {
+            this->_item_use_handler();
         }
         else if (result == "open map") {
             this->_map_handler();
@@ -156,4 +162,26 @@ void States::CombatState::_rest_handler()
     player->current_room->print_monsters();
 
     player->rest();
+}
+
+void States::CombatState::_item_use_handler()
+{
+    Player::Player* player = this->_get_player();
+
+    if (player->items.size() > 0){
+        size_t chosen_item_index = this->game.cli.ask_for_options_by_index(CLI::OptionsQuestion {
+            .question = "What item do you want to use?",
+            .options = player->get_item_names()
+        });
+
+        player->use_item(chosen_item_index);
+    } else {
+        cout << "You don't have any items" << endl;
+    }
+}
+
+void States::CombatState::_look_at_items_handler()
+{
+    Player::Player* player = this->_get_player();
+    player->print_items();
 }

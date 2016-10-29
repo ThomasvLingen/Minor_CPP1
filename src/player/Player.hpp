@@ -42,6 +42,7 @@ namespace Player {
         void use_item(size_t item_index);
         void add_item(Item* item);
         void remove_item(Item* item);
+        vector<string> get_item_names();
 
         void reset_stats();
         void reset_stats_for_creation();
