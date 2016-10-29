@@ -33,6 +33,9 @@ namespace Game {
 
     void Game::run()
     {
+        // TODO: You may not want to do this
+        this->players.load_players();
+
         while(this->_running) {
             this->_current_state->run();
             this->delete_old_state();
