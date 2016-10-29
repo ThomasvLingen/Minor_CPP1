@@ -58,6 +58,8 @@ void States::CombatState::run()
         else if (result == "open map") {
             this->_map_handler();
         }
+
+        this->_check_win();
     }
 }
 
@@ -209,4 +211,16 @@ void States::CombatState::_look_at_items_handler()
 {
     Player::Player* player = this->_get_player();
     player->print_items();
+}
+
+void States::CombatState::_check_win(){
+    Player::Player* player = this->_get_player();
+
+    if(player->current_room->room_type == Dungeon::RoomType::boss && player->current_room->monsters.size() == 0){
+        this->_state_active = false;
+        this->game.change_state(new MenuState(this->game));
+
+        cout << endl;
+        cout << "Good werk you won, young padawan" << endl;
+    }
 }

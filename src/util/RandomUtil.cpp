@@ -11,7 +11,6 @@ namespace Util
     RandomUtil::RandomUtil()
     {
         _generator.seed(time(0));
-        std::cout << "seeded!" << std::endl;
     }
 
     int RandomUtil::get_random_int(int min_range, int max_range)

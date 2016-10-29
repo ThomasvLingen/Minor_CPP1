@@ -53,6 +53,8 @@ namespace States
         void _stair_handler();
         void _enemies_attack_turn();
 
+        void _check_win();
+
         Player::Player* _get_player();
 
     };

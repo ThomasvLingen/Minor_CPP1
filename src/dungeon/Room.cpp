@@ -107,5 +107,7 @@ namespace Dungeon
             std::remove(this->monsters.begin(), this->monsters.end(), to_remove),
             this->monsters.end()
         );
+
+        delete(to_remove);
     }
 }
