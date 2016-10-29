@@ -105,7 +105,8 @@ void States::CombatState::_flee_handler()
 
 void States::CombatState::_map_handler()
 {
-    this->_get_player()->current_room->container_floor.print_floor();
+    Dungeon::Location player_location = this->_get_player()->current_room->location;
+    this->_get_player()->current_room->container_floor.print_floor(player_location);
 }
 
 void States::CombatState::_stair_handler()

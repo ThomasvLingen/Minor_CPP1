@@ -46,16 +46,22 @@ namespace Dungeon
         return this->_map[location.height_index][location.width_index];
     }
 
-    void Floor::print_floor()
+    void Floor::print_floor(Location player_location)
     {
-        print_floor(false);
+        print_floor(player_location, false);
     }
 
-    void Floor::print_floor(bool god_mode)
+    void Floor::print_floor(Location player_location, bool god_mode = false)
     {
         for (size_t height_index = 0; height_index < _height; height_index++) {
             vector<Room*>& row = _map[height_index];
-            print_row(row, god_mode);
+
+            if((int)height_index == player_location.height_index){
+                print_row(row, god_mode, player_location.width_index);
+            } else {
+                print_row(row, god_mode);
+            }
+
             cout << endl;
 
             if(height_index + 1 < _height){
@@ -112,12 +118,18 @@ namespace Dungeon
         }
     }
 
-    void Floor::print_row(vector<Room *> &row, bool god_mode)
+    void Floor::print_row(vector<Room *> &row, bool god_mode, int player_location_width)
     {
         for (size_t width_index = 0; width_index < _width; width_index++) {
             Room* room = row[width_index];
 
-            cout << get_room_print_char(room, god_mode);
+            bool print_player = ((int)width_index == player_location_width);
+
+            if(print_player){
+                cout << "*";
+            } else {
+                cout << get_room_print_char(room, god_mode);
+            }
 
             if(width_index + 1 < _width) {
                 Room* next_room = row[width_index + 1];
