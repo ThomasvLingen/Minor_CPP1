@@ -5,6 +5,7 @@
 #include <iostream>
 #include <stdexcept>
 #include "Floor.hpp"
+#include "Dungeon.hpp"
 
 namespace Dungeon
 {
@@ -192,6 +193,19 @@ namespace Dungeon
         }
 
         return available_directions;
+    }
+
+    Floor* Floor::get_floor(Room* room)
+    {
+        // op room type, kan je bepalen wat je moet doen, als het een normal room is, gewoon this returnen.
+        switch(room->room_type){
+            case stair_up:
+                return this->dungeon->get_prev_floor(this);
+            case stair_down:
+                return this->dungeon->get_next_floor(this);
+            default:
+                return this;
+        }
     }
 
 }

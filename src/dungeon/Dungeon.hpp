@@ -21,10 +21,15 @@ namespace Dungeon
 
     class Dungeon {
     public:
-        Dungeon(vector<Floor *> floors);
+        Dungeon();
         virtual ~Dungeon();
 
         vector<Floor *> floors;
+
+        void add_floor(Floor* floor);
+        Floor* get_next_floor(Floor* current_floor);
+        Floor* get_prev_floor(Floor* current_floor);
+        size_t get_floor_index(Floor* floor);
 
     private:
 

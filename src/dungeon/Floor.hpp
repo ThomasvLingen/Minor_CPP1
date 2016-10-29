@@ -21,6 +21,8 @@ namespace Dungeon
 
     enum Direction {north, east, south, west};
 
+    class Dungeon;
+
     class Floor { //perhaps make functions to interact and set map instead of making it public (maybe even friend classes?)
     public:
         Floor(size_t height, size_t width);
@@ -28,6 +30,8 @@ namespace Dungeon
 
         Room* start_room;
         Room* end_room;
+
+        Dungeon* dungeon;
 
         void set_room(Room *room_ptr);
         Room *get_room(Location location);
@@ -40,6 +44,7 @@ namespace Dungeon
         Location get_new_location_in_direction(Direction direction, Location location);
         vector<Direction> get_available_directions(Room* room);
         level_range monster_level_range;
+        Floor* get_floor(Room* room);
 
     private:
         vector<vector<Room *>> _map;

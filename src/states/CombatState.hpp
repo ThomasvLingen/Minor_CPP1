@@ -48,6 +48,8 @@ namespace States
         void _item_use_handler();
         void _map_handler();
 
+        void _stair_handler();
+
         Player::Player* _get_player();
 
     };

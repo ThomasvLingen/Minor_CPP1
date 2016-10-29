@@ -164,4 +164,16 @@ namespace Player {
     {
         this->_stats = new_stats;
     }
+
+    void Player::move_direction(Dungeon::Direction direction)
+    {
+        /// current we are going back and forth a lot with current_room
+        // TODO:
+        Room* next_room = this->current_room->container_floor.get_room_in_direction(this->current_room, direction);
+
+        if(next_room != nullptr){
+            this->current_room = next_room;
+        }
+
+    }
 }

@@ -69,11 +69,32 @@ void States::CombatState::_flee_handler()
     };
 
     size_t response_index = this->game.cli.ask_for_options_by_index(question);
-    cout << "We will flee " << options[response_index] << endl;
-    // Then move player
+    cout << "You fled " << options[response_index] << endl;
+    player->move_direction(possible_directions[response_index]);
+    player->current_room->discover(this->game._enemy_factory);
+
+    if(player->current_room->room_type == Dungeon::RoomType::stair_down
+        || player->current_room->room_type == Dungeon::RoomType::stair_up){
+
+        this->_stair_handler();
+    }
 }
 
 void States::CombatState::_map_handler()
 {
     this->_get_player()->current_room->container_floor.print_floor();
+}
+
+void States::CombatState::_stair_handler()
+{
+    Player::Player *player = this->_get_player();
+
+    bool player_want_to_use_stairs = this->game.cli.ask_for_yes_no("Do you want to use the stair case?");
+
+    if (player_want_to_use_stairs) {
+        Dungeon::Room* next_floor_room = player->current_room->container_floor.get_floor(player->current_room)->start_room;
+
+        player->current_room = next_floor_room;
+        player->current_room->discover(this->game._enemy_factory);
+    }
 }

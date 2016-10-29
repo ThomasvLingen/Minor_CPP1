@@ -14,6 +14,7 @@
 #include <iostream>
 #include <items/EquippableItem.hpp>
 #include <dungeon/Room.hpp>
+#include <dungeon/Floor.hpp>
 #include "Stats.hpp"
 
 namespace Player {
@@ -52,6 +53,8 @@ namespace Player {
         void print();
         void print_items();
         vector<string> to_string();
+
+        void move_direction(Dungeon::Direction direction);
 
     private:
         string _name;

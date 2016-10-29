@@ -5,6 +5,7 @@
 #ifndef MINOR_CPP1_FLOORGENERATOR_HPP
 #define MINOR_CPP1_FLOORGENERATOR_HPP
 
+#include <dungeon/Dungeon.hpp>
 #include "dungeon/Floor.hpp"
 #include "util/RandomUtil.hpp"
 #include "FloorPlan.hpp"
@@ -22,8 +23,10 @@ namespace Dungeon
             FloorGenerator(EnemyFactory* enemyFactory, ItemFactory* itemFactory);
             virtual ~FloorGenerator();
             Floor* generate_floor(size_t height, size_t width, RoomType start_room_type, RoomType end_room_type);
+            void set_dungeon(::Dungeon::Dungeon* dungeon);
 
         private:
+            ::Dungeon::Dungeon* _dungeon;
             map<PlanRoomType, RoomType> _plan_room_type_to_room_type_map = {
                 {PlanRoomType::normal, RoomType::normal},
                 {PlanRoomType::start, RoomType::start},

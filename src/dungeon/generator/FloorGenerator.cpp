@@ -76,6 +76,7 @@ namespace Dungeon
                     if (type != PlanRoomType::none) {
                         Room *room = convert_type_location_to_room(width_index, height_index, type, *floor);
                         floor->set_room(room);
+                        floor->dungeon = this->_dungeon;
                     }
                     width_index++;
                 }
@@ -97,6 +98,11 @@ namespace Dungeon
                 container_floor
             );
             return room;
+        }
+
+        void FloorGenerator::set_dungeon(::Dungeon::Dungeon *dungeon)
+        {
+            this->_dungeon = dungeon;
         }
 
     }
