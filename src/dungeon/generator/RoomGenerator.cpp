@@ -6,7 +6,7 @@
 #include <util/RandomUtil.hpp>
 #include "RoomGenerator.hpp"
 
-#define ITEM_CHANGE_PERCENTAGE 6
+#define ITEM_CHANGE_PERCENTAGE 25
 
 namespace Dungeon
 {

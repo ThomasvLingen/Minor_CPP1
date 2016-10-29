@@ -40,16 +40,20 @@ namespace Dungeon
         Room(RoomType room_type, Location location, string _description, Floor& container_floor);
         virtual ~Room();
 
-        list<Enemy*> monsters;
+        vector<Enemy*> monsters;
         Item* item; // no need for more then 1 item
         RoomType room_type;
         Location location;
         Floor& container_floor;
 
+        void remove_monster(Enemy* to_remove);
         const string& get_description();
         bool is_discovered();
         void discover(Monsters::EnemyFactory& enemy_factory);
         Item* get_item();
+        vector<string> get_monster_names();
+
+        void print_monsters();
 
     private:
         bool _discovered = false;

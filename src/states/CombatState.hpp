@@ -49,6 +49,7 @@ namespace States
         void _map_handler();
 
         void _stair_handler();
+        void _enemies_attack_turn();
 
         Player::Player* _get_player();
 

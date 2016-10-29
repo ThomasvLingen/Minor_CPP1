@@ -176,4 +176,42 @@ namespace Player {
         }
 
     }
+
+    void Player::attack(Monsters::Enemy *to_attack)
+    {
+        if (this->roll_hit() && !to_attack->dodge()) {
+            int damage = this->roll_attack();
+
+            to_attack->get_stats().health.current_health -= damage;
+
+            cout << fmt::format("You attack {} for {} damage!", to_attack->get_name(), damage) << endl;
+
+            if (to_attack->get_stats().health.current_health <= 0) {
+                this->current_room->remove_monster(to_attack);
+            }
+        } else {
+            cout << "You missed!" << endl;
+        }
+    }
+
+    int Player::roll_attack()
+    {
+        if (this->_weapon != nullptr) {
+            return 3 + RANDOM.get_random_int(this->_weapon->get_damage().min, this->_weapon->get_damage().max);
+        } else {
+            return 3;
+        }
+    }
+
+    bool Player::dodge()
+    {
+        return RANDOM.weighted_coin_toss(this->get_stats().defence);
+    }
+
+    void Player::print_hp()
+    {
+        Health& health = this->get_stats().health;
+
+        cout << fmt::format("Your HP {}/{}", health.current_health, health.max_health) << endl;
+    }
 }

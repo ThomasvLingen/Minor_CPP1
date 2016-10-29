@@ -8,6 +8,10 @@
 #include <string>
 #include <player/Stats.hpp>
 
+namespace Player {
+    class Player;
+}
+
 namespace Monsters
 {
     using std::string;
@@ -25,6 +29,11 @@ namespace Monsters
         string get_name();
         Stats& get_stats();
         Damage& get_damage();
+        bool dodge();
+
+        void attack_player(Player::Player* player);
+        bool roll_hit();
+        int roll_attack();
 
         void print();
 

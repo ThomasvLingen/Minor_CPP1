@@ -4,7 +4,9 @@
 
 #include <iostream>
 #include <fmt/format.h>
+#include <util/RandomUtil.hpp>
 #include "Enemy.hpp"
+#include <player/Player.hpp>
 
 namespace Monsters {
     Enemy::Enemy(std::string name, int level, int hit_chance, int hit_times, Damage damage, int defence, int health)
@@ -64,4 +66,34 @@ namespace Monsters {
     {
         std::cout << fmt::format("{} - {}", this->get_name(), this->get_stats().health.to_string()) << std::endl;
     }
+
+    bool Enemy::dodge()
+    {
+        return RANDOM.weighted_coin_toss(this->get_stats().defence);
+    }
+
+    void Enemy::attack_player(Player::Player* player)
+    {
+        if (this->roll_hit() && !player->dodge()) {
+            int damage = this->roll_attack();
+
+            player->get_stats().health.current_health -= damage;
+
+            std::cout << fmt::format("{} attacks you for {} damage!", this->get_name(), damage) << std::endl;
+        } else {
+            std::cout << fmt::format("{} tried to attack you, but missed!", this->get_name()) << std::endl;
+        }
+    }
+
+    bool Enemy::roll_hit()
+    {
+        return RANDOM.weighted_coin_toss(this->get_stats().hit_chance);
+    }
+
+    int Enemy::roll_attack()
+    {
+        return RANDOM.get_random_int(this->get_damage().min, this->get_damage().max) * this->get_stats().hit_times;
+    }
+
+
 }

@@ -5,6 +5,7 @@
 #include <util/RandomUtil.hpp>
 #include <monsters/EnemyFactory.hpp>
 #include <iostream>
+#include <algorithm>
 #include "Room.hpp"
 #include "Floor.hpp"
 
@@ -55,11 +56,10 @@ namespace Dungeon
 
         std::cout << this->get_description() << std::endl;
         if (this->monsters.size() > 0) {
+
             std::cout << "You encounter a fearsome band of enemies!" << std::endl;
 
-            for (auto monster : this->monsters) {
-                monster->print();
-            }
+            this->print_monsters();
         }
     }
 
@@ -73,5 +73,31 @@ namespace Dungeon
             Enemy* monster = enemy_factory.create_random_enemy(min_level, max_level).clone();
             this->monsters.push_back(monster);
         }
+    }
+
+    vector<string> Room::get_monster_names()
+    {
+        vector<string> names;
+
+        for (auto monster : this->monsters) {
+            names.push_back(monster->get_name());
+        }
+
+        return names;
+    }
+
+    void Room::print_monsters()
+    {
+        for (auto monster : this->monsters) {
+            monster->print();
+        }
+    }
+
+    void Room::remove_monster(Enemy* to_remove)
+    {
+        this->monsters.erase(
+            std::remove(this->monsters.begin(), this->monsters.end(), to_remove),
+            this->monsters.end()
+        );
     }
 }

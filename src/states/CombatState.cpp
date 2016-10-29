@@ -17,14 +17,27 @@ States::CombatState::~CombatState()
 
 void States::CombatState::run()
 {
+    bool next_turn = true;
     while (this->_state_active) {
+
+        if(next_turn){
+            _enemies_attack_turn();
+            next_turn = false;
+        }
+
         string result = this->game.cli.ask_for_options(this->_menu);
 
         if (result == "search for item") {
             this->_search_handler();
+            next_turn = true;
+        }
+        else if (result == "attack") {
+            this->_attack_handler();
+            next_turn = true;
         }
         else if (result == "flee") {
             this->_flee_handler();
+            next_turn = true;
         }
         else if (result == "open map") {
             this->_map_handler();
@@ -97,4 +110,36 @@ void States::CombatState::_stair_handler()
         player->current_room = next_floor_room;
         player->current_room->discover(this->game._enemy_factory);
     }
+}
+
+void States::CombatState::_attack_handler()
+{
+    Player::Player *player = this->_get_player();
+
+    if(player->current_room->monsters.size() == 0){
+        cout << "Nothing to attack you fool!" << endl;
+    } else {
+        CLI::OptionsQuestion question = {
+            .question = "Who to attack?",
+            .options = player->current_room->get_monster_names()
+        };
+
+        int enemy_to_attack_index = (int)this->game.cli.ask_for_options_by_index(question);
+        player->attack(player->current_room->monsters[enemy_to_attack_index]);
+
+        player->current_room->print_monsters();
+    }
+
+
+}
+
+void States::CombatState::_enemies_attack_turn()
+{
+    Player::Player *player = this->_get_player();
+
+    for (auto enemy : player->current_room->monsters) {
+        enemy->attack_player(player);
+    }
+
+    player->print_hp();
 }

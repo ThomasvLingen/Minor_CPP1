@@ -49,9 +49,13 @@ namespace Player {
         int get_exp_to_next_level(int current_level);
         int get_exp_to_next_level();
         bool roll_hit();
+        bool dodge();
+        int roll_attack();
+        void attack(Monsters::Enemy* to_attack);
 
         void print();
         void print_items();
+        void print_hp();
         vector<string> to_string();
 
         void move_direction(Dungeon::Direction direction);
