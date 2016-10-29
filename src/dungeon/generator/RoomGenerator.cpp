@@ -28,7 +28,6 @@ namespace Dungeon
         Room *RoomGenerator::generateRoom(RoomType roomType, Location location, Floor& container_floor)
         {
             Room* new_room = new Room(roomType, location, generate_random_description(), container_floor);
-            add_random_monsters(new_room);
             add_random_item(new_room);
 
             return new_room;
@@ -44,16 +43,6 @@ namespace Dungeon
                           _size_options[size_index],
                           _light_options[light_index],
                           _clean_options[clean_index]);
-        }
-
-        void RoomGenerator::add_random_monsters(Room *room)
-        {
-            int random_amount = RANDOM.get_random_int(0, 3);
-
-            for(int count = 0; count <= random_amount; count++){
-                Enemy* monster = _enemy_factory->create_random_enemy(_min_level, _max_level).clone();
-                room->monsters.push_back(monster);
-            }
         }
 
         void RoomGenerator::set_min_max_monster_level(int min, int max)

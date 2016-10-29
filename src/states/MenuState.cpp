@@ -79,6 +79,7 @@ namespace States {
 
         this->game.generate_dungeon();
         player->current_room = this->game.dungeon->floors[0]->start_room;
+        player->current_room->discover(this->game._enemy_factory);
 
         this->game.change_state(new CombatState(this->game));
         this->_state_active = false;

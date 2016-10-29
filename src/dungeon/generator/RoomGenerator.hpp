@@ -28,7 +28,6 @@ namespace Dungeon
 
         private:
             string generate_random_description();
-            void add_random_monsters(Room* room);
             void add_random_item(Room* room);
             EnemyFactory* _enemy_factory;
             ItemFactory* _item_factory;

@@ -55,7 +55,6 @@ namespace Dungeon
         for (size_t height_index = 0; height_index < _height; height_index++) {
             vector<Room*>& row = _map[height_index];
             print_row(row, god_mode);
-class Floor;
             cout << endl;
 
             if(height_index + 1 < _height){
@@ -86,7 +85,7 @@ class Floor;
 
     void Floor::set_level_range(level_range range)
     {
-        this->_level_range = range;
+        this->monster_level_range = range;
     }
 
     char Floor::get_room_print_char(Room *room, bool god_mode)

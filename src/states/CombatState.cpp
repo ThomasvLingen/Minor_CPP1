@@ -20,11 +20,14 @@ void States::CombatState::run()
     while (this->_state_active) {
         string result = this->game.cli.ask_for_options(this->_menu);
 
-        if(result == "search for item"){
+        if (result == "search for item") {
             this->_search_handler();
         }
         else if (result == "flee") {
             this->_flee_handler();
+        }
+        else if (result == "open map") {
+            this->_map_handler();
         }
     }
 }
@@ -68,4 +71,9 @@ void States::CombatState::_flee_handler()
     size_t response_index = this->game.cli.ask_for_options_by_index(question);
     cout << "We will flee " << options[response_index] << endl;
     // Then move player
+}
+
+void States::CombatState::_map_handler()
+{
+    this->_get_player()->current_room->container_floor.print_floor();
 }

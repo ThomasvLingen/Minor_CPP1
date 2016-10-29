@@ -10,6 +10,7 @@
 #include <list>
 #include "monsters/Enemy.hpp"
 #include "items/Item.hpp"
+#include "monsters/EnemyFactory.hpp"
 
 namespace Dungeon
 {
@@ -47,11 +48,14 @@ namespace Dungeon
 
         const string& get_description();
         bool is_discovered();
+        void discover(Monsters::EnemyFactory& enemy_factory);
         Item* get_item();
 
     private:
         bool _discovered = false;
         string _description;
+
+        void generate_monsters(Monsters::EnemyFactory& enemy_factory);
 
     };
 

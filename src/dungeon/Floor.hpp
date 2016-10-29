@@ -39,9 +39,9 @@ namespace Dungeon
         Room* get_room_in_direction(Room* current_room, Direction direction);
         Location get_new_location_in_direction(Direction direction, Location location);
         vector<Direction> get_available_directions(Room* room);
+        level_range monster_level_range;
 
     private:
-        level_range _level_range;
         vector<vector<Room *>> _map;
         size_t _height;
         size_t _width;
@@ -56,8 +56,8 @@ namespace Dungeon
         map<Direction, pair<int, int>> _direction_to_location_delta = {
             {Direction::west,    {-1, 0}},
             {Direction::east,    {+1, 0}},
-            {Direction::south,   {0, -1}},
-            {Direction::north,   {0, +1}}
+            {Direction::south,   {0, +1}},
+            {Direction::north,   {0, -1}}
         };
         vector<Direction> _available_directions = {
             {Direction::west},
