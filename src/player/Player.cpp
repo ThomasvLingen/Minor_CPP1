@@ -214,4 +214,19 @@ namespace Player {
 
         cout << fmt::format("Your HP {}/{}", health.current_health, health.max_health) << endl;
     }
+
+    void Player::rest()
+    {
+        Health& health = this->get_stats().health;
+
+        if(health.current_health < health.max_health){
+            health.current_health += 4;
+        }
+
+        if(health.current_health > health.max_health){
+            health.current_health = health.max_health;
+        }
+
+        cout << "You feel refreshed" << endl;
+    }
 }

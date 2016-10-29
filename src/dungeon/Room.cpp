@@ -91,6 +91,7 @@ namespace Dungeon
         for (auto monster : this->monsters) {
             monster->print();
         }
+        std::cout << std::endl;
     }
 
     void Room::remove_monster(Enemy* to_remove)

@@ -39,6 +39,10 @@ void States::CombatState::run()
             this->_flee_handler();
             next_turn = true;
         }
+        else if (result == "rest"){
+            this->_rest_handler();
+            next_turn = true;
+        }
         else if (result == "open map") {
             this->_map_handler();
         }
@@ -142,4 +146,14 @@ void States::CombatState::_enemies_attack_turn()
     }
 
     player->print_hp();
+    cout << endl;
+}
+
+void States::CombatState::_rest_handler()
+{
+    Player::Player* player = this->_get_player();
+    player->current_room->generate_monsters(this->game._enemy_factory);
+    player->current_room->print_monsters();
+
+    player->rest();
 }

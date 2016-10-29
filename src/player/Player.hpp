@@ -56,6 +56,7 @@ namespace Player {
         void print();
         void print_items();
         void print_hp();
+        void rest();
         vector<string> to_string();
 
         void move_direction(Dungeon::Direction direction);

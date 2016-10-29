@@ -53,13 +53,13 @@ namespace Dungeon
         Item* get_item();
         vector<string> get_monster_names();
 
+        void generate_monsters(Monsters::EnemyFactory& enemy_factory);
         void print_monsters();
 
     private:
         bool _discovered = false;
-        string _description;
 
-        void generate_monsters(Monsters::EnemyFactory& enemy_factory);
+        string _description;
 
     };
 
