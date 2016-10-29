@@ -76,7 +76,7 @@ namespace States {
         };
 
         string result = this->game.cli.ask_for_options(remove_question);
-        Player* to_remove = this->game.players.get_player(result);
+        Player::Player* to_remove = this->game.players.get_player(result);
 
         if (to_remove != nullptr) {
             bool is_selected_player = to_remove == this->game.players.get_selected_player();
@@ -105,7 +105,7 @@ namespace States {
             };
 
             string result = this->game.cli.ask_for_options(remove_question);
-            Player* to_select = this->game.players.get_player(result);
+            Player::Player* to_select = this->game.players.get_player(result);
 
             if (to_select != nullptr) {
                 this->game.players.select_player(to_select);
@@ -119,7 +119,7 @@ namespace States {
     {
         vector<string> output_lines;
 
-        for (Player* player : this->game.players.players) {
+        for (Player::Player* player : this->game.players.players) {
             for (string line : player->to_string()) {
                 output_lines.push_back(line);
             }
@@ -137,9 +137,9 @@ namespace States {
         // Reset old players
         this->game.players.empty();
 
-        vector<Player*> loaded_players = ::Player::PlayerFileParser::parse_players_file("./saved_players");
+        vector<Player::Player*> loaded_players = ::Player::PlayerFileParser::parse_players_file("./saved_players");
 
-        for (Player* player : loaded_players) {
+        for (Player::Player* player : loaded_players) {
             this->game.players.add_player(player);
         }
 

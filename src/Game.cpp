@@ -4,18 +4,30 @@
 
 #include <util/StrUtil.hpp>
 #include <states/MenuState.hpp>
+#include <dungeon/generator/DungeonGenerator.hpp>
 #include "Game.hpp"
 
 namespace Game {
 
     Game::Game()
+    : dungeon(nullptr)
+    , _item_factory()
+    , _enemy_factory("./res/monsters.txt")
+    , _current_state(new States::MenuState(*this))
+    , _old_state(nullptr)
+    , dimensions(DungeonDimensions {
+        .width = 5,
+        .height = 5,
+        .floors = 5
+    })
     {
-        this->_current_state = new States::MenuState(*this);
-        this->_old_state = nullptr;
+        this->_item_factory.register_useables();
+        this->_item_factory.register_weapons("./res/weapons.txt");
     }
 
     Game::~Game()
     {
+        delete dungeon;
         delete this->_current_state;
     }
 
@@ -51,5 +63,12 @@ namespace Game {
     void Game::set_dungeon_dimensions(DungeonDimensions new_dimensions)
     {
         this->dimensions = new_dimensions;
+    }
+
+    void Game::generate_dungeon()
+    {
+        Dungeon::Generator::DungeonGenerator generator(&this->_enemy_factory, &this->_item_factory);
+
+        this->dungeon = generator.create_dungeon(this->dimensions);
     }
 }

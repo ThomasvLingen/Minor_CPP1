@@ -11,7 +11,8 @@
 namespace Player {
 
     Player::Player(string name)
-    : _name(name)
+    : current_room(nullptr)
+    , _name(name)
     , _weapon(nullptr)
     {
         this->reset_stats();

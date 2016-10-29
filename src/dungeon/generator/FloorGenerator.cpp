@@ -66,15 +66,15 @@ namespace Dungeon
             return new_floor;
         }
 
-        Floor *FloorGenerator::_convert_floor_plan_to_floor(FloorPlan* fp)
+        Floor *FloorGenerator::_convert_floor_plan_to_floor(FloorPlan* floor_plan)
         {
             int height_index = 0;
             int width_index = 0;
-            Floor *floor = new Floor(fp->get_height(), fp->get_width());
-            for (vector<PlanRoomType> row: fp->get_plan()) {
+            Floor *floor = new Floor(floor_plan->get_height(), floor_plan->get_width());
+            for (vector<PlanRoomType> row: floor_plan->get_plan()) {
                 for (PlanRoomType type: row) {
                     if (type != PlanRoomType::none) {
-                        Room *room = convert_type_location_to_room(width_index, height_index, type);
+                        Room *room = convert_type_location_to_room(width_index, height_index, type, *floor);
                         floor->set_room(room);
                     }
                     width_index++;
@@ -83,14 +83,18 @@ namespace Dungeon
                 width_index = 0;
             }
 
+            floor->start_room = floor->get_room(floor_plan->start_room);
+            floor->end_room   = floor->get_room(floor_plan->end_room);
+
             return floor;
         }
 
-        Room *FloorGenerator::convert_type_location_to_room(size_t width, size_t height, PlanRoomType type)
+        Room *FloorGenerator::convert_type_location_to_room(size_t width, size_t height, PlanRoomType type, Floor& container_floor)
         {
             Room *room = _room_generator.generateRoom(
                 _plan_room_type_to_room_type_map[type],
-                {(int)width, (int)height}
+                {(int)width, (int)height},
+                container_floor
             );
             return room;
         }

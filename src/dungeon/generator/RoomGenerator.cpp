@@ -25,9 +25,9 @@ namespace Dungeon
         RoomGenerator::~RoomGenerator()
         {}
 
-        Room *RoomGenerator::generateRoom(RoomType roomType, Location location)
+        Room *RoomGenerator::generateRoom(RoomType roomType, Location location, Floor& container_floor)
         {
-            Room* new_room = new Room(roomType, location, generate_random_description());
+            Room* new_room = new Room(roomType, location, generate_random_description(), container_floor);
             add_random_monsters(new_room);
             add_random_item(new_room);
 

@@ -19,7 +19,7 @@ namespace States {
     void CreateCharacterState::run()
     {
         bool player_made_character = false;
-        Player* created_character = nullptr;
+        Player::Player* created_character = nullptr;
 
         cout << "Welcome to the hero creation menu" << endl;
 
@@ -40,13 +40,13 @@ namespace States {
         this->game.change_state(new CharacterMenu(this->game));
     }
 
-    Player *CreateCharacterState::create_character()
+    Player::Player *CreateCharacterState::create_character()
     {
         // Make base hero
         int points_left_for_allocation = 60;
         string name = this->game.cli.ask_for_string("Please enter a name for your hero");
 
-        Player* hero = new Player(name);
+        Player::Player* hero = new Player::Player(name);
         hero->reset_stats_for_creation();
         Stats& hero_stats = hero->get_stats();
 

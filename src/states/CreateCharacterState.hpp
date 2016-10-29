@@ -21,7 +21,6 @@ namespace States {
     using std::cout;
     using std::endl;
     using std::string;
-    using Player::Player;
     using ::Player::Stats;
     using CLI::NumberQuestion;
 
@@ -31,7 +30,7 @@ namespace States {
         virtual ~CreateCharacterState();
 
         void run();
-        Player* create_character();
+        Player::Player* create_character();
         int allocate_stat(int& points_left, int min, int max, int base_stat, int points_per_stat, string stat_name);
     };
 }

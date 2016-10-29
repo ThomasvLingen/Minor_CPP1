@@ -55,7 +55,7 @@ namespace Dungeon
         for (size_t height_index = 0; height_index < _height; height_index++) {
             vector<Room*>& row = _map[height_index];
             print_row(row, god_mode);
-
+class Floor;
             cout << endl;
 
             if(height_index + 1 < _height){
@@ -79,9 +79,7 @@ namespace Dungeon
 
     void Floor::check_location(Location location)
     {
-        if((size_t)location.width_index < 0 || (size_t)location.width_index > this->_width - 1
-           || (size_t)location.height_index < 0 || (size_t)location.height_index > this->_height - 1){
-
+        if(!valid_location(location)){
             throw std::invalid_argument("Location is not valid");
         }
     }
@@ -149,6 +147,52 @@ namespace Dungeon
                 cout << "  ";
             }
         }
+    }
+
+    bool Floor::valid_location(Location location)
+    {
+        if((size_t)location.width_index < 0 || (size_t)location.width_index > this->_width - 1
+           || (size_t)location.height_index < 0 || (size_t)location.height_index > this->_height - 1){
+
+            return false;
+        }
+        return true;
+    }
+
+    Room *Floor::get_room_in_direction(Room *current_room, Direction direction)
+    {
+        Location new_location = this->get_new_location_in_direction(direction, current_room->location);
+
+        if (this->valid_location(new_location)) {
+            return this->get_room(new_location);
+        } else {
+            return nullptr;
+        }
+    }
+
+    Location Floor::get_new_location_in_direction(Direction direction, Location location)
+    {
+        int width_delta  = _direction_to_location_delta[direction].first;
+        int height_delta = _direction_to_location_delta[direction].second;
+
+        return Location {
+            location.width_index + width_delta,
+            location.height_index + height_delta
+        };
+    }
+
+    vector<Direction> Floor::get_available_directions(Room* room)
+    {
+        vector<Direction> available_directions;
+
+        for(Direction direction : this->_available_directions){
+            Room* neighbour_room = get_room_in_direction(room, direction);
+            if(neighbour_room != nullptr){
+                available_directions.push_back(direction);
+            }
+        }
+
+        return available_directions;
     }
 
 }

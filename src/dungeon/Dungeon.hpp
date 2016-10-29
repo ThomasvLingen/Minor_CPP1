@@ -22,11 +22,12 @@ namespace Dungeon
     class Dungeon {
     public:
         Dungeon(vector<Floor *> floors);
-
         virtual ~Dungeon();
 
+        vector<Floor *> floors;
+
     private:
-        vector<Floor *> _floors;
+
     };
 }
 

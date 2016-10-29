@@ -19,6 +19,8 @@ namespace Dungeon
     using std::list;
     using Monsters::Enemy;
 
+    class Floor;
+
     enum RoomType {
         start, end, boss, normal, stair_up, stair_down
     }; //not visited roomtype, not actually a type?
@@ -34,16 +36,18 @@ namespace Dungeon
 
     class Room {
     public:
-        Room(RoomType room_type, Location location, string _description);
+        Room(RoomType room_type, Location location, string _description, Floor& container_floor);
         virtual ~Room();
 
         list<Enemy*> monsters;
         Item* item; // no need for more then 1 item
         RoomType room_type;
         Location location;
+        Floor& container_floor;
 
         const string& get_description();
         bool is_discovered();
+        Item* get_item();
 
     private:
         bool _discovered = false;

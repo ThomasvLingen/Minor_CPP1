@@ -13,6 +13,7 @@
 #include <items/Item.hpp>
 #include <iostream>
 #include <items/EquippableItem.hpp>
+#include <dungeon/Room.hpp>
 #include "Stats.hpp"
 
 namespace Player {
@@ -22,12 +23,14 @@ namespace Player {
     using std::cout;
     using std::endl;
     using Items::Item;
+    using Dungeon::Room;
 
     class Player {
     public:
         Player(string name);
 
         vector<Item*> items;
+        Room* current_room;
 
         Stats& get_stats();
         void set_stats(Stats new_stats);

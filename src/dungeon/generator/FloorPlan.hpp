@@ -33,6 +33,10 @@ namespace Dungeon
         public:
             FloorPlan(size_t height, size_t width, PlanRoomType start_room_type, PlanRoomType end_room_type);
             virtual ~FloorPlan();
+
+            Location start_room;
+            Location end_room;
+
             void set_random_start_room();
             void set_start_room(Location location);
             void generate_end_room_starting_from_start_room();
@@ -47,8 +51,6 @@ namespace Dungeon
             Plan _plan;
             size_t _height;
             size_t _width;
-            Location _start_room;
-            Location _end_room;
             PlanRoomType _start_room_type   = PlanRoomType::stair_up;
             PlanRoomType _end_room_type     = PlanRoomType::stair_down;
             vector<Location> _created_rooms;

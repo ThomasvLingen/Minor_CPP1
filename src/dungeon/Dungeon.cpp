@@ -9,12 +9,12 @@ namespace Dungeon
 
     Dungeon::Dungeon(vector<Floor *> floors)
     {
-        this->_floors = floors;
+        this->floors = floors;
     }
 
     Dungeon::~Dungeon()
     {
-        for (Floor *floor : _floors) {
+        for (Floor *floor : floors) {
             delete floor;
         }
     }

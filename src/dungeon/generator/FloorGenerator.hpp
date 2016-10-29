@@ -42,8 +42,8 @@ namespace Dungeon
                 {RoomType::boss, PlanRoomType::boss}
             };
             RoomGenerator _room_generator;
-            Floor* _convert_floor_plan_to_floor(FloorPlan* fp);
-            Room* convert_type_location_to_room(size_t width, size_t height, PlanRoomType type);
+            Floor* _convert_floor_plan_to_floor(FloorPlan* floor_plan);
+            Room* convert_type_location_to_room(size_t width, size_t height, PlanRoomType type, Floor& container_floor);
         };
 
     }

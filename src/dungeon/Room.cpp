@@ -8,9 +8,10 @@ namespace Dungeon
 {
 
 
-    Room::Room(RoomType room_type, Location location, string _description)
+    Room::Room(RoomType room_type, Location location, string _description, Floor& container_floor)
     : room_type(room_type)
     , location(location)
+    , container_floor(container_floor)
     , _description(_description)
     {
         this->item = nullptr;
@@ -33,5 +34,13 @@ namespace Dungeon
     bool Room::is_discovered()
     {
         return _discovered;
+    }
+
+    Item *Room::get_item()
+    {
+        Item* return_item = this->item;
+        this->item = nullptr;
+
+        return return_item;
     }
 }

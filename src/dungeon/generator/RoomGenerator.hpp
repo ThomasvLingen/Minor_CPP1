@@ -23,7 +23,7 @@ namespace Dungeon
         public:
             RoomGenerator(EnemyFactory* enemyFactory, ItemFactory* itemFactory);
             virtual ~RoomGenerator();
-            Room *generateRoom(RoomType roomType, Location location);
+            Room *generateRoom(RoomType roomType, Location location, Floor& container_floor);
             void set_min_max_monster_level(int min, int max);
 
         private:

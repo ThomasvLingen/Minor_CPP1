@@ -48,12 +48,12 @@ namespace Dungeon
             Location location = {random_start_width_index, random_start_height_index};
 
             this->set_room(location, this->_start_room_type);
-            this->_start_room = location;
+            this->start_room = location;
         }
 
         void FloorPlan::generate_end_room_starting_from_start_room()
         {
-            Location current_location = this->_start_room; //perhaps get from argument
+            Location current_location = this->start_room; //perhaps get from argument
             Location new_location;
 
             int count = 1;
@@ -183,13 +183,13 @@ namespace Dungeon
         {
             Location location = possible_locations[RANDOM.get_random_int(0, possible_locations.size() - 1)];
             set_room(location, this->_end_room_type);
-            this->_end_room = location;
+            this->end_room = location;
         }
 
         void FloorPlan::set_start_room(Location location)
         {
             this->set_room(location, this->_start_room_type);
-            this->_start_room = location;
+            this->start_room = location;
         }
 
     }

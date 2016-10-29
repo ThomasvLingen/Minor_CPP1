@@ -28,7 +28,7 @@ namespace States {
     private:
         CLI::OptionsQuestion _menu = {
             .question= "Welcome to Not Rogue™, please select something to do from the menu",
-            .options = {"Character menu", "Set dungeon dimensions", "Credits", "Quit"}
+            .options = {"Enter the Dojo", "Character menu", "Set dungeon dimensions", "Credits", "Quit"}
         };
 
         string _credits = R"(Made by:
@@ -39,6 +39,7 @@ Thomas van Lingen
         bool _state_active = true;
 
         // Handlers
+        void enter_the_dojo_handler();
         void quit_handler();
         void credits_handler();
         void character_menu_handler();
