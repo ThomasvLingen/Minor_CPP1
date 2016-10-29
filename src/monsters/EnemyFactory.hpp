@@ -23,6 +23,8 @@ namespace Monsters {
 
         Enemy create_enemy(string name);
         Enemy create_random_enemy(int min_level, int max_level);
+        Enemy create_random_boss();
+
     private:
         MonsterMap _known_monsters;
         vector<string> get_possible_enemies(int min_level, int max_level);

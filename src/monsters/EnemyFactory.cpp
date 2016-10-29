@@ -47,4 +47,14 @@ namespace Monsters
 
         return possible_enemies;
     }
+
+    Enemy EnemyFactory::create_random_boss()
+    {
+        const int boss_level = 11;
+        vector<string> available_bosses = get_possible_enemies(boss_level, boss_level);
+
+        int random_index = RANDOM.get_random_int(0, (int)available_bosses.size() - 1);
+
+        return create_enemy(available_bosses[random_index]);
+    }
 }

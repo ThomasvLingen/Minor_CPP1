@@ -57,7 +57,11 @@ namespace Dungeon
         std::cout << this->get_description() << std::endl;
         if (this->monsters.size() > 0) {
 
-            std::cout << "You encounter a fearsome band of enemies!" << std::endl;
+            if(this->room_type != RoomType::boss){
+                std::cout << "You encounter a fearsome band of enemies!" << std::endl;
+            } else {
+                std::cout << "You encounter the BAWS of this dungeon" << std::endl;
+            }
 
             this->print_monsters();
         }
@@ -65,6 +69,9 @@ namespace Dungeon
 
     void Room::generate_monsters(Monsters::EnemyFactory& enemy_factory)
     {
+        if(this->room_type == RoomType::boss){
+            return;
+        }
         int random_amount = RANDOM.get_random_int(0, 3 - (int)this->monsters.size());
         int min_level = this->container_floor.monster_level_range.first;
         int max_level = this->container_floor.monster_level_range.second;

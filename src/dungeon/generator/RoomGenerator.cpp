@@ -28,6 +28,10 @@ namespace Dungeon
         Room *RoomGenerator::generateRoom(RoomType roomType, Location location, Floor& container_floor)
         {
             Room* new_room = new Room(roomType, location, generate_random_description(), container_floor);
+            if(roomType == RoomType::boss){
+                Enemy* boss = this->_enemy_factory->create_random_boss().clone();
+                new_room->monsters.push_back(boss);
+            }
             add_random_item(new_room);
 
             return new_room;
