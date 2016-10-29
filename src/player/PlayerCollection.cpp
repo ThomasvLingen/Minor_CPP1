@@ -5,6 +5,7 @@
 #include <fmt/format.h>
 #include <util/StrUtil.hpp>
 #include "PlayerCollection.hpp"
+#include "PlayerFileParser.hpp"
 
 namespace Player {
 
@@ -94,6 +95,33 @@ namespace Player {
     {
         for (Player* player : this->players) {
             this->remove_player(player);
+        }
+    }
+
+    void PlayerCollection::save_players()
+    {
+        vector<string> output_lines;
+
+        for (Player* player : this->players) {
+            for (string line : player->to_string()) {
+                output_lines.push_back(line);
+            }
+
+            output_lines.push_back("");
+        }
+
+        Util::StrUtil::write_lines_to_file("./saved_players", output_lines);
+    }
+
+    void PlayerCollection::load_players()
+    {
+        // Reset old players
+        this->empty();
+
+        vector<Player*> loaded_players = PlayerFileParser::parse_players_file("./saved_players");
+
+        for (Player* player : loaded_players) {
+            this->add_player(player);
         }
     }
 }

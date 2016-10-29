@@ -117,32 +117,13 @@ namespace States {
 
     void CharacterMenu::_save_handler()
     {
-        vector<string> output_lines;
-
-        for (Player::Player* player : this->game.players.players) {
-            for (string line : player->to_string()) {
-                output_lines.push_back(line);
-            }
-
-            output_lines.push_back("");
-        }
-
-        Util::StrUtil::write_lines_to_file("./saved_players", output_lines);
-
+        this->game.players.save_players();
         cout << "Characters saved to file" << endl << endl;
     }
 
     void CharacterMenu::_load_handler()
     {
-        // Reset old players
-        this->game.players.empty();
-
-        vector<Player::Player*> loaded_players = ::Player::PlayerFileParser::parse_players_file("./saved_players");
-
-        for (Player::Player* player : loaded_players) {
-            this->game.players.add_player(player);
-        }
-
+        this->game.players.load_players();
         cout << "Loaded players" << endl;
     }
 }

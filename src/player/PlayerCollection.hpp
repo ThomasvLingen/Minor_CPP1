@@ -32,8 +32,12 @@ namespace Player {
 
         vector<string> get_player_names();
 
+        void save_players();
+        void load_players();
+
         void print_players();
     private:
+        const string _players_file_filename = "./saved_players";
         Player* _selected_player;
     };
 }
