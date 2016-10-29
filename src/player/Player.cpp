@@ -23,7 +23,7 @@ namespace Player {
     /// \return exp required to level up
     int Player::get_exp_to_next_level(int current_level)
     {
-        return (int)(pow(2, current_level-1) * 10);
+        return (int)(pow(2, current_level-1) * 3);
     }
 
     int Player::get_exp_to_next_level()
@@ -188,6 +188,8 @@ namespace Player {
 
             if (to_attack->get_stats().health.current_health <= 0) {
                 this->current_room->remove_monster(to_attack);
+
+                this->give_exp(to_attack->get_stats().level);
             }
         } else {
             cout << "You missed!" << endl;
@@ -239,5 +241,30 @@ namespace Player {
         }
 
         return item_names;
+    }
+
+    void Player::give_exp(int amount)
+    {
+        this->get_stats().exp += amount;
+
+        if (this->get_stats().exp > this->get_exp_to_next_level()) {
+            this->level_up();
+        }
+    }
+
+    void Player::level_up()
+    {
+        Stats& stats = this->get_stats();
+
+        stats.level++;
+        stats.exp = 0;
+        stats.hit_chance += this->hit_chance_increase;
+        stats.defence += this->defence_increase;
+        stats.set_max_health(stats.health.max_health + this->hp_increase);
+
+        cout << "Whoo, you've grown to level " << this->get_stats().level << endl;
+        cout << fmt::format("Attack up by {} [{}])", this->hit_chance_increase, stats.hit_chance) << endl;
+        cout << fmt::format("Defence up by {} [{}])", this->defence_increase, stats.defence) << endl;
+        cout << fmt::format("HP up by {} [{}])", this->hp_increase, stats.health.max_health) << endl;
     }
 }

@@ -61,6 +61,12 @@ namespace Player {
         vector<string> to_string();
 
         void move_direction(Dungeon::Direction direction);
+        void give_exp(int amount);
+
+        void level_up();
+        const int hit_chance_increase = 5;
+        const int defence_increase = 5;
+        const int hp_increase = 10;
 
     private:
         string _name;
