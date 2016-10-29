@@ -5,6 +5,7 @@
 #include <Game.hpp>
 #include <vector>
 #include "CombatState.hpp"
+#include "MenuState.hpp"
 #include <dungeon/Floor.hpp>
 
 States::CombatState::CombatState(Game::Game &game) : State(game)
@@ -22,6 +23,11 @@ void States::CombatState::run()
 
         if(next_turn){
             _enemies_attack_turn();
+
+            if (!this->_state_active) {
+                break;
+            }
+
             next_turn = false;
         }
 
@@ -150,8 +156,28 @@ void States::CombatState::_enemies_attack_turn()
         enemy->attack_player(player);
     }
 
-    player->print_hp();
-    cout << endl;
+    if (player->get_stats().health.current_health >= 0) {
+        player->print_hp();
+        cout << endl;
+    } else {
+        this->_handle_death();
+    }
+}
+
+void States::CombatState::_handle_death()
+{
+    Player::Player* player = this->_get_player();
+
+    cout << "Seems like you've run out of luck..." << endl;
+    cout << "RIP " << player->get_name() << endl;
+
+    this->game.players.remove_player(player);
+    this->game.players.save_players();
+
+    cout << "Your character has been deleted and your save file has been overwritten. :^)" << endl;
+
+    this->game.change_state(new MenuState(this->game));
+    this->_state_active = false;
 }
 
 void States::CombatState::_rest_handler()

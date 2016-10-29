@@ -77,6 +77,8 @@ namespace States {
             return;
         }
 
+        cout << "Let's start your adventure, " << player->get_name() << endl;
+
         this->game.generate_dungeon();
         player->current_room = this->game.dungeon->floors[0]->start_room;
         player->current_room->discover(this->game._enemy_factory);

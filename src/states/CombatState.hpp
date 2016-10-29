@@ -49,6 +49,7 @@ namespace States
         void _look_at_items_handler();
         void _map_handler();
 
+        void _handle_death();
         void _stair_handler();
         void _enemies_attack_turn();
 
