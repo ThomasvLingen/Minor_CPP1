@@ -140,8 +140,6 @@ void States::CombatState::_attack_handler()
 
         player->current_room->print_monsters();
     }
-
-
 }
 
 void States::CombatState::_enemies_attack_turn()
