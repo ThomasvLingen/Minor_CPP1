@@ -16,6 +16,20 @@ namespace CLI {
         return Util::StrUtil::to_lower(this->_get_option(options));
     }
 
+    size_t CommandLineInterface::ask_for_options_by_index(string question, vector<string> options)
+    {
+        cout << question << endl << endl;
+
+        this->_print_options(options);
+
+        return this->_get_option_index(options);
+    }
+
+    size_t CommandLineInterface::ask_for_options_by_index(OptionsQuestion options)
+    {
+        return this->ask_for_options_by_index(options.question, options.options);
+    }
+
     string CommandLineInterface::ask_for_string(string question)
     {
         cout << question << endl << endl;
@@ -46,7 +60,15 @@ namespace CLI {
 
     string CommandLineInterface::_get_option(vector<string> options)
     {
+        size_t chosen_index = this->_get_option_index(options);
+
+        return options[chosen_index];
+    }
+
+    size_t CommandLineInterface::_get_option_index(vector<string> options)
+    {
         string current_answer = "";
+        size_t final_answer = 0;
         bool current_answer_is_valid = false;
 
         while(!current_answer_is_valid) {
@@ -56,11 +78,14 @@ namespace CLI {
             if (Util::StrUtil::is_number(current_answer)) {
                 size_t chosen_index = (size_t)stoi(current_answer);
                 if (chosen_index < options.size()) {
-                    current_answer = options[chosen_index];
+                    final_answer = chosen_index;
                     current_answer_is_valid = true;
                 }
             } else {
-                current_answer_is_valid = Util::StrUtil::vector_contains_string(options, current_answer);
+                if (Util::StrUtil::vector_contains_string(options, current_answer)) {
+                    final_answer = Util::StrUtil::get_index_of_string(options, current_answer);
+                    current_answer_is_valid = true;
+                }
             }
 
             if (!current_answer_is_valid) {
@@ -70,7 +95,7 @@ namespace CLI {
 
         cout << endl;
 
-        return current_answer;
+        return final_answer;
     }
 
     string CommandLineInterface::ask_for_options(OptionsQuestion options)

@@ -23,6 +23,9 @@ void States::CombatState::run()
         if(result == "search for item"){
             this->_search_handler();
         }
+        else if (result == "flee") {
+            this->_flee_handler();
+        }
     }
 }
 
@@ -62,8 +65,7 @@ void States::CombatState::_flee_handler()
         .options = options
     };
 
-    string response = this->game.cli.ask_for_options(question);
-
-    // TODO: We currently have the direction to go to in a string, we want this in a direction instead so that we can move our player.
+    size_t response_index = this->game.cli.ask_for_options_by_index(question);
+    cout << "We will flee " << options[response_index] << endl;
     // Then move player
 }

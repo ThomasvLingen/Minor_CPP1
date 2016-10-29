@@ -5,6 +5,7 @@
 #include <fstream>
 #include <iostream>
 #include <algorithm>
+#include <string>
 #include "StrUtil.hpp"
 
 namespace Util {
@@ -105,6 +106,23 @@ namespace Util {
     bool StrUtil::string_contains_substr(std::string haystack, std::string needle)
     {
         return haystack.find(needle) != std::string::npos;
+    }
+
+    size_t StrUtil::get_index_of_string(std::vector<std::string> haystack, std::string needle)
+    {
+        for (std::string& str : haystack) {
+            str = StrUtil::to_lower(str);
+        }
+
+        needle = StrUtil::to_lower(needle);
+
+        auto it = std::find(haystack.begin(), haystack.end(), needle);
+
+        if (it == haystack.end()) {
+            return std::string::npos;
+        } else {
+            return (size_t)std::distance(haystack.begin(), it);
+        }
     }
 }
 

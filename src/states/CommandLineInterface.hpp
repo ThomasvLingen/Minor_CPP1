@@ -33,6 +33,8 @@ namespace CLI {
     public:
         string ask_for_options(string question, vector<string> options);
         string ask_for_options(OptionsQuestion options);
+        size_t ask_for_options_by_index(string question, vector<string> options);
+        size_t ask_for_options_by_index(OptionsQuestion options);
         string ask_for_string(string question);
 
         int ask_for_number(string question, int min, int max);
@@ -45,6 +47,7 @@ namespace CLI {
 
         void _print_options(vector<string> options);
         string _get_option(vector<string> options);
+        size_t _get_option_index(vector<string> options);
         bool _is_valid_yes_no(string answer);
         bool _is_valid_yes(string answer);
         bool _is_valid_no(string answer);

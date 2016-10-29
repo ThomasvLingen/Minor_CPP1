@@ -19,6 +19,7 @@ namespace Util {
         static bool string_contains_substr(std::string haystack, std::string needle);
         static std::string to_lower(std::string str);
         static bool is_number(std::string str);
+        static size_t get_index_of_string(std::vector<std::string> haystack, std::string needle);
     };
 }
 
