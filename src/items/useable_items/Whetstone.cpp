@@ -25,6 +25,8 @@ namespace Items {
 
     void WhetStone::use_handler(Player::Player *target)
     {
-        target->get_weapon()->increase_max_damage(5);
+        if (target->get_weapon() != nullptr) {
+            target->get_weapon()->increase_max_damage(5);
+        }
     }
 }
