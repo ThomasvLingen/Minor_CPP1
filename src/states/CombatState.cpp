@@ -158,7 +158,7 @@ void States::CombatState::_enemies_attack_turn()
         enemy->attack_player(player);
     }
 
-    if (player->get_stats().health.current_health >= 0) {
+    if (player->get_stats().health.current_health > 0) {
         player->print_hp();
         cout << endl;
     } else {
