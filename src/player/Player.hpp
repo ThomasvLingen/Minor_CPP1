@@ -29,6 +29,7 @@ namespace Player {
     class Player {
     public:
         Player(string name);
+        virtual ~Player();
 
         vector<Item*> items;
         Room* current_room;
@@ -69,6 +70,7 @@ namespace Player {
         const int hp_increase = 10;
 
     private:
+        vector<Item*> _items_to_delete;
         string _name;
         Stats _stats;
         Items::EquippableItem* _weapon;

@@ -18,6 +18,17 @@ namespace Player {
         this->reset_stats();
     }
 
+    Player::~Player()
+    {
+        for (Item* item : this->items) {
+            delete item;
+        }
+
+        for (Item* item : this->_items_to_delete) {
+            delete item;
+        }
+    }
+
     /// \brief this function will return the exp needed for the next level, which scales in an exponential fashion
     /// \param current_level the player's current level
     /// \return exp required to level up
@@ -78,6 +89,7 @@ namespace Player {
 
     void Player::set_weapon(Items::EquippableItem *new_weapon)
     {
+        this->_items_to_delete.push_back(new_weapon);
         this->_weapon = new_weapon;
     }
 
@@ -116,6 +128,13 @@ namespace Player {
             std::remove(this->items.begin(), this->items.end(), item),
             this->items.end()
         );
+
+        // If the item is not a weapon, push it to items_to_delete
+        // We don't do this for weapons since they get added to it when equipped.
+        Items::EquippableItem* is_weapon = dynamic_cast<Items::EquippableItem*>(item);
+        if (is_weapon == nullptr) {
+            this->_items_to_delete.push_back(item);
+        }
     }
 
     void Player::print()
