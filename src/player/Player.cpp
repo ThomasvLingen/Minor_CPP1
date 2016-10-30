@@ -108,7 +108,7 @@ namespace Player {
 
         // If item is usable, use it!
         if (target_item->is_usable()) {
-            target_item->use_handler(this);
+            target_item->use(this);
 
             // If item is not usable anymore, remove it from inventory
             if (!target_item->is_usable()) {
