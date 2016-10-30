@@ -206,9 +206,9 @@ namespace Player {
             cout << fmt::format("You attack {} for {} damage!", to_attack->get_name(), damage) << endl;
 
             if (to_attack->get_stats().health.current_health <= 0) {
-                this->current_room->remove_monster(to_attack);
-
                 this->give_exp(to_attack->get_stats().level);
+
+                this->current_room->remove_monster(to_attack);
             }
         } else {
             cout << "You missed!" << endl;
