@@ -145,7 +145,11 @@ namespace Player {
         cout << fmt::format("Level: {} exp [{}-{}]", stats.level, stats.exp, this->get_exp_to_next_level()) << endl;
         cout << fmt::format("Health: {}/{}", stats.health.current_health, stats.health.max_health) << endl;
         cout << fmt::format("ATK/DEF: {}/{}", stats.hit_chance, stats.defence) << endl;
-        this->print_items();
+
+        if (this->_weapon != nullptr) {
+            cout << fmt::format("Equipped weapon: {} - {}-{} damage", this->_weapon->get_name(), this->_weapon->get_damage().min, this->_weapon->get_damage().max) << endl;
+        }
+        // this->print_items();
     }
 
     void Player::print_items()

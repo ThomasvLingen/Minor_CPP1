@@ -40,6 +40,9 @@ void States::CombatState::run()
         else if (result == "look at items") {
             this->_look_at_items_handler();
         }
+        else if (result == "check stats") {
+            this->_check_stats_handler();
+        }
         else if (result == "attack") {
             this->_attack_handler();
             next_turn = true;
@@ -223,4 +226,9 @@ void States::CombatState::_check_win(){
         cout << endl;
         cout << "Good werk you won, young padawan" << endl;
     }
+}
+
+void States::CombatState::_check_stats_handler()
+{
+    this->_get_player()->print();
 }

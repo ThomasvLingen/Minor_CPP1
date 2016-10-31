@@ -31,7 +31,7 @@ namespace States
 
         CLI::OptionsQuestion _menu = {
             .question = "What will you do?",
-            .options  = {"Attack", "Flee", "Search For Item", "Rest", "Look at items", "Use Item", "Open Map"}
+            .options  = {"Attack", "Flee", "Search For Item", "Rest", "Look at items", "Check stats", "Use Item", "Open Map"}
         };
 
         map<Dungeon::Direction, string> _direction_to_string = {
@@ -48,6 +48,7 @@ namespace States
         void _item_use_handler();
         void _look_at_items_handler();
         void _map_handler();
+        void _check_stats_handler();
 
         void _handle_death();
         void _stair_handler();
