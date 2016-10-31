@@ -60,7 +60,11 @@ namespace Player {
 
     bool Player::roll_hit()
     {
-        return RANDOM.weighted_coin_toss(this->get_stats().hit_chance);
+        if (this->get_stats().hit_chance >= 100) {
+            return true;
+        } else {
+            return RANDOM.weighted_coin_toss(this->get_stats().hit_chance);
+        }
     }
 
     void Player::reset_stats_for_creation()
@@ -230,7 +234,11 @@ namespace Player {
 
     bool Player::dodge()
     {
-        return RANDOM.weighted_coin_toss(this->get_stats().defence);
+        if (this->get_stats().defence >= 100) {
+            return true;
+        } else {
+            return RANDOM.weighted_coin_toss(this->get_stats().defence);
+        }
     }
 
     void Player::print_hp()
